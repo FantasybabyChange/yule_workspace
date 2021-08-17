@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.admin.dao.ICompanyServeDao">
+	<resultMap type="companyServe" id="companyServe-sql-map">
+		<id     property="id"          column="ID" />
+		<result property="name"        column="NAME" />
+		<result property="order"        column="ORDER" />
+		<result property="is_show"     column="IS_SHOW" />
+		<result property="is_delete"   column="IS_DELETE" />
+		<result property="create_time" column="CREATE_TIME" />
+		<result property="update_time" column="UPDATE_TIME" />
+	</resultMap>
+	
+	<resultMap type="companyServeVO" id="companyServeVO-sql-map">
+		<id     property="id"       column="ID" />
+		<result property="name"     column="NAME" />
+		<result property="is_check" column="IS_CHECK" />
+	</resultMap>
+	
+	<select id="findCompanyServeList" resultMap="companyServe-sql-map">
+		select a.ID,a.NAME,a.`ORDER` from company_serve a 
+		<where>
+			IS_DELETE = 0
+		</where>
+		ORDER BY `ORDER` ASC 
+	</select>
+
+	<select id="findCompanyServeCheckList" parameterType="string" resultMap="companyServe-sql-map">
+		select a.ID,a.NAME from company_serve a, company_serve_relevant b 
+		<where>
+			a.ID = b.COMPANY_SERVE_ID
+			<if test="companyId !=null and companyId != ''">
+				AND company_id = #{companyId}
+			</if>
+			AND IS_DELETE = 0 
+		</where>
+		ORDER BY a.`ORDER` ASC 
+	</select>
+	
+	<select id="findCompanyAndServeList" parameterType="map" resultMap="companyServeVO-sql-map">
+		select o.ID,o.NAME,o.IS_CHECK from(
+		select a.ID,a.NAME,0 IS_CHECK,a.ORDER from company_serve a , company_serve_relevant b
+		where a.ID = b.COMPANY_SERVE_ID
+		and company_id = #{company_id} and a.IS_DELETE = 0
+		union all
+		select ID,NAME,1 IS_CHECK,`ORDER` from company_serve  
+		where ID not in(
+		select a.ID from company_serve a , company_serve_relevant b 
+		where a.ID = b.COMPANY_SERVE_ID
+		and company_id = #{company_id} and a.IS_DELETE = 0 
+		)
+		) o ORDER BY `ORDER` ASC
+	</select>
+
+	<select id="findCompanyServeCount" resultType="int">
+		select count(*) from company_serve  where IS_DELETE = 0
+	</select>
+
+	<insert id="insertCompanyServe" parameterType="companyServe">
+		insert into company_serve(
+		ID,NAME,`ORDER`,IS_SHOW,IS_DELETE,CREATE_TIME
+		)
+		values(#{id},#{name},#{order},#{is_show},#{is_delete},now())
+	</insert>
+	
+	<insert id="batchInsertCompanyServe" parameterType="list">
+		insert into company_serve(
+		ID,NAME,`ORDER`,IS_SHOW,IS_DELETE,CREATE_TIME
+		)
+		values
+		<foreach collection="list" item="item" index="index" separator=","> 
+		     (#{item.id},#{item.name},#{item.order},#{item.is_show},#{item.is_delete},now())
+		</foreach>
+	</insert>
+	
+	<update id="batchUpdateCompanyServe" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" separator=";" close=""> 
+			update company_serve
+			<set>
+				NAME = #{item.name},
+				`ORDER` = #{item.order},
+				UPDATE_TIME = now()
+			</set>
+			where ID =  #{item.id}
+	    </foreach>  
+	</update>
+	
+	<update id="updateCompanyServe" parameterType="companyServe">
+		update company_serve
+		<set>
+			<if test="name != null and name!=''">
+				NAME = #{name},
+			</if>
+			<if test="order != null ">
+				`ORDER` = #{order},
+			</if>
+			<if test="is_show != null ">
+				IS_SHOW = #{is_show},
+			</if>
+			<if test="is_delete != null ">
+				IS_DELETE = #{is_delete},
+			</if>
+			UPDATE_TIME = now()
+		</set>
+		where ID = #{id}
+	</update>
+
+	<delete id="deleteCompanyServeById" parameterType="java.lang.String">
+		delete from company_serve where ID = #{id};
+		delete from company_serve_relevant where COMPANY_SERVE_ID = #{id};
+	</delete>
+	
+	<delete id="deleteCompanyServeAll" >
+		delete from company_serve 
+	</delete>
+
+</mapper>

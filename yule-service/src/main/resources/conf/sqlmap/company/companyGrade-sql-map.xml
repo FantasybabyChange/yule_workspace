@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.company.dao.ICompanyGradeDao">
+	<resultMap type="companyGrade" id="companyGrade-sql-map">
+		<id     property="id"          column="ID" />
+		<result property="name"        column="NAME" />
+		<result property="is_delete"   column="IS_DELETE" />
+		<result property="create_time" column="CREATE_TIME" />
+		<result property="update_time" column="UPDATE_TIME" />
+	</resultMap>
+	<sql id="companyGrade_first">
+		ID,NAME,IS_DELETE,CREATE_TIME,UPDATE_TIME
+	</sql>
+
+	<select id="findCompanyGradeById" parameterType="java.lang.String" resultType="companyGrade" >
+		select
+		<include refid="companyGrade_first" />
+		from company_grade
+		where ID = #{id} and IS_DELETE = 0
+	</select>
+
+</mapper>

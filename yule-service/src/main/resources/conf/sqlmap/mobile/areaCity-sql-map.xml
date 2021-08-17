@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.mobile.dao.IAreaCityDao">
+	
+	<resultMap type="areaCity" id="areaCity-sql-map">
+		<id     property="id"               column="ID" />
+		<result property="area_province_id"             column="AREA_PROVINCE_ID" />
+		<result property="name"             column="NAME" />
+		<result property="pinyin"             column="PINYIN" />
+	</resultMap>
+	
+	<resultMap type="areaCityVO" id="areaCityVO-sql-map">
+		<id     property="id"               column="ID" />
+		<result property="name"             column="NAME" />
+	</resultMap>
+	
+	<select id="findAreaCityList" resultMap="areaCity-sql-map" >
+		select id,area_province_id,name,pinyin from area_city 
+		<where>
+			<if test="areaProvinceId != null and areaProvinceId != ''">
+				area_province_id = #{areaProvinceId}
+			</if>
+		</where> 
+		LIMIT #{pageStart},#{pageEnd}
+	</select>
+
+	<select id="findAreaCityByInitial" resultMap="areaCityVO-sql-map"  parameterType="java.lang.String">
+		select id,name from area_city where pinyin LIKE #{initial}"%" 
+	</select>
+	
+</mapper>

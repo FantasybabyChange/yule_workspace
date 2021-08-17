@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.orders.dao.ICompanyDao">
+	
+	<sql id="company_first">
+		ID,NAME,PINYIN,HOURS,INTRODUCTION,PERIPHERY,REBAST,COMPANY_GRADE_ID,COMPANY_CATEGORY_ID,ADMIN_USER_ID,STATUS,IS_DELETE,CREATE_TIME,UPDATE_TIME
+	</sql>
+	
+	<select id="findCompanyById" parameterType="java.lang.String" resultType="company" >
+		select <include refid="company_first" /> from company where ID = #{id} and  where IS_DELETE = 0
+	</select>
+
+</mapper>

@@ -1,0 +1,23 @@
+<ul class="history-list " id="browse-ul">
+</ul>
+<!--
+<div class="history-pup-close">
+    <span class="history-close-btn"></span>
+</div>
+-->
+<form action="http://user.yuleing.com/findBrowse.do" method="post" target="browse" id="browseForm"></form>
+<iframe src="about:blank" width="1" height="1" id="browse" name="browse" style="height:0px;width:1px;overflow:hidden;visibility:hidden;position:absolute;" frameborder="0" border="0"></iframe>
+<script type="text/javascript">
+	document.getElementById("browseForm").submit();
+	document.domain = "yuleing.com";
+	header={
+		browse_result:function(result){
+			if(result!=""){
+				document.getElementById("browse-ul").innerHTML = result;
+			}else{
+				var html="<li class=\"history-list-item clearfix\"><span class=\"history-list-title\">暂无浏览记录<span><li>";
+				document.getElementById("browse-ul").innerHTML = html;
+			}
+		}
+	}
+</script>

@@ -1,0 +1,106 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<!--
+	<parent>
+		<groupId>com.yule</groupId>
+		<artifactId>yule-parent</artifactId>
+		<version>1.0-SNAPSHOT</version>
+		<relativePath>../yule-parent/pom.xml</relativePath>
+	</parent>
+	 -->
+	<groupId>com.yule</groupId>
+	<artifactId>yule-mail</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	<name>yule-mail</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <slf4j.version>1.6.6</slf4j.version>
+        <log4j.version>1.2.9</log4j.version>
+	</properties>
+	
+	<repositories>
+		<repository>
+			<id>nexus</id>
+			<name>local private nexus</name>
+			<url>http://maven.yuleing.com:8081/content/groups/public</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>nexus</id>
+			<name>local private nexus</name>
+			<url>http://maven.yuleing.com:8081/content/groups/public</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.yule</groupId>
+			<artifactId>yule-util</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+		  <groupId>commons-collections</groupId>
+		  <artifactId>commons-collections</artifactId>
+		  <version>3.2.1</version>
+		</dependency>
+        <!-- 日志文件管理包 -->
+        <!-- log start -->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <!-- log end -->
+        <dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.7</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+		  <groupId>javax.mail</groupId>
+		  <artifactId>mail</artifactId>
+		  <version>1.4.7</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<finalName>yule-mail</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

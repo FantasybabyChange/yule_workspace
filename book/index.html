@@ -1,0 +1,1033 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//zh-CN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div id="header-full">
+        <div role="navigation" id="menu-bar" class="cont-shadow">
+            <div class="g clearfix">
+                <a href="#" style="float: left;">
+                    <img src="images/logo.png" alt="">
+                </a>
+                <ul class="right-nav">
+                    <li class="nav-item">
+                        <a data-trigger="ajax" href="ajax/histroy.html" data-target=".ajax-histroy-content" class="nav-item-a nav-histroy">最近浏览</a>
+                        <div class="ajax-content ajax-histroy">
+                            <div class="ajax-arr"></div>
+                            <div class="ajax-histroy-content"></div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a data-trigger="ajax" href="ajax/histroy.html" data-target=".ajax-fav-content" class="nav-item-a nav-fav">
+                            <img src="images/fav-icon.png">我的收藏</a>
+                        <div class="ajax-content ajax-histroy ">
+                            <div class="ajax-arr"></div>
+                            <div class="ajax-fav-content"></div>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a href="ajax/login.html" data-trigger="modal" data-title="登录yuleing.com" class="nav-item-a nav-login">登录</a>
+                        <div class="ajax-content tips-login" style="display: block;">
+                            <div class="ajax-arr"></div>
+                            <div class="tips-login-content">
+                                <span class="tips-login-del"></span>
+                                <p>登录即享最优惠价格</p>
+                                <a class="b-button w165 text-center" href="ajax/login.html" data-trigger="modal" data-title="用户登录"> 登录</a>
+                                <p>还没有账户？<a href="ajax/reg.html" data-title="注册yuleing.com账户" data-trigger="modal">点击这里</a>
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a href="ajax/reg.html" data-trigger="modal" data-title="注册yuleing.com账户" class="nav-item-a nav-login">注册账户</a>
+
+                    </li>
+
+                    <li class="nav-item"><a href="#" class="nav-item-a  nav-order-list">管理订单</a>
+                    </li>
+                    <li class="nav-item" ><a href="javascript:void(0)" class="nav-item-a loginIn">
+                        <img src="images/top-avatar.png">张三</a>
+                    <div class="ajax-content login-user-content">
+                        <div class="ajax-arr"></div>
+                        <div class="top-login-content clearfix">
+                            <ul class="top-user-1">
+                                <li><a href="#">个人中心</a>
+                                </li>
+                            </ul>
+                            <ul class="top-user-2">
+                                <li><a href="#">我的订单</a>
+                                </li>
+                                <li><a href="#">我的收藏</a>
+                                </li>
+                                <li><a href="#">浏览历史</a>
+                                </li>
+                                <li><a href="#">设置</a>
+                                </li>
+
+                            </ul>
+                            <a class="b-button pull-right  text-center" href="#"> 退出</a>
+                        </div>
+                    </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col clearfix">
+        <div class="col-left">
+            <div class="search-wapper">
+                <form action="index_submit" method="get" accept-charset="utf-8">
+                    <h3 class="c-form-title ">
+                        <i class="c-form-title__icon "></i>
+                        <span class="c-form-title__text f24">搜索</span>
+                    </h3>
+                    <div class="c-form-subtitle__text">517,000多家酒店、公寓、别墅等住宿</div>
+                    <h4>
+                        <label for="destination">目的地/酒店名称：</label>
+                    </h4>
+                    <div class="input-wrapper">
+                        <input class="input-style" autocomplete="off" type="text" placeholder="例如：城市、地区、区或特定酒店名称" id="destination" name="ss" value="西安">
+                    </div>
+                    <div class="from-btn clearfix">
+                        <div class="advanced-search pull-left">
+                            <a href="#" class="advanced-search-title">附加搜索条件<i class="advanced-search-icon"></i></a>
+                            <div class="advanced-search-content clearfix" style="display:none">
+                                <div class="advanced-search-item">
+                                    <div class="advanced-search-item-title">价格</div>
+                                    <ul class="advanced-search-item-list">
+                                        <li class="b_checkbox">
+                                            <label class="b_checkbox_label">
+                                                <input type="checkbox" name="pr_id" value="1" class="b_checkbox_selector">实惠价位
+                                            </label>
+                                        </li>
+                                        <li class="b_checkbox">
+                                            <label class="b_checkbox_label">
+                                                <input type="checkbox" name="pr_id" value="1" class="b_checkbox_selector">经济价位
+                                            </label>
+                                        </li>
+                                        <li class="b_checkbox">
+                                            <label class="b_checkbox_label">
+                                                <input type="checkbox" name="pr_id" value="1" class="b_checkbox_selector">中等价位
+                                            </label>
+                                        </li>
+                                        <li class="b_checkbox">
+                                            <label class="b_checkbox_label">
+                                                <input type="checkbox" name="pr_id" value="1" class="b_checkbox_selector">豪华价位
+                                            </label>
+                                        </li>
+                                        <li class="b_checkbox">
+                                            <label class="b_checkbox_label">
+                                                <input type="checkbox" name="pr_id" value="1" class="b_checkbox_selector">顶级价位
+                                            </label>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                                <div class="advanced-search-item">
+                                    <div class="advanced-search-item-title">住处类型</div>
+                                    <ul class="advanced-search-item-list">
+                                        <li class="b_checkbox">
+                                            <label class="b_checkbox_label">
+                                                <input type="checkbox" name="pr_id" value="1" class="b_checkbox_selector">酒店
+                                            </label>
+                                        </li>
+                                        <li class="b_checkbox">
+                                            <label class="b_checkbox_label">
+                                                <input type="checkbox" name="pr_id" value="1" class="b_checkbox_selector">旅舍
+                                            </label>
+                                        </li>
+                                        <li class="b_checkbox">
+                                            <label class="b_checkbox_label">
+                                                <input type="checkbox" name="pr_id" value="1" class="b_checkbox_selector">公寓
+                                            </label>
+                                        </li>
+                                        <li class="b_checkbox">
+                                            <label class="b_checkbox_label">
+                                                <input type="checkbox" name="pr_id" value="1" class="b_checkbox_selector">旅馆
+                                            </label>
+                                        </li>
+                                        <li class="b_checkbox">
+                                            <label class="b_checkbox_label">
+                                                <input type="checkbox" name="pr_id" value="1" class="b_checkbox_selector">住宿加早餐旅馆
+                                            </label>
+                                        </li>
+                                        <li class="b_checkbox">
+                                            <label class="b_checkbox_label">
+                                                <input type="checkbox" name="pr_id" value="1" class="b_checkbox_selector">别墅/度假屋
+                                            </label>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                                <div class="advanced-search-item">
+                                    <div class="advanced-search-item-title">星级</div>
+                                    <ul class="advanced-search-item-list">
+                                        <li class="b_checkbox">
+                                            <label class="b_checkbox_label">
+                                                <input type="checkbox" name="pr_id" value="1" class="b_checkbox_selector">1星级
+                                            </label>
+                                        </li>
+                                        <li class="b_checkbox">
+                                            <label class="b_checkbox_label">
+                                                <input type="checkbox" name="pr_id" value="1" class="b_checkbox_selector">2星级
+                                            </label>
+                                        </li>
+                                        <li class="b_checkbox">
+                                            <label class="b_checkbox_label">
+                                                <input type="checkbox" name="pr_id" value="1" class="b_checkbox_selector">3星级
+                                            </label>
+                                        </li>
+                                        <li class="b_checkbox">
+                                            <label class="b_checkbox_label">
+                                                <input type="checkbox" name="pr_id" value="1" class="b_checkbox_selector">4星级
+                                            </label>
+                                        </li>
+                                        <li class="b_checkbox">
+                                            <label class="b_checkbox_label">
+                                                <input type="checkbox" name="pr_id" value="1" class="b_checkbox_selector">5星级
+                                            </label>
+                                        </li>
+
+
+                                    </ul>
+                                </div>
+								<div class="clearit"></div>
+                                <div class="advanced-search-item">
+                                    <div class="advanced-search-item-title">评分</div>
+                                    <ul class="advanced-search-item-list">
+                                        <li class="b_checkbox">
+                                            <label class="b_checkbox_label">
+                                                <input type="checkbox" name="pr_id" value="1" class="b_checkbox_selector">好极了：9分以上
+                                            </label>
+                                        </li>
+                                        <li class="b_checkbox">
+                                            <label class="b_checkbox_label">
+                                                <input type="checkbox" name="pr_id" value="1" class="b_checkbox_selector">非常好：8分以上
+                                            </label>
+                                        </li>
+                                        <li class="b_checkbox">
+                                            <label class="b_checkbox_label">
+                                                <input type="checkbox" name="pr_id" value="1" class="b_checkbox_selector">好：7分以上
+                                            </label>
+                                        </li>
+                                        <li class="b_checkbox">
+                                            <label class="b_checkbox_label">
+                                                <input type="checkbox" name="pr_id" value="1" class="b_checkbox_selector">令人愉悦：6分以上
+                                            </label>
+                                        </li>
+                                        <li class="b_checkbox">
+                                            <label class="b_checkbox_label">
+                                                <input type="checkbox" name="pr_id" value="1" class="b_checkbox_selector">尚无评分
+                                            </label>
+                                        </li>
+
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="b-button f23  pull-right br6" type="submit">
+                            <span class="b-button__text">搜索</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="oneusp usp_tick2 top">
+                <i class="usp-tick2-small"></i>
+                <h3>现在预订，入住期间付款！
+                    <br>
+                    <span style="font-size:.9em; font-weight: normal;">多数客房可免费取消</span>
+                </h3>
+            </div>
+            <div class="history">
+                <span class="history-del"></span>
+                <h3>我浏览过的酒店</h3>
+                <ul class="history-list-2">
+                    <li class="history-list-item clearfix">
+                        <span class="history-list-del"></span>
+                        <a href="/city/cn/shanghai.zh-cn.html?sid=b02dab10595e6485e28e61112667ffe0;dcid=1;city=-1924465;ilp=1">
+                            <img src="http://r-cc.bstatic.com/images/city/square100/120/120034.jpg" data-trigger="preview" data-href="http://r-cc.bstatic.com/images/hotel/max300/112/11294808.jpg" data-title="上海 中国 酒店" alt="上海 中国 酒店" title="位于上海的酒店, 中国" width="80" height="80">
+                        </a>
+                        <p><a href="#" class="history-list-title">五脚基旅馆中国城2号店</a><i class="b-sprite stars ratings_stars_3" title="3星级酒店"></i>
+                        </p>
+                        <span class="feataddress">民生东路一段28号, 中山区, 台北</span>
+                        <p>分数来自1110个评分:
+                            <strong>非常好 8.3</strong>
+                            <span style="cursor: help;display:inline-block;" class="use_sprites icon_minibubble"></span>
+                        </p>
+                        <span class="lastbooking">最新的预订：27分钟之前</span>
+                        <p>1位客人正在浏览这家酒店。</p>
+                    </li>
+                    <li class="history-list-item clearfix">
+                        <span class="history-list-del"></span>
+                        <a href="/city/cn/shanghai.zh-cn.html?sid=b02dab10595e6485e28e61112667ffe0;dcid=1;city=-1924465;ilp=1">
+                            <img src="http://r-cc.bstatic.com/images/city/square100/120/120034.jpg" data-trigger="preview" data-href="http://r-cc.bstatic.com/images/hotel/max300/112/11294808.jpg" data-title="上海 中国 酒店" alt="上海 中国 酒店" title="位于上海的酒店, 中国" width="80" height="80">
+                        </a>
+                        <p><a href="#" class="history-list-title">五脚基旅馆中国城2号店</a><i class="b-sprite stars ratings_stars_3" title="3星级酒店"></i>
+                        </p>
+                        <span class="feataddress">民生东路一段28号, 中山区, 台北</span>
+                        <p>分数来自1110个评分:
+                            <strong>非常好 8.3</strong>
+                            <span style="cursor: help;display:inline-block;" class="use_sprites icon_minibubble"></span>
+                        </p>
+                        <span class="lastbooking">最新的预订：27分钟之前</span>
+                        <p>1位客人正在浏览这家酒店。</p>
+                    </li>
+                </ul>
+            </div>
+            <h2 class="recommendation">热门城市</h2>
+            <ul class="hot-city">
+                <li class="hot-city-item clearfix">
+                    <a href="#">
+                        <img src="http://q-cc.bstatic.com/images/city/square100/115/115391.jpg">
+                    </a>
+                    <h3 class="hot-city_title"><a href="#">北京</a>
+                    </h3>
+                    <p class="b_popular_acc_types">
+                        <a href="/city/cn/guilin.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4;thm=hotel">
+                    82家酒店</a>,
+                        <a href="/hostels/city/cn/guilin.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4">
+                    11家旅馆</a>,
+                        <a href="/inns/city/cn/guilin.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4">
+                    6家宾馆</a>,
+                        <a href="/apartments/city/cn/guilin.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4">
+                    2间公寓</a>,
+                        <a href="/resorts/city/cn/guilin.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4">
+                    2个度假村</a>
+                    </p>
+                </li>
+                <li class="hot-city-item clearfix">
+                    <a href="#">
+                        <img src="http://q-cc.bstatic.com/images/city/square100/115/115391.jpg">
+                    </a>
+                    <h3 class="hot-city_title"><a href="#">北京</a>
+                    </h3>
+                    <p class="b_popular_acc_types">
+                        <a href="/city/cn/guilin.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4;thm=hotel">
+                    82家酒店</a>,
+                        <a href="/hostels/city/cn/guilin.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4">
+                    11家旅馆</a>,
+                        <a href="/inns/city/cn/guilin.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4">
+                    6家宾馆</a>,
+                        <a href="/apartments/city/cn/guilin.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4">
+                    2间公寓</a>,
+                        <a href="/resorts/city/cn/guilin.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4">
+                    2个度假村</a>
+                    </p>
+                </li>
+                <li class="hot-city-item clearfix">
+                    <a href="#">
+                        <img src="http://q-cc.bstatic.com/images/city/square100/115/115391.jpg">
+                    </a>
+                    <h3 class="hot-city_title"><a href="#">北京</a>
+                    </h3>
+                    <p class="b_popular_acc_types">
+                        <a href="/city/cn/guilin.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4;thm=hotel">
+                    82家酒店</a>,
+                        <a href="/hostels/city/cn/guilin.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4">
+                    11家旅馆</a>,
+                        <a href="/inns/city/cn/guilin.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4">
+                    6家宾馆</a>,
+                        <a href="/apartments/city/cn/guilin.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4">
+                    2间公寓</a>,
+                        <a href="/resorts/city/cn/guilin.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4">
+                    2个度假村</a>
+                    </p>
+                </li>
+            </ul>
+
+            <div class="uspsbox">
+                <h2>使用我们网站预订的5大理由</h2>
+                <div class="oneusp usp_tick2 top">
+                    <i class=" usp-tick2-small"></i>
+                    <h3>低廉的价格
+                        <br>
+                        <span style="font-size:.9em; font-weight: normal;">不收预订费 • 省钱 • 线上最优惠价格</span>
+                    </h3>
+                </div>
+                <div class="oneusp usp_tick2 top">
+                    <i class=" usp-tick2-small"></i>
+                    <h3>全球517,158个住宿
+                        <br>
+                        <span style="font-size:.9em; font-weight: normal;">不收预订费 • 省钱 • 线上最优惠价格</span>
+                    </h3>
+                </div>
+                <div class="oneusp usp_tick2 top">
+                    <i class=" usp-tick2-small"></i>
+                    <h3>安全在线管理您的预订
+                        <br>
+                        <span style="font-size:.9em; font-weight: normal;">取消、更改预订或向住宿发送要求，简单方便</span>
+                    </h3>
+                </div>
+                <div class="oneusp usp_tick2 top">
+                    <i class=" usp-tick2-small"></i>
+                    <h3>真实住客评语
+                        <br>
+                        <span style="font-size:.9em; font-weight: normal;">我们验证所有评语的真实性</span>
+                    </h3>
+                </div>
+                <div class="oneusp usp_tick2 top">
+                    <i class=" usp-tick2-small"></i>
+                    <h3>专业客服服务
+                        <br>
+                        <span style="font-size:.9em; font-weight: normal;">7*24小时专业客服为您提供消费查询、路线引导、预订服务。</span>
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-right">
+            <div class="index-search-suggestion">
+                <div class="searchbox_suggestion_on_right_arrow"></div>
+                <div class="destination-suggestion destination-suggestion-with-history">
+                    <div class="destination-section domestic-destination has-no-tab">
+                        <div class="tab-header">
+                            精选目的地
+                            <div class="destination-tab-clear"></div>
+                        </div>
+                        <div class="tab-content clearfix">
+                            <div class="tab-panel tab-panel-active">
+                                <ul class="destination-area">
+                                    <li>
+                                        <a href="#" title="北京 (519家酒店)">北京</a>
+                                        <span class="hotel-num">(519)</span>
+                                    </li>
+                                    <li>
+                                        <a href="#" title="上海 (490家酒店)">上海</a>
+                                        <span class="hotel-num">(490)</span>
+                                    </li>
+                                    <li>
+                                        <a href="#" title="成都 (308家酒店)">成都</a>
+                                        <span class="hotel-num">(308)</span>
+                                    </li>
+                                    <li>
+                                        <a href="#" title="三亚 (183家酒店)">三亚</a>
+                                        <span class="hotel-num">(183)</span>
+                                    </li>
+                                    <li>
+                                        <a href="#" title="西安 (194家酒店)">西安</a>
+                                        <span class="hotel-num">(194)</span>
+                                    </li>
+                                    <li>
+                                        <a href="#" title="广州 (484家酒店)">广州</a>
+                                        <span class="hotel-num">(484)</span>
+                                    </li>
+                                    <li>
+                                        <a href="#" title="深圳 (309家酒店)">深圳</a>
+                                        <span class="hotel-num">(309)</span>
+                                    </li>
+                                    <li>
+                                        <a href="#" title="天津 (79家酒店)">天津</a>
+                                        <span class="hotel-num">(79)</span>
+                                    </li>
+                                    <li>
+                                        <a href="#" title="重庆 (115家酒店)">重庆</a>
+                                        <span class="hotel-num">(115)</span>
+                                    </li>
+                                    <li>
+                                        <a href="#" title="天竺区 (36家酒店)">天竺区</a>
+                                        <span class="hotel-num">(36)</span>
+                                    </li>
+                                    <li>
+                                        <a href="#" title="阳朔 (151家酒店)">阳朔</a>
+                                        <span class="hotel-num">(151)</span>
+                                    </li>
+                                    <li>
+                                        <a href="#" title="桂林 (105家酒店)">桂林</a>
+                                        <span class="hotel-num">(105)</span>
+                                    </li>
+                                    <li>
+                                        <a href="#" title="杭州 (233家酒店)">杭州</a>
+                                        <span class="hotel-num">(233)</span>
+                                    </li>
+                                    <li>
+                                        <a href="#" title="厦门 (146家酒店)">厦门</a>
+                                        <span class="hotel-num">(146)</span>
+                                    </li>
+                                    <li>
+                                        <a href="#" title="苏州 (114家酒店)">苏州</a>
+                                        <span class="hotel-num">(114)</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="destination-section abroad-destination">
+                        <div class="tab-header">
+                            热门目的地
+                        </div>
+                        <ul class="tab-nav">
+
+                            <li class="tab-nav-item tab-nav-item-active"><a href="#">ABCDE</a>
+                            </li>
+                            <li class="tab-nav-item"><a href="#">FGHJ</a> 
+                            </li>
+
+                        </ul>
+                        <div class="tab-content pane-wrapper">
+                            <div class="tab-panel">
+                                <div class="destination-area-item clearfix">
+                                    <div class="destination-area-title">A</div>
+                                    <ul class="destination-area pl20 clearfix ">
+                                        <li>
+                                            <a href="#" title="天津 (79家酒店)">天津</a>
+                                            <span class="hotel-num">(79)</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="重庆 (115家酒店)">重庆</a>
+                                            <span class="hotel-num">(115)</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="天竺区 (36家酒店)">天竺区</a>
+                                            <span class="hotel-num">(36)</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="阳朔 (151家酒店)">阳朔</a>
+                                            <span class="hotel-num">(151)</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="桂林 (105家酒店)">桂林</a>
+                                            <span class="hotel-num">(105)</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="杭州 (233家酒店)">杭州</a>
+                                            <span class="hotel-num">(233)</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="厦门 (146家酒店)">厦门</a>
+                                            <span class="hotel-num">(146)</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="苏州 (114家酒店)">苏州</a>
+                                            <span class="hotel-num">(114)</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="destination-area-item clearfix">
+                                    <div class="destination-area-title">B</div>
+                                    <ul class="destination-area pl20 clearfix ">
+                                        <li>
+                                            <a href="#" title="天津 (79家酒店)">天津</a>
+                                            <span class="hotel-num">(79)</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="重庆 (115家酒店)">重庆</a>
+                                            <span class="hotel-num">(115)</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="天竺区 (36家酒店)">天竺区</a>
+                                            <span class="hotel-num">(36)</span>
+                                        </li>
+
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="tab-panel " style="display: none;">
+                                <div class="destination-area-item clearfix">
+                                    <div class="destination-area-title">E</div>
+                                    <ul class="destination-area pl20 clearfix ">
+                                        <li>
+                                            <a href="#" title="天津 (79家酒店)">天津</a>
+                                            <span class="hotel-num">(79)</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="重庆 (115家酒店)">重庆</a>
+                                            <span class="hotel-num">(115)</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="天竺区 (36家酒店)">天竺区</a>
+                                            <span class="hotel-num">(36)</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="阳朔 (151家酒店)">阳朔</a>
+                                            <span class="hotel-num">(151)</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="桂林 (105家酒店)">桂林</a>
+                                            <span class="hotel-num">(105)</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="杭州 (233家酒店)">杭州</a>
+                                            <span class="hotel-num">(233)</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="厦门 (146家酒店)">厦门</a>
+                                            <span class="hotel-num">(146)</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="苏州 (114家酒店)">苏州</a>
+                                            <span class="hotel-num">(114)</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="destination-area-item clearfix">
+                                    <div class="destination-area-title">F</div>
+                                    <ul class="destination-area pl20 clearfix ">
+                                        <li>
+                                            <a href="#" title="天津 (79家酒店)">天津</a>
+                                            <span class="hotel-num">(79)</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="重庆 (115家酒店)">重庆</a>
+                                            <span class="hotel-num">(115)</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="天竺区 (36家酒店)">天竺区</a>
+                                            <span class="hotel-num">(36)</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="阳朔 (151家酒店)">阳朔</a>
+                                            <span class="hotel-num">(151)</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="桂林 (105家酒店)">桂林</a>
+                                            <span class="hotel-num">(105)</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="杭州 (233家酒店)">杭州</a>
+                                            <span class="hotel-num">(233)</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="厦门 (146家酒店)">厦门</a>
+                                            <span class="hotel-num">(146)</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="苏州 (114家酒店)">苏州</a>
+                                            <span class="hotel-num">(114)</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="index-focus">
+                <img src="http://r-cc.bstatic.com/static/img/experiments/lp_index_promo_slider/lp_index_promo_slide_deals_1/cfbc84a43a1a2f40d4695a3d90bf69e0a00a3a4b.jpg">
+                <img src="http://r-cc.bstatic.com/static/img/experiments/lp_index_promo_slider/lp_index_promo_slide_villas_1/45b205ed67f218fbe7e832f84f484e4e16c36157.jpg">
+            </div>
+            <div class="activity_stream ">
+                <h2>新预订</h2>
+                <ul class="" id="activity_items">
+                    <li class="book">
+                        <div class="activity_box">
+                            <div class="image">
+                                <img src="http://r-cc.bstatic.com/images/hotel/square60/808/8088570.jpg">
+                            </div>
+                            <p class="booker_from">1位来自台湾的客人</p>刚刚预订了<a href="#">Canaan International Hotel</a>
+                        </div>
+                    </li>
+                    <li class="book">
+                        <div class="activity_box">
+                            <div class="image">
+                                <img src="http://q-cc.bstatic.com/images/hotel/square60/638/6387579.jpg">
+                            </div>
+                            <p class="booker_from">1位来自中国的客人</p>刚刚预订了<a href="#">Xi'an Qixian (7 Sages) Youth Hostel</a>
+                        </div>
+                    </li>
+                    <li class="book">
+                        <div class="activity_box">
+                            <div class="image">
+                                <img src="http://q-cc.bstatic.com/images/hotel/square60/162/16282233.jpg">
+                            </div>
+                            <p class="booker_from">1位来自中国的客人</p>刚刚预订了<a href="#">Grand Noble Hotel Xi’an</a>
+                        </div>
+                    </li>
+                    <li class="book">
+                        <div class="activity_box">
+                            <div class="image">
+                                <img src="http://q-cc.bstatic.com/images/hotel/square60/638/6387579.jpg">
+                            </div>
+                            <p class="booker_from">1位来自中国的客人</p>刚刚预订了<a href="#">Xi'an Qixian (7 Sages) Youth Hostel</a>
+                        </div>
+                    </li>
+                    <li class="book">
+                        <div class="activity_box">
+                            <div class="image">
+                                <img src="http://q-cc.bstatic.com/images/hotel/square60/127/12798349.jpg">
+                            </div>
+                            <p class="booker_from">1位来自新加坡的客人</p>刚刚预订了<a href="#">Citadines Central Xi'an</a>
+                        </div>
+                    </li>
+                    <li class="book">
+                        <div class="activity_box">
+                            <div class="image">
+                                <img src="http://q-cc.bstatic.com/images/hotel/square60/144/14460365.jpg">
+                            </div>
+                            <p class="booker_from">1位来自中国的客人</p>刚刚预订了<a href="#">Bell Tower Youth Hostel</a>
+                        </div>
+                    </li>
+                    <li class="book">
+                        <div class="activity_box">
+                            <div class="image">
+                                <img src="http://r-cc.bstatic.com/images/hotel/square60/164/16468064.jpg">
+                            </div>
+                            <p class="booker_from">1位来自英国的客人</p>刚刚预订了<a href="#">Sofitel Xian On Renmin Square</a>
+                        </div>
+                    </li>
+                    <li class="book">
+                        <div class="activity_box">
+                            <div class="image">
+                                <img src="http://q-cc.bstatic.com/images/hotel/square60/127/12798349.jpg">
+                            </div>
+                            <p class="booker_from">1位来自荷兰的客人</p>刚刚预订了<a href="#">Citadines Central Xi'an</a>
+                        </div>
+                    </li>
+                    <li class="book">
+                        <div class="activity_box">
+                            <div class="image">
+                                <img src="http://r-cc.bstatic.com/images/hotel/square60/337/33705840.jpg">
+                            </div>
+                            <p class="booker_from">1位来自印度的客人</p>刚刚预订了<a href="#">Xi'an Jiuping Hostel</a>
+                        </div>
+                    </li>
+                    <li class="book">
+                        <div class="activity_box">
+                            <div class="image">
+                                <img src="http://q-cc.bstatic.com/images/hotel/square60/279/27912762.jpg">
+                            </div>
+                            <p class="booker_from">1位来自台湾的客人</p>刚刚预订了<a href="#">Xi'an Green Forest Hotel</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="search-history">
+                <h2 class="recommendation-2">您最近的搜索记录</h2>
+                <ul class="search-history-list">
+                    <li class="hot-city-item clearfix">
+                        <a href="#">
+                            <div class="pull-left">
+                                <img src="http://q-cc.bstatic.com/images/city/400x136/447/44765.jpg" alt="北京 中国 酒店" title="位于北京的酒店, 中国" width="250" height="85">
+                                <div class="title"><i class=" icon_search_white"></i>再次搜索</div>
+                            </div>
+                            <h3 class="hot-city_title">北京</h3>
+                            <div>81家酒店, 11家旅馆, 6家宾馆</div>
+                        </a>
+                    </li>
+                    <li class="hot-city-item clearfix">
+                        <a href="#">
+                            <div class="pull-left">
+                                <img src="http://q-cc.bstatic.com/images/city/400x136/447/44765.jpg" alt="北京 中国 酒店" title="位于北京的酒店, 中国" width="250" height="85">
+                                <div class="title"><i class=" icon_search_white"></i>再次搜索</div>
+                            </div>
+                            <h3 class="hot-city_title">北京</h3>
+                            <div>81家酒店, 11家旅馆, 6家宾馆</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="recommendation-part">
+                <h2 class="recommendation-2">您搜索过北京，或许您也会喜欢这座城市。</h2>
+                <div class="recommendation-city" style="background-image: url(http://q-cc.bstatic.com/images/city/600x200/120/120033.jpg)">
+                    <div class="pr2_bg">
+                        <p>
+                            上海
+                        </p>
+                        <div class="pc_count">
+                            <em style="display: block;font-style: normal">490个住宿</em>
+                        </div>
+                    </div>
+                </div>
+                <div class="recommendation-list-view">31位客人正在浏览这个目的地</div>
+                <ul class="recommendation-list">
+                    <li class="recommendation-item clearfix">
+                        <a href="/city/cn/shanghai.zh-cn.html?sid=b02dab10595e6485e28e61112667ffe0;dcid=1;city=-1924465;ilp=1">
+                            <img src="http://r-cc.bstatic.com/images/city/square100/120/120034.jpg" data-trigger="preview" data-href="http://r-cc.bstatic.com/images/hotel/max300/112/11294808.jpg" data-title="上海 中国 酒店" alt="上海 中国 酒店" title="位于上海的酒店, 中国" width="80" height="80">
+                        </a>
+                        <div class="recommendation-item-info">
+                            <a href="#" class="history-list-title">五脚基旅馆中国城2号店</a><i class="b-sprite stars ratings_stars_3" title="3星级酒店"></i>
+                            <p>已有12人预定</p>
+                            <span class="feataddress">民生东路一段28号, 中山区, 台北</span>
+                            <span class="lastbooking">最新的预订：27分钟之前</span>
+                            <p>1位客人正在浏览这家酒店。</p>
+                        </div>
+                        <div class="recommendation-item-right">
+                            <p class="f20 index-scorewordspan">非常好 8.3</p>
+                            <a href="#" class="b-button index-order-btn">立即预定</a>
+                        </div>
+
+                    </li>
+                    <li class="recommendation-item clearfix">
+                        <a href="/city/cn/shanghai.zh-cn.html?sid=b02dab10595e6485e28e61112667ffe0;dcid=1;city=-1924465;ilp=1">
+                            <img src="http://r-cc.bstatic.com/images/city/square100/120/120034.jpg" data-trigger="preview" data-href="http://r-cc.bstatic.com/images/hotel/max300/112/11294808.jpg" data-title="上海 中国 酒店" alt="上海 中国 酒店" title="位于上海的酒店, 中国" width="80" height="80">
+                        </a>
+                        <div class="recommendation-item-info">
+                            <a href="#" class="history-list-title">五脚基旅馆中国城2号店</a><i class="b-sprite stars ratings_stars_3" title="3星级酒店"></i>
+                            <p>已有12人预定</p>
+                            <span class="feataddress">民生东路一段28号, 中山区, 台北</span>
+                            <span class="lastbooking">最新的预订：27分钟之前</span>
+                            <p>1位客人正在浏览这家酒店。</p>
+                        </div>
+                        <div class="recommendation-item-right">
+                            <p class="f20 index-scorewordspan">非常好 8.3</p>
+                            <a href="#" class="b-button index-order-btn">立即预定</a>
+                        </div>
+
+                    </li>
+                    <li class="recommendation-item clearfix">
+                        <a href="/city/cn/shanghai.zh-cn.html?sid=b02dab10595e6485e28e61112667ffe0;dcid=1;city=-1924465;ilp=1">
+                            <img src="http://r-cc.bstatic.com/images/city/square100/120/120034.jpg" data-trigger="preview" data-href="http://r-cc.bstatic.com/images/hotel/max300/112/11294808.jpg" data-title="上海 中国 酒店" alt="上海 中国 酒店" title="位于上海的酒店, 中国" width="80" height="80">
+                        </a>
+                        <div class="recommendation-item-info">
+                            <a href="#" class="history-list-title">五脚基旅馆中国城2号店</a><i class="b-sprite stars ratings_stars_3" title="3星级酒店"></i>
+                            <p>已有12人预定</p>
+                            <span class="feataddress">民生东路一段28号, 中山区, 台北</span>
+                            <span class="lastbooking">最新的预订：27分钟之前</span>
+                            <p>1位客人正在浏览这家酒店。</p>
+                        </div>
+                        <div class="recommendation-item-right">
+                            <p class="f20 index-scorewordspan">非常好 8.3</p>
+                            <a href="#" class="b-button index-order-btn">立即预定</a>
+                        </div>
+
+                    </li>
+                    <li class="recommendation-item clearfix">
+                        <a href="/city/cn/shanghai.zh-cn.html?sid=b02dab10595e6485e28e61112667ffe0;dcid=1;city=-1924465;ilp=1">
+                            <img src="http://r-cc.bstatic.com/images/city/square100/120/120034.jpg" data-trigger="preview" data-href="http://r-cc.bstatic.com/images/hotel/max300/112/11294808.jpg" data-title="上海 中国 酒店" alt="上海 中国 酒店" title="位于上海的酒店, 中国" width="80" height="80">
+                        </a>
+                        <div class="recommendation-item-info">
+                            <a href="#" class="history-list-title">五脚基旅馆中国城2号店</a><i class="b-sprite stars ratings_stars_3" title="3星级酒店"></i>
+                            <p>已有12人预定</p>
+                            <span class="feataddress">民生东路一段28号, 中山区, 台北</span>
+                            <span class="lastbooking">最新的预订：27分钟之前</span>
+                            <p>1位客人正在浏览这家酒店。</p>
+                        </div>
+                        <div class="recommendation-item-right">
+                            <p class="f20 index-scorewordspan">非常好 8.3</p>
+                            <a href="#" class="b-button index-order-btn">立即预定</a>
+                        </div>
+
+                    </li>
+                    <li class="recommendation-item clearfix">
+                        <a href="/city/cn/shanghai.zh-cn.html?sid=b02dab10595e6485e28e61112667ffe0;dcid=1;city=-1924465;ilp=1">
+                            <img src="http://r-cc.bstatic.com/images/city/square100/120/120034.jpg" data-trigger="preview" data-href="http://r-cc.bstatic.com/images/hotel/max300/112/11294808.jpg" data-title="上海 中国 酒店" alt="上海 中国 酒店" title="位于上海的酒店, 中国" width="80" height="80">
+                        </a>
+                        <div class="recommendation-item-info">
+                            <a href="#" class="history-list-title">五脚基旅馆中国城2号店</a><i class="b-sprite stars ratings_stars_3" title="3星级酒店"></i>
+                            <p>已有12人预定</p>
+                            <span class="feataddress">民生东路一段28号, 中山区, 台北</span>
+                            <span class="lastbooking">最新的预订：27分钟之前</span>
+                            <p>1位客人正在浏览这家酒店。</p>
+                        </div>
+                        <div class="recommendation-item-right">
+                            <p class="f20 index-scorewordspan">非常好 8.3</p>
+                            <a href="#" class="b-button index-order-btn">立即预定</a>
+                        </div>
+
+                    </li>
+                    <li class="recommendation-item clearfix">
+                        <a href="/city/cn/shanghai.zh-cn.html?sid=b02dab10595e6485e28e61112667ffe0;dcid=1;city=-1924465;ilp=1">
+                            <img src="http://r-cc.bstatic.com/images/city/square100/120/120034.jpg" data-trigger="preview" data-href="http://r-cc.bstatic.com/images/hotel/max300/112/11294808.jpg" data-title="上海 中国 酒店" alt="上海 中国 酒店" title="位于上海的酒店, 中国" width="80" height="80">
+                        </a>
+                        <div class="recommendation-item-info">
+                            <a href="#" class="history-list-title">五脚基旅馆中国城2号店</a><i class="b-sprite stars ratings_stars_3" title="3星级酒店"></i>
+                            <p>已有12人预定</p>
+                            <span class="feataddress">民生东路一段28号, 中山区, 台北</span>
+                            <span class="lastbooking">最新的预订：27分钟之前</span>
+                            <p>1位客人正在浏览这家酒店。</p>
+                        </div>
+                        <div class="recommendation-item-right">
+                            <p class="f20 index-scorewordspan">非常好 8.3</p>
+                            <a href="#" class="b-button index-order-btn">立即预定</a>
+                        </div>
+
+                    </li>
+                </ul>
+                <p class="text-right view-more-wapper"><a href="/searchresults.zh-cn.html?sid=d2404c6c064c94cd44ffb89361f14b6b;dcid=4;city=-2631690" class="view-more" title="花莲 酒店">查看优惠信息 »</a>
+                </p>
+            </div>
+            <div class="recommendation-part">
+                <h2 class="recommendation-2">您搜索过北京，或许您也会喜欢这座城市。</h2>
+                <div class="recommendation-city" style="background-image: url(http://q-cc.bstatic.com/images/city/600x200/120/120033.jpg)">
+                    <div class="pr2_bg">
+                        <p>
+                            北京
+                        </p>
+                        <div class="pc_count">
+                            <em style="display: block;font-style: normal">490个住宿</em>
+                        </div>
+                    </div>
+                </div>
+                <div class="recommendation-list-view">31位客人正在浏览这个目的地</div>
+                <ul class="recommendation-list">
+                    <li class="recommendation-item clearfix">
+                        <a href="/city/cn/shanghai.zh-cn.html?sid=b02dab10595e6485e28e61112667ffe0;dcid=1;city=-1924465;ilp=1">
+                            <img src="http://r-cc.bstatic.com/images/city/square100/120/120034.jpg" data-trigger="preview" data-href="http://r-cc.bstatic.com/images/hotel/max300/112/11294808.jpg" data-title="上海 中国 酒店" alt="上海 中国 酒店" title="位于上海的酒店, 中国" width="80" height="80">
+                        </a>
+                        <div class="recommendation-item-info">
+                            <a href="#" class="history-list-title">五脚基旅馆中国城2号店</a><i class="b-sprite stars ratings_stars_3" title="3星级酒店"></i>
+                            <p>已有12人预定</p>
+                            <span class="feataddress">民生东路一段28号, 中山区, 台北</span>
+                            <span class="lastbooking">最新的预订：27分钟之前</span>
+                            <p>1位客人正在浏览这家酒店。</p>
+                        </div>
+                        <div class="recommendation-item-right">
+                            <p class="f20 index-scorewordspan">非常好 8.3</p>
+                            <a href="#" class="b-button index-order-btn">立即预定</a>
+                        </div>
+
+                    </li>
+                    <li class="recommendation-item clearfix">
+                        <a href="/city/cn/shanghai.zh-cn.html?sid=b02dab10595e6485e28e61112667ffe0;dcid=1;city=-1924465;ilp=1">
+                            <img src="http://r-cc.bstatic.com/images/city/square100/120/120034.jpg" data-trigger="preview" data-href="http://r-cc.bstatic.com/images/hotel/max300/112/11294808.jpg" data-title="上海 中国 酒店" alt="上海 中国 酒店" title="位于上海的酒店, 中国" width="80" height="80">
+                        </a>
+                        <div class="recommendation-item-info">
+                            <a href="#" class="history-list-title">五脚基旅馆中国城2号店</a><i class="b-sprite stars ratings_stars_3" title="3星级酒店"></i>
+                            <p>已有12人预定</p>
+                            <span class="feataddress">民生东路一段28号, 中山区, 台北</span>
+                            <span class="lastbooking">最新的预订：27分钟之前</span>
+                            <p>1位客人正在浏览这家酒店。</p>
+                        </div>
+                        <div class="recommendation-item-right">
+                            <p class="f20 index-scorewordspan">非常好 8.3</p>
+                            <a href="#" class="b-button index-order-btn">立即预定</a>
+                        </div>
+
+                    </li>
+                    <li class="recommendation-item clearfix">
+                        <a href="/city/cn/shanghai.zh-cn.html?sid=b02dab10595e6485e28e61112667ffe0;dcid=1;city=-1924465;ilp=1">
+                            <img src="http://r-cc.bstatic.com/images/city/square100/120/120034.jpg" data-trigger="preview" data-href="http://r-cc.bstatic.com/images/hotel/max300/112/11294808.jpg" data-title="上海 中国 酒店" alt="上海 中国 酒店" title="位于上海的酒店, 中国" width="80" height="80">
+                        </a>
+                        <div class="recommendation-item-info">
+                            <a href="#" class="history-list-title">五脚基旅馆中国城2号店</a><i class="b-sprite stars ratings_stars_3" title="3星级酒店"></i>
+                            <p>已有12人预定</p>
+                            <span class="feataddress">民生东路一段28号, 中山区, 台北</span>
+                            <span class="lastbooking">最新的预订：27分钟之前</span>
+                            <p>1位客人正在浏览这家酒店。</p>
+                        </div>
+                        <div class="recommendation-item-right">
+                            <p class="f20 index-scorewordspan">非常好 8.3</p>
+                            <a href="#" class="b-button index-order-btn">立即预定</a>
+                        </div>
+
+                    </li>
+                    <li class="recommendation-item clearfix">
+                        <a href="/city/cn/shanghai.zh-cn.html?sid=b02dab10595e6485e28e61112667ffe0;dcid=1;city=-1924465;ilp=1">
+                            <img src="http://r-cc.bstatic.com/images/city/square100/120/120034.jpg" data-trigger="preview" data-href="http://r-cc.bstatic.com/images/hotel/max300/112/11294808.jpg" data-title="上海 中国 酒店" alt="上海 中国 酒店" title="位于上海的酒店, 中国" width="80" height="80">
+                        </a>
+                        <div class="recommendation-item-info">
+                            <a href="#" class="history-list-title">五脚基旅馆中国城2号店</a><i class="b-sprite stars ratings_stars_3" title="3星级酒店"></i>
+                            <p>已有12人预定</p>
+                            <span class="feataddress">民生东路一段28号, 中山区, 台北</span>
+                            <span class="lastbooking">最新的预订：27分钟之前</span>
+                            <p>1位客人正在浏览这家酒店。</p>
+                        </div>
+                        <div class="recommendation-item-right">
+                            <p class="f20 index-scorewordspan">非常好 8.3</p>
+                            <a href="#" class="b-button index-order-btn">立即预定</a>
+                        </div>
+
+                    </li>
+                    <li class="recommendation-item clearfix">
+                        <a href="/city/cn/shanghai.zh-cn.html?sid=b02dab10595e6485e28e61112667ffe0;dcid=1;city=-1924465;ilp=1">
+                            <img src="http://r-cc.bstatic.com/images/city/square100/120/120034.jpg" data-trigger="preview" data-href="http://r-cc.bstatic.com/images/hotel/max300/112/11294808.jpg" data-title="上海 中国 酒店" alt="上海 中国 酒店" title="位于上海的酒店, 中国" width="80" height="80">
+                        </a>
+                        <div class="recommendation-item-info">
+                            <a href="#" class="history-list-title">五脚基旅馆中国城2号店</a><i class="b-sprite stars ratings_stars_3" title="3星级酒店"></i>
+                            <p>已有12人预定</p>
+                            <span class="feataddress">民生东路一段28号, 中山区, 台北</span>
+                            <span class="lastbooking">最新的预订：27分钟之前</span>
+                            <p>1位客人正在浏览这家酒店。</p>
+                        </div>
+                        <div class="recommendation-item-right">
+                            <p class="f20 index-scorewordspan">非常好 8.3</p>
+                            <a href="#" class="b-button index-order-btn">立即预定</a>
+                        </div>
+
+                    </li>
+                    <li class="recommendation-item clearfix">
+                        <a href="/city/cn/shanghai.zh-cn.html?sid=b02dab10595e6485e28e61112667ffe0;dcid=1;city=-1924465;ilp=1">
+                            <img src="http://r-cc.bstatic.com/images/city/square100/120/120034.jpg" data-trigger="preview" data-href="http://r-cc.bstatic.com/images/hotel/max300/112/11294808.jpg" data-title="上海 中国 酒店" alt="上海 中国 酒店" title="位于上海的酒店, 中国" width="80" height="80">
+                        </a>
+                        <div class="recommendation-item-info">
+                            <a href="#" class="history-list-title">五脚基旅馆中国城2号店</a><i class="b-sprite stars ratings_stars_3" title="3星级酒店"></i>
+                            <p>已有12人预定</p>
+                            <span class="feataddress">民生东路一段28号, 中山区, 台北</span>
+                            <span class="lastbooking">最新的预订：27分钟之前</span>
+                            <p>1位客人正在浏览这家酒店。</p>
+                        </div>
+                        <div class="recommendation-item-right">
+                            <p class="f20 index-scorewordspan">非常好 8.3</p>
+                            <a href="#" class="b-button index-order-btn">立即预定</a>
+                        </div>
+
+                    </li>
+                </ul>
+                <p class="text-right view-more-wapper"><a href="/searchresults.zh-cn.html?sid=d2404c6c064c94cd44ffb89361f14b6b;dcid=4;city=-2631690" class="view-more" title="花莲 酒店">查看优惠信息 »</a>
+                </p>
+            </div>
+        </div>
+
+    </div>
+    <div class="footer">
+        <div class="g">
+            <ul class="footer-nav">
+                <li><a href="#">管理预订</a>
+                </li>
+                <li><a href="#">客户服务</a>
+                </li>
+                <li><a href="#">成为合作伙伴</a>
+                </li>
+                <li><a href="#">成为会员伙伴</a>
+                </li>
+
+            </ul>
+            <div class="apps">
+                <span class="text">下载我们的应用：</span>
+                <span class="logo">
+                    <a href="http://itunes.apple.com/app/id284971959" target="_blank" class="ios"></a>
+                    <a href="https://market.android.com/details?id=com.hcom.android" target="_blank" class="android"></a>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="footer-other">
+       
+        <div class="g copyright">
+           	<div class="text-center">Copyright© 1999-2014, ctrip.com. All rights reserved. | ICP证：沪B2-20050130.</div>
+			<div class="text-center">
+			<a href="http://117.22.252.216:7001/wljgweb/bscx.do?method=hddoc&amp;id=61000000000390" target="_blank">
+			<img src="images/gongshang.gif" ></a> 
+			<img src="images/kexing.gif" > 
+			<img src="images/wangjing.gif" >
+			<img src="images/chengxin.gif"></div>
+
+        </div>
+    </div>
+    <div class="right-sider-bar w1000">
+        <ul>
+            <li class="relative weixinCode-wapper"><a href="javascript:void(0)" class="wx-icon" title="扫描关注微信">微信</a>
+                <div class="weixinCode"><i class="warr">&nbsp;</i>
+                    <img src="http://static.juntu.com/images/dcode.jpg" alt="迈克森二维码">
+                    <p>关注微信</p>
+                </div>
+            </li>
+            <li><a href="javascript:void(0)" class="kf-icon" title="在线客服">在线客服</a>
+            </li>
+            <li><a href="#" class="go-top" title="回到顶部">回到顶部</a>
+            </li>
+        </ul>
+    </div>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/slides.js"></script>
+    <script type="text/javascript" src="js/ajax.js"></script>
+    <script type="text/javascript" src="js/modal.js"></script>
+    <script type="text/javascript" src="js/panes.js"></script>
+    <script type="text/javascript" src="js/tab.js"></script>
+    <script type="text/javascript" src="js/imagePreview.js"></script>
+    <script type="text/javascript" src="js/select2.js"></script>
+    <script type="text/javascript" src="js/l.js"></script>
+    <script type="text/javascript">
+    new slider({
+        id: 'activity_items'
+    })
+    </script>
+</body>
+
+</html>

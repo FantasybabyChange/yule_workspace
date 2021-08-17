@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.company.dao.ICompanyExpenseDao">
+	
+	<resultMap type="companyExpense" id="companyExpense-sql-map">
+		<id     property="id"           	 		column="ID" />
+		<result property="company_id" 		 		column="COMPANY_ID" />
+		<result property="expense_category_id" 		column="EXPENSE_CATEGORY_ID" />
+		<result property="name"         	 		column="NAME" />
+		<result property="is_delete"         		column="IS_DELETE" />
+		<result property="price"             		column="PRICE" />
+		<result property="create_time"              column="CREATE_TIME" />
+		<result property="update_time"              column="UPDATE_TIME" />
+	</resultMap>
+	
+	<select id="findCompanyExpenseCount"  resultType="int" parameterType="map">
+		SELECT count(*) FROM (SELECT id,company_id,price,`expense_category_id`
+		 FROM `company_expense` WHERE company_id =#{company_id} AND is_delete =0
+	UNION ALL (
+		SELECT NULL id,NULL company_id,NULL price,NULL `expense_category_id` )) AS ce 
+		RIGHT JOIN `company_expense_category` cec
+				ON ce.`expense_category_id` = cec.id 
+	WHERE cec.parent_id IS NOT NULL AND cec.parent_id = #{parent_id}
+	</select>
+
+	<select id="findCompanyExpenseList" parameterType="map" resultMap="companyExpense-sql-map">
+	SELECT ce.id ,ce.price,cec.name ,cec.id as expense_category_id FROM (SELECT id,company_id,price,`expense_category_id`
+		 FROM `company_expense` WHERE company_id =#{company_id} AND is_delete =0
+	UNION ALL (
+		SELECT NULL id,NULL company_id,NULL price,NULL `expense_category_id` )) AS ce 
+		RIGHT JOIN `company_expense_category` cec
+				ON ce.`expense_category_id` = cec.id 
+	WHERE cec.parent_id IS NOT NULL AND cec.parent_id = #{parent_id}
+		<if test="pageStart != null  and pageEnd != null">
+		   LIMIT #{pageStart},#{pageEnd}
+		</if>		
+	</select>
+	
+	<insert id="insertCompanyExpense" parameterType="companyExpense">
+		insert into company_expense (id,company_id,price,is_delete,expense_category_id,create_time)
+			values(
+				#{id},#{company_id},#{price},#{is_delete},#{expense_category_id},now()
+			)
+	</insert>
+	
+	<update id="updateCompanyExpense" parameterType="companyExpense">
+		update company_expense 
+		<set>
+			<if test="name != null and name != '' ">
+				name = #{name},
+			</if>
+			<if test="price != null and price != '' ">
+				price = #{price},
+			</if>
+			update_time = now()
+		</set>	
+			WHERE id = #{id}
+	</update>
+	
+	<update id="deleteCompanyExpense" parameterType="java.lang.String">
+		update company_expense set is_delete =1 where id = #{id}	
+	</update>
+	
+</mapper>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.admin.dao.IAdminRoleDao">
+
+	<resultMap type="adminRole" id="adminRole-sql-map">
+		<id     property="id"          column="ID" />
+		<result property="name"        column="NAME" />
+		<result property="is_delete"      column="IS_DELETE" />
+		<result property="is_admin"    column="IS_ADMIN" />
+		<result property="create_time" column="CREATE_TIME" />
+		<result property="update_time" column="UPDATE_TIME" />
+	</resultMap>
+	
+	<resultMap type="adminRoleVO" id="adminRoleVO-sql-map">
+		<id     property="id"          column="ID" />
+		<result property="name"        column="NAME" />
+		<result property="is_check"      column="IS_CHECK" />
+	</resultMap>
+	
+	<select id="findAdminRoleIsAdminList" resultMap="adminRole-sql-map">
+		select ID  from admin_role 
+		WHERE IS_DELETE=0 and IS_ADMIN=0 
+	</select>
+
+	<select id="findAdminRoleList" resultMap="adminRole-sql-map">
+		select ID,NAME,IS_DELETE,IS_ADMIN,CREATE_TIME from admin_role 
+		WHERE IS_DELETE=0 and IS_ADMIN=1 ORDER BY CREATE_TIME DESC 
+	</select>
+
+	<select id="findAdminRoleCount" resultType="int">
+		select count(*) from admin_role 
+		where IS_DELETE=0 and IS_ADMIN=1
+	</select>
+
+	<select id="findAdminRoleById" parameterType="java.lang.String" resultType="adminRole">
+		select ID,NAME,IS_DELETE,IS_ADMIN,CREATE_TIME from admin_role
+		where ID = #{id}
+	</select>
+	
+	<select id="findAdminRoleIsAdminByAdminRoleId" parameterType="java.lang.String" resultType="int">
+		select count(a.ID) from admin_role a where a.ID = #{id} and is_admin = 0
+	</select>
+
+	<insert id="insertAdminRole" parameterType="adminRole">
+		insert into admin_role(
+			ID,NAME,IS_DELETE,IS_ADMIN,CREATE_TIME
+		)
+		values(#{id},#{name},#{is_delete},#{is_admin},now())
+	</insert>
+
+	<update id="updateAdminRole" parameterType="adminRole">
+		update admin_role
+		<set>
+			<if test="name != null and name != '' ">
+				NAME = #{name},
+			</if>
+			<if test="is_delete != null and is_delete != '' ">
+				IS_DELETE = #{is_delete},
+			</if>
+			<if test="is_admin != null and is_admin != '' ">
+				IS_ADMIN = #{is_admin},
+			</if>
+			UPDATE_TIME = now()
+		</set>
+		where ID = #{id}
+	</update>
+	
+	<insert id="batchInsertAdminRole" parameterType="list">
+		insert into admin_role(
+		ID,NAME,IS_DELETE,IS_ADMIN,CREATE_TIME
+		)
+		values
+		<foreach collection="list" item="item" index="index" separator=","> 
+		    (#{item.id},#{item.name},#{item.is_delete},#{item.is_admin},now())
+	    </foreach>  
+	</insert>
+	
+	<update id="batchUpdateAdminRole" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" separator=";" close=""> 
+			update admin_role
+			<set>
+				NAME = #{item.name},
+				UPDATE_TIME = now()
+			</set>
+			where ID =  #{item.id}
+	    </foreach>  
+	</update>
+	
+	<delete id="deleteAdminRoleById" parameterType="java.lang.String">
+		update admin_role set is_delete = 1 where ID = #{id};
+		delete from admin_role_privilege where admin_role_id = #{id};
+	</delete>
+	
+	<delete id="deleteAdminRoleAll" >
+		delete from admin_role 
+	</delete>
+
+    <!-- 根据用户id获取 他所有的角色  -->
+	<select id="findAdminRoleByAdminUserId" parameterType="java.lang.String" resultMap="adminRole-sql-map">
+		SELECT ar.ID,ar.NAME,ar.IS_DELETE,ar.IS_ADMIN  FROM  admin_role ar 
+		WHERE ar.ID=#{id} AND ar.IS_DELETE=0 AND ar.IS_ADMIN = 1
+	</select>
+	
+	<select id="findAdminRoleVOByAdminUserId" parameterType="java.lang.String" resultMap="adminRoleVO-sql-map">
+		SELECT ID,NAME,IS_CHECK FROM(
+			SELECT a.ID,a.NAME,0 IS_CHECK FROM admin_role a 
+			<where>
+				a.ID = #{id}
+				AND a.IS_DELETE = 0 AND a.IS_ADMIN = 1
+			</where>
+			union all
+			SELECT a.ID,a.NAME,1 IS_CHECK FROM admin_role a 
+			<where>
+				a.ID != #{id} 
+				AND a.IS_DELETE = 0 AND a.IS_ADMIN = 1
+			</where>
+		) vo
+	</select>
+
+</mapper>

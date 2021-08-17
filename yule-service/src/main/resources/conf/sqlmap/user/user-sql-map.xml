@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.user.dao.IUserDao">
+
+	<select id="findUserVOById" parameterType="java.lang.String" resultType="userVO" >
+		select a.ID,d.NAME user_level_name,c.ID area_province_id,c.NAME area_province_name,a.AREA_CITY_ID,b.NAME area_city_name,a.address,a.IMAGE_PATH,a.SEX,a.BIRTHDAY from user a 
+		left join user_level d on a.USER_LEVEL_ID = d.ID
+		left join area_city b on a.AREA_CITY_ID = b.ID 
+		left join area_province c on b.area_province_id = c.id
+		where a.ID = #{id} 
+	</select>
+	
+	<update id="updateUser" parameterType="user">
+		update user 
+		<set>
+			<if test="area_city_id != null and area_city_id != '' ">
+				AREA_CITY_ID = #{area_city_id},
+			</if>
+			<if test="user_level_id != null and user_level_id != '' ">
+				USER_LEVEL_ID = #{user_level_id},
+			</if>
+			<if test="sex != null and sex != '' ">
+				SEX = #{sex},
+			</if>
+			<if test="address != null and address != '' ">
+				ADDRESS = #{address},
+			</if>
+			<if test="birthday != null and birthday != '' ">
+				BIRTHDAY = #{birthday},
+			</if>
+			<if test="address != null and address != '' ">
+				ADDRESS = #{address},
+			</if>
+			<if test="image_path != null and image_path != '' ">
+				IMAGE_PATH = #{image_path},
+			</if>
+			UPDATE_TIME = now()
+		</set>
+		where ID = #{id}
+	</update>
+	
+</mapper>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+                     http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+                     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+                     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	<context:component-scan base-package="com.yule.action" use-default-filters="true">  
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>  
+    </context:component-scan>  
+	
+	<!-- 避免IE在ajax请求时，返回json出现下载 
+   <bean id="jacksonMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">    
+        <property name="supportedMediaTypes">
+            <list>
+                <value>text/html;charset=UTF-8</value>
+            </list>
+        </property>
+    </bean>
+    -->
+    <!-- 
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <ref bean="stringHttpMessageConverter" />
+                <ref bean="jsonHttpMessageConverter" />
+            </list>
+        </property>
+    </bean>
+     
+    <bean id="stringHttpMessageConverter" class="org.springframework.http.converter.StringHttpMessageConverter" >
+     	<property name = "supportedMediaTypes">    
+             <list>    
+                 <value>text/plain;charset=UTF-8</value>    
+             </list>    
+        </property>  
+    </bean> 
+    <bean id="jsonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">  
+        <property name="supportedMediaTypes">  
+            <list>  
+                <value>application/json</value>  
+            </list>  
+        </property>  
+    </bean>
+      -->
+      
+	<bean  class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" >
+        <property name="interceptors">  
+           <list>  
+              <ref bean="loginInterceptior"/>
+              <ref bean="privilegeInterceptior"/>  
+              <ref bean="commonInterceptior"/>
+           </list>  
+        </property>  
+    </bean>
+     
+    <bean id="privilegeInterceptior" class="com.yule.interceptor.PrivilegeInterceptor"></bean>
+    
+    <bean id="loginInterceptior" class="com.yule.interceptor.LoginInterceptor"></bean>  
+    
+    <bean id="commonInterceptior" class="com.yule.interceptor.CommonInterceptor"></bean>  
+	
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+</beans>
+

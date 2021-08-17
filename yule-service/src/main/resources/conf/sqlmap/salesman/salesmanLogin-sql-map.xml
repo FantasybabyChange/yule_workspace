@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.salesman.dao.ISalesmanLoginDao">
+	<resultMap type="salesmanLogin" 	id="salesmanLogin-sql-map">
+		<id     property="id"          column="ID" />
+		<result property="account"        column="ACCOUNT" />
+		<result property="password"        column="PASSWORD" />
+		<result property="login_time"        column="LOGIN_TIME" />
+		<result property="is_delete"        column="IS_DELETE" />
+		<result property="status"        column="STATUS" />
+		<result property="create_time"        column="CREATE_TIME" />
+		<result property="update_time"        column="UPDATE_TIME" />
+	</resultMap>
+	<resultMap type="salesmanVo" id="salesmanVo-sql-map">
+		<id     property="id"          column="ID" />
+		<result property="account"        column="ACCOUNT" />
+		<result property="name"        column="NAME" />
+		<result property="mail"        column="MAIL" />
+		<result property="phone"        column="PHONE" />
+		<result property="is_delete"        column="IS_DELETE" />
+		<result property="status"        column="STATUS" />
+		<result property="image_path"        column="IMAGE_PATH" />
+		<result property="commision"        column="COMMISION" />
+		<result property="login_time"        column="LOGIN_TIME" />
+		<result property="create_time"        column="CREATE_TIME" />
+		<result property="identity_card_image_path"        column="IDENTITY_CARD_IMAGE_PATH" />
+	</resultMap>
+	<update id="updateSalesmanLogin" parameterType="salesmanLogin">
+		update  salesman_login
+		<set>
+		<if test="account !=null and account !=''">
+		ACCOUNT = #{account} ,
+		</if>
+		<if test="password !=null and password !=''">
+		PASSWORD = #{password} ,
+		</if>
+		<if test="login_time !=null and login_time !=''">
+		LOGIN_TIME = #{login_time} ,
+		</if>
+		<if test="is_delete !=null ">
+		IS_DELETE = #{is_delete} ,
+		</if>
+		<if test="status !=null">
+		STATUS = #{status} ,
+		</if>
+		UPDATE_TIME = now()
+		</set>
+		WHERE ID = #{id}
+	</update>
+	<select id="findSalesmanLoginByAccount" parameterType="string" resultType="salesmanLogin" >
+	SELECT id,account,password,status,login_time FROM salesman_login ss
+		<where>
+		ss.ACCOUNT=#{account}
+		and ss.is_delete='0'
+		</where>	
+	</select>
+	<select id="findSalesmanLoginById" parameterType="string" resultType="salesmanVO" >
+	SELECT ss.id,account,password,status,sa.image_path,commision,login_time FROM salesman_login ss
+	LEFT JOIN salesman sa ON ss.id = sa.id
+		<where>
+		ss.id=#{id}
+		</where>	
+	</select>
+	<select id="findSalesmanVOByAccount" parameterType="string" resultType="salesmanVO" >
+		SELECT s.id AS id,s.mail,s.phone,sl.status FROM salesman_login sl
+			LEFT JOIN  salesman s ON sl.id=s.id
+			WHERE sl.account=#{account}
+			and sl.is_delete='0'
+	</select>
+	
+	
+</mapper>

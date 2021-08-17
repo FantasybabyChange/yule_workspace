@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.company.dao.ICompanyServeDao">
+
+	<resultMap type="companyServeVO" id="companyServeVO-sql-map">
+		<id     property="id"       column="ID" />
+		<result property="name"     column="NAME" />
+		<result property="is_check" column="IS_CHECK" />
+	</resultMap>
+	
+	<select id="findCompanyAndServeList" parameterType="map" resultMap="companyServeVO-sql-map">
+		select o.ID,o.NAME,o.IS_CHECK from(
+		select a.ID,a.NAME,0 IS_CHECK,a.ORDER from company_serve a , company_serve_relevant b
+		where a.ID = b.COMPANY_SERVE_ID
+		and company_id = #{company_id} and a.IS_DELETE = 0
+		union all
+		select ID,NAME,1 IS_CHECK,`ORDER` from company_serve  
+		where ID not in(
+		select a.ID from company_serve a , company_serve_relevant b 
+		where a.ID = b.COMPANY_SERVE_ID
+		and company_id = #{company_id} and a.IS_DELETE = 0
+		)
+		) o ORDER BY `ORDER` ASC
+	</select>
+
+</mapper>

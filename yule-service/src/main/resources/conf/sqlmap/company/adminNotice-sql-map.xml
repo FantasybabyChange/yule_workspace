@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.company.dao.IAdminNoticeDao">
+
+	<resultMap type="adminNotice" id="adminNotice-sql-map">
+		<id     property="id"          column="ID" />
+		<result property="title"       column="TITLE" />
+		<result property="content"     column="CONTENT" />
+		<result property="is_delete"   column="IS_DELETE" />
+		<result property="type"        column="TYPE" />
+		<result property="create_time" column="CREATE_TIME" />
+		<result property="update_time" column="UPDATE_TIME" />
+	</resultMap>
+	
+	<resultMap type="adminNotice" id="adminNoticeVO-sql-map" extends="adminNotice-sql-map">
+		<collection property="adminNoticeAttachmentVOs" ofType="adminNoticeAttachmentVO"  javaType="list" column="ATTACHMENT_ID">
+			<id     property="attachment_id"          column="ATTACHMENT_ID" />
+			<result property="notice_id"   column="NOTICE_ID"/>
+			<result property="name"        column="NAME" />
+			<result property="system_name" column="SYSTEM_NAME" />
+			<result property="is_delete"   column="ATTACHMENT_IS_DELETE" />
+			<result property="path"        column="PATH" />
+			<result property="type"        column="ATTACHMENT_TYPE" />
+			<result property="size"        column="SIZE" />
+			<result property="create_time" column="CREATE_TIME" />
+		</collection>
+	</resultMap>
+	
+	<select id="findAdminNoticeVOById" resultMap="adminNoticeVO-sql-map" parameterType="string">
+		SELECT
+			an.ID AS ID,
+			an.TITLE AS TITLE,
+			an.CONTENT AS CONTENT,
+			an.TYPE AS TYPE,
+			an.IS_DELETE AS IS_DELETE,
+			ana.ID AS ATTACHMENT_ID,
+			ana.NAME AS NAME,
+			ana.SYSTEM_NAME AS SYSTEM_NAME,
+			ana.IS_DELETE AS ATTACHMENT_IS_DELETE ,
+			ana.PATH AS PATH,
+			ana.TYPE AS ATTACHMENT_TYPE,
+			ana.SIZE AS SIZE
+		FROM
+			admin_notice AS an
+			Left Join admin_notice_attachment AS ana ON an.ID = ana.ADMIN_NOTICE_ID AND ana.IS_DELETE = 0
+		WHERE 
+			an.ID = #{id} 	 	
+	</select>
+	
+	<select id="findAdminNoticeList" resultMap="adminNotice-sql-map" parameterType="map" >
+		select ID,TITLE,CONTENT,TYPE,IS_DELETE,CREATE_TIME from admin_notice   
+	    WHERE 
+	  	 	TYPE = 1 
+	  	 	AND  IS_DELETE =0
+		    <if test="title != null and title !='' ">
+			AND   TITLE like "%"#{title}"%"
+			</if>
+			<if test="(start_time != null and start_time != '') and (end_time=='' or end_time==null)">
+			AND create_time between #{start_time} and now()
+			</if>
+			<if test="(end_time != null and end_time != '') and (start_time=='' or start_time==null)">
+			AND	create_time between 0 and #{end_time}
+			</if>
+			<if test="(start_time != null and start_time != '') and (end_time!='' and end_time!=null)">
+			AND	create_time between #{start_time} and #{end_time}
+			</if>			
+		ORDER BY CREATE_TIME DESC
+	    <if test="pageStart != null  and pageEnd != null  ">
+		   LIMIT #{pageStart},#{pageEnd}
+		</if>
+	</select>
+		<select id="findAdminNoticeByPageEnd" resultMap="adminNotice-sql-map" parameterType="int" >
+		select ID,TITLE,CONTENT,TYPE,IS_DELETE,CREATE_TIME from admin_notice   
+	    		WHERE 
+				TYPE = 1
+				 AND  IS_DELETE = 0
+				ORDER BY CREATE_TIME DESC
+		   LIMIT 0,#{pageEnd}
+	</select>
+	<select id="findAdminNoticeCount" resultType="int" parameterType="map">
+		SELECT count(*) from admin_notice
+	    WHERE 
+	  	 	TYPE = 1 
+	  	 	AND  IS_DELETE =0
+		    <if test="title != null and title !='' ">
+			AND  TITLE like "%"#{title}"%"
+			</if>
+			<if test="(start_time != null and start_time != '') and (end_time=='' or end_time==null)">
+			AND create_time between #{start_time} and now()
+			</if>
+			<if test="(end_time != null and end_time != '') and (start_time=='' or start_time==null)">
+			AND	create_time between 0 and #{end_time}
+			</if>
+			<if test="(start_time != null and start_time != '') and (end_time!='' and end_time!=null)">
+			AND	create_time between #{start_time} and #{end_time}
+			</if>	
+	</select>
+	<select id="findAdminNoticeById" parameterType="java.lang.String" resultType="adminNotice" >
+		select ID,TITLE,CONTENT,TYPE from admin_notice where ID = #{id} and IS_DELETE = 0
+	</select>
+	
+</mapper>

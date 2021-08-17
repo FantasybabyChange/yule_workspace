@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.salesman.dao.ISalesmanDao">
+
+	<resultMap type="salesman" id="salesman-sql-map">
+		<id     property="id"          					column="ID" />
+		<result property="name"        					column="NAME	" />
+		<result property="sex"        					column="SEX" />
+		<result property="age"       		 			column="AGE" />
+		<result property="address"       	 			column="ADDRESS" />
+		<result property="image_path"        			column="IMAGE_PATH" />
+		<result property="identity_card"        		column="IDENTITY_CARD" />
+		<result property="identity_card_image_path"     column="IDENTITY_CARD_IMAGE_PATH" />
+		<result property="area_city_id"        			column="AREA_CITY_ID" />
+		<result property="is_delete"        			column="IS_DELETE" />
+		<result property="create_time"        			column="CREATE_TIME" />
+		<result property="update_time"        			column="UPDATE_TIME" />
+	</resultMap>
+	
+	<insert id="insertSalesman" parameterType="salesman">
+		insert into salesman(
+			ID,is_delete,CREATE_TIME
+		)
+		values(#{id},#{is_delete},now())
+	</insert>
+	
+
+	<update id="updateSalesman" parameterType="salesman">
+		update  salesman
+		<set>
+		<if test="name !=null and name !=''">
+		NAME = #{name} ,
+		</if>
+		<if test="sex !=null">
+		SEX = #{sex} ,
+		</if>
+		<if test="age !=null">
+		AGE = #{age} ,
+		</if>
+		<if test="address !=null and address !=''">
+		ADDRESS = #{address} ,
+		</if>
+		<if test="image_path !=null and image_path !=''">
+		IMAGE_PATH = #{image_path} ,
+		</if>
+		<if test="identity_card !=null and identity_card !=''">
+		IDENTITY_CARD = #{identity_card} ,
+		</if>
+		<if test="identity_card_image_path !=null and identity_card_image_path !=''">
+		IDENTITY_CARD_IMAGE_PATH = #{identity_card_image_path} ,
+		</if>
+		<if test="area_city_id!=null">
+		AREA_CITY_ID = #{area_city_id} ,
+		</if>
+		<if test="is_delete!=null">
+		IS_DELETE = #{is_delete} ,
+		</if>
+		UPDATE_TIME = now()
+		</set>
+		WHERE ID = #{id}
+	</update>
+	
+	<select id="findSalesmanById" parameterType="string" resultType="salesman" >
+	SELECT ID,NAME,SEX,AGE,ADDRESS,IMAGE_PATH,IDENTITY_CARD,IDENTITY_CARD_IMAGE_PATH,area_city_id FROM salesman 
+		where
+		ID=#{id}
+	</select>
+	
+</mapper>

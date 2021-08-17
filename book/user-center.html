@@ -1,0 +1,371 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//zh-CN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/select2.css">
+</head>
+
+<body>
+    <div id="header-full">
+        <div role="navigation" id="menu-bar" class="cont-shadow">
+            <div class="g clearfix">
+                <ul class="right-nav">
+                    <li class="nav-item">
+                        <a data-trigger="ajax" href="ajax/histroy.html" data-target=".ajax-histroy-content" class="nav-item-a nav-histroy">最近浏览</a>
+                        <div class="ajax-content ajax-histroy">
+                            <div class="ajax-arr"></div>
+                            <div class="ajax-histroy-content"></div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a data-trigger="ajax" href="ajax/histroy.html" data-target=".ajax-fav-content" class="nav-item-a nav-fav">
+                            <img src="images/fav-icon.png">我的收藏</a>
+                        <div class="ajax-content ajax-histroy">
+                            <div class="ajax-arr"></div>
+                            <div class="ajax-fav-content"></div>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a href="ajax/login.html" data-trigger="modal" data-title="用户登录" class="nav-item-a nav-login">登录或注册账户</a>
+                    </li>
+                    <li class="nav-item"><a href="#" class="nav-item-a  nav-order-list">管理订单</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col clearfix mt-10">
+        <div class="user-center-left">
+            <ul>
+                <li><a href="#" class="user-icon-1 cur">个人中心</a>
+                </li>
+                <li><a href="#" class="user-icon-2">我的订单</a>
+                </li>
+                <li><a href="#" class="user-icon-3">我的收藏</a>
+                </li>
+                <li><a href="#" class="user-icon-4">浏览历史</a>
+                </li>
+                <li><a href="#" class="user-icon-5">设置</a>
+                </li>
+            </ul>
+        </div>
+        <div class="user-center-right">
+            <div class="user-profile ">
+                <h2 class="user-center-title">尊敬的用户：
+                    <strong>张三</strong>
+                </h2>
+                <ul class="user-part-item clearfix">
+                    <li>
+                        <a href="#">
+                            <span>5</span>预订次数</a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>5</span>浏览历史</a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>5</span>我的收藏</a>
+                    </li>
+                </ul>
+                <div class="user-edit">
+                    <a href="#" class="edit-user-porfile">编辑个人设置</a>
+                </div>
+
+            </div>
+            <div class="user-porfile-right">
+                <div class="search-wapper mb15">
+                    <form>
+                        <div class="search-wapper-top">
+                            <h3 class="c-form-title mb15">
+                                <span class="c-form-title__text f24">搜索</span>
+                            </h3>
+                            <h4>
+                                <label for="destination">目的地/酒店名称：</label>
+                            </h4>
+                            <div class="input-wrapper">
+                                <input class="input-style w195" autocomplete="off" type="text" placeholder="例如：西安" id="destination" name="ss" value="西安">
+                            </div>
+                            <div class="input-wrapper mt10 mb15 clearfix">
+                                <div class="search-date " style=" width:100%">
+                                    <h4>入住日期</h4>
+                                    <div class="date-wapper clearfix">
+                                        <div class="data-icon pull-left"></div>
+                                        <select class="data-wapper-date pull-left">
+                                            <option class="b_months" value="2014-8" selected="selected">
+                                                2014年8月
+                                            </option>
+                                            <option class="b_months" value="2014-9">
+                                                2014年9月
+                                            </option>
+                                            <option class="b_months" value="2014-10">
+                                                2014年10月
+                                            </option>
+                                            <option class="b_months" value="2014-11">
+                                                2014年11月
+                                            </option>
+                                            <option class="b_months" value="2014-12">
+                                                2014年12月
+                                            </option>
+                                            <option class="b_months" value="2015-1">
+                                                2015年1月
+                                            </option>
+                                            <option class="b_months" value="2015-2">
+                                                2015年2月
+                                            </option>
+                                            <option class="b_months" value="2015-3">
+                                                2015年3月
+                                            </option>
+                                            <option class="b_months" value="2015-4">
+                                                2015年4月
+                                            </option>
+                                            <option class="b_months" value="2015-5">
+                                                2015年5月
+                                            </option>
+                                            <option class="b_months" value="2015-6">
+                                                2015年6月
+                                            </option>
+                                            <option class="b_months" value="2015-7">
+                                                2015年7月
+                                            </option>
+                                        </select>
+                                        <select class="data-wapper-time pull-left">
+                                            <option value="1">1</option>
+                                            <option value="1">1 周六</option>
+                                            <option value="2">2 周日</option>
+                                            <option value="3">3 周一</option>
+                                            <option value="4">4 周二</option>
+                                            <option value="5">5 周三</option>
+                                            <option value="6">6 周四</option>
+                                            <option value="7">7 周五</option>
+                                            <option value="8">8 周六</option>
+                                            <option value="9">9 周日</option>
+                                            <option value="10">10 周一</option>
+                                            <option value="11">11 周二</option>
+                                            <option value="12">12 周三</option>
+                                            <option value="13">13 周四</option>
+                                            <option value="14">14 周五</option>
+                                            <option value="15">15 周六</option>
+                                            <option value="16">16 周日</option>
+                                            <option value="17">17 周一</option>
+                                            <option value="18">18 周二</option>
+                                            <option value="19">19 周三</option>
+                                            <option value="20">20 周四</option>
+                                            <option value="21">21 周五</option>
+                                            <option value="22" selected="selected">22 周六</option>
+                                            <option value="23">23 周日</option>
+                                            <option value="24">24 周一</option>
+                                            <option value="25">25 周二</option>
+                                            <option value="26">26 周三</option>
+                                            <option value="27">27 周四</option>
+                                            <option value="28">28 周五</option>
+                                            <option value="29">29 周六</option>
+                                            <option value="30">30 周日</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="input-wrapper  clearfix">
+                                <div class="search-date" style="width:100%">
+                                    <h4>退房日期</h4>
+                                    <div class="date-wapper clearfix">
+                                        <div class="data-icon pull-left"></div>
+
+                                        <select class="data-wapper-date pull-left">
+                                            <option class="b_months" value="2014-8" selected="selected">
+                                                2014年8月
+                                            </option>
+                                            <option class="b_months" value="2014-9">
+                                                2014年9月
+                                            </option>
+                                            <option class="b_months" value="2014-10">
+                                                2014年10月
+                                            </option>
+                                            <option class="b_months" value="2014-11">
+                                                2014年11月
+                                            </option>
+                                            <option class="b_months" value="2014-12">
+                                                2014年12月
+                                            </option>
+                                            <option class="b_months" value="2015-1">
+                                                2015年1月
+                                            </option>
+                                            <option class="b_months" value="2015-2">
+                                                2015年2月
+                                            </option>
+                                            <option class="b_months" value="2015-3">
+                                                2015年3月
+                                            </option>
+                                            <option class="b_months" value="2015-4">
+                                                2015年4月
+                                            </option>
+                                            <option class="b_months" value="2015-5">
+                                                2015年5月
+                                            </option>
+                                            <option class="b_months" value="2015-6">
+                                                2015年6月
+                                            </option>
+                                            <option class="b_months" value="2015-7">
+                                                2015年7月
+                                            </option>
+                                        </select>
+                                        <select class="data-wapper-time pull-left">
+                                            <option value="1">1</option>
+                                            <option value="1">1 周六</option>
+                                            <option value="2">2 周日</option>
+                                            <option value="3">3 周一</option>
+                                            <option value="4">4 周二</option>
+                                            <option value="5">5 周三</option>
+                                            <option value="6">6 周四</option>
+                                            <option value="7">7 周五</option>
+                                            <option value="8">8 周六</option>
+                                            <option value="9">9 周日</option>
+                                            <option value="10">10 周一</option>
+                                            <option value="11">11 周二</option>
+                                            <option value="12">12 周三</option>
+                                            <option value="13">13 周四</option>
+                                            <option value="14">14 周五</option>
+                                            <option value="15">15 周六</option>
+                                            <option value="16">16 周日</option>
+                                            <option value="17">17 周一</option>
+                                            <option value="18">18 周二</option>
+                                            <option value="19">19 周三</option>
+                                            <option value="20">20 周四</option>
+                                            <option value="21">21 周五</option>
+                                            <option value="22" selected="selected">22 周六</option>
+                                            <option value="23">23 周日</option>
+                                            <option value="24">24 周一</option>
+                                            <option value="25">25 周二</option>
+                                            <option value="26">26 周三</option>
+                                            <option value="27">27 周四</option>
+                                            <option value="28">28 周五</option>
+                                            <option value="29">29 周六</option>
+                                            <option value="30">30 周日</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearit mt10"></div>
+                            <h4>根据旅客类型筛选住宿：</h4>
+                            <select class="data-wapper-date pull-left">
+                                <option value="2" data-adults="1" data-rooms="1" data-name="独行客人" data-type="basic">独行客人</option>
+                                <option value="1" data-adults="2" data-rooms="1" data-name="夫妻/伴侣" data-type="basic" selected="selected">夫妻/伴侣</option>
+                                <option value="3" data-adults="3" data-rooms="1" data-children="" data-name="成人团体" data-type="traveller-type__group">成人团体</option>
+                                <option value="4" data-adults="2" data-rooms="1" data-children="1" data-name="带儿童的家庭" data-type="traveller-type__family">带儿童的家庭</option>
+                                <option value="5" data-adults="1" data-rooms="1" data-children="" data-name="商务客人" data-type="traveller-type__business">商务客人</option>
+                                <option value="6" data-type="more_options">更多选项···</option>
+                            </select>
+                        </div>
+                        <div class="from-btn clearfix">
+                            <button class="b-button f24  pull-right br6" type="submit">
+                                <span class="b-button__text">搜索</span>
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="history">
+                <h3>你的附近还有</h3>
+                <ul class="history-list-2">
+                    <li class="history-list-item history-list-item-list clearfix">
+                        <a href="/city/cn/shanghai.zh-cn.html?sid=b02dab10595e6485e28e61112667ffe0;dcid=1;city=-1924465;ilp=1">
+                            <img src="http://r-cc.bstatic.com/images/city/square100/120/120034.jpg" data-trigger="preview" data-href="http://r-cc.bstatic.com/images/hotel/max300/112/11294808.jpg" data-title="上海 中国 酒店" alt="上海 中国 酒店" title="位于上海的酒店, 中国" width="30" height="30">
+                        </a>
+                        <p><a href="#" class="history-list-title">五脚基旅馆中国城</a> <i class="b-sprite stars ratings_stars_2_sm" title="5星级"></i>
+                        </p>
+                        <span class="lastbooking">最新的预订：27分钟之前</span>
+                         <p>1位客人正在浏览这家酒店。</p>
+                    </li>
+                    <li class="history-list-item history-list-item-list clearfix">
+                        <a href="/city/cn/shanghai.zh-cn.html?sid=b02dab10595e6485e28e61112667ffe0;dcid=1;city=-1924465;ilp=1">
+                            <img src="http://r-cc.bstatic.com/images/city/square100/120/120034.jpg" data-trigger="preview" data-href="http://r-cc.bstatic.com/images/hotel/max300/112/11294808.jpg" data-title="上海 中国 酒店" alt="上海 中国 酒店" title="位于上海的酒店, 中国" width="30" height="30">
+                        </a>
+                        <p><a href="#" class="history-list-title">五脚基旅馆中国城</a> <i class="b-sprite stars ratings_stars_2_sm" title="5星级"></i>
+                        </p>
+                        <span class="lastbooking">最新的预订：27分钟之前</span>
+                         <p>1位客人正在浏览这家酒店。</p>
+                    </li>
+                    <li class="history-list-item history-list-item-list clearfix">
+                        <a href="/city/cn/shanghai.zh-cn.html?sid=b02dab10595e6485e28e61112667ffe0;dcid=1;city=-1924465;ilp=1">
+                            <img src="http://r-cc.bstatic.com/images/city/square100/120/120034.jpg" data-trigger="preview" data-href="http://r-cc.bstatic.com/images/hotel/max300/112/11294808.jpg" data-title="上海 中国 酒店" alt="上海 中国 酒店" title="位于上海的酒店, 中国" width="30" height="30">
+                        </a>
+                        <p><a href="#" class="history-list-title">五脚基旅馆中国城</a> <i class="b-sprite stars ratings_stars_2_sm" title="5星级"></i>
+                        </p>
+                        <span class="lastbooking">最新的预订：27分钟之前</span>
+                         <p>1位客人正在浏览这家酒店。</p>
+                    </li>
+                    <li class="history-list-item history-list-item-list clearfix">
+                        <a href="/city/cn/shanghai.zh-cn.html?sid=b02dab10595e6485e28e61112667ffe0;dcid=1;city=-1924465;ilp=1">
+                            <img src="http://r-cc.bstatic.com/images/city/square100/120/120034.jpg" data-trigger="preview" data-href="http://r-cc.bstatic.com/images/hotel/max300/112/11294808.jpg" data-title="上海 中国 酒店" alt="上海 中国 酒店" title="位于上海的酒店, 中国" width="30" height="30">
+                        </a>
+                        <p><a href="#" class="history-list-title">五脚基旅馆中国城</a> <i class="b-sprite stars ratings_stars_2_sm" title="5星级"></i>
+                        </p>
+                        <span class="lastbooking">最新的预订：27分钟之前</span>
+                         <p>1位客人正在浏览这家酒店。</p>
+                    </li>
+                </ul>
+            </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+    <div class="footer">
+        <div class="g">
+            <ul class="footer-nav">
+                <li><a href="#">管理预订</a>
+                </li>
+                <li><a href="#">客户服务</a>
+                </li>
+                <li><a href="#">成为合作伙伴</a>
+                </li>
+                <li><a href="#">成为会员伙伴</a>
+                </li>
+
+            </ul>
+            <div class="apps">
+                <span class="text">下载我们的应用：</span>
+                <span class="logo">
+                    <a href="http://itunes.apple.com/app/id284971959" target="_blank" class="ios"></a>
+                    <a href="https://market.android.com/details?id=com.hcom.android" target="_blank" class="android"></a>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="footer-other">
+        <div class="g admin-login">
+            <a href="#">后台登录</a>
+        </div>
+        <div class="g copyright">
+            <p>版权 © 1996–2014Booking.com™. 版权所有.</p>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/slides.js"></script>
+    <script type="text/javascript" src="js/ajax.js"></script>
+    <script type="text/javascript" src="js/modal.js"></script>
+    <script type="text/javascript" src="js/panes.js"></script>
+    <script type="text/javascript" src="js/tab.js"></script>
+    <script type="text/javascript" src="js/imagePreview.js"></script>
+    <script type="text/javascript" src="js/select2.js"></script>
+    <script type="text/javascript" src="js/collapse.js"></script>
+    <script src="js/slides.min.jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="js/l.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        $('.detailAblum').slides({
+            effect: 'slide, fade',
+            crossfade: true,
+            slideSpeed: 350,
+            fadeSpeed: 500,
+            generateNextPrev: true,
+            generatePagination: false
+        });
+    });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.admin.dao.IUserLoginDao">
+
+	<resultMap type="userLogin" id="userLogin-sql-map">
+		<id     property="id"          column="ID" />
+		<result property="name"        column="NAME" />
+		<result property="password"    column="PASSWORD" />
+		<result property="phone"       column="PHONE" />
+		<result property="mail"       column="MAIL" />
+		<result property="phone_auth"  column="PHONE_AUTH" />
+		<result property="mail_auth"  column="MAIL_AUTH" />
+		<result property="status"      column="STATUS" />
+		<result property="is_delete"   column="IS_DELETE" />
+		<result property="create_time" column="CREATE_TIME" />
+		<result property="update_time" column="UPDATE_TIME" />
+		<result property="login_time"  column="LOGIN_TIME" />
+	</resultMap>
+   
+	<select id="findUserLoginList" resultMap="userLogin-sql-map" parameterType="map">
+		select ID,NAME,PASSWORD,PHONE,MAIL,PHONE_AUTH,MAIL_AUTH,STATUS ,CREATE_TIME,IS_DELETE,LOGIN_TIME from user_login  
+		WHERE
+			1=1
+			<if test="name != null and name !='' ">
+			AND	NAME like  "%"#{name}"%"
+			</if>
+			<if test="phone != null and phone !='' ">
+			AND	PHONE like "%"#{phone}"%"
+			</if>
+			<if test="mail != null and mail !='' ">
+			AND	MAIL like "%"#{mail}"%"
+			</if>
+			<if test="(start_time != null and start_time != '') and (end_time=='' or end_time==null)">
+			AND create_time between #{start_time} and now()
+			</if>
+			<if test="(end_time != null and end_time != '') and (start_time=='' or start_time==null)">
+			AND	create_time between 0 and #{end_time}
+			</if>
+			<if test="(start_time != null and start_time != '') and (end_time!='' and end_time!=null)">
+			AND	create_time between #{start_time} and #{end_time}
+			</if>		
+			<if test="status != null ">
+			AND	STATUS = #{status}
+			</if>							
+			<if test="is_delete != null ">
+			AND	IS_DELETE = #{is_delete}
+			</if>
+		ORDER BY CREATE_TIME  DESC 
+	    <if test="pageStart != null  and pageEnd != null">
+		   LIMIT #{pageStart},#{pageEnd}
+		</if>
+		
+	</select>
+		
+	<select id="findUserLoginCount" resultType="int" parameterType="map">
+		select count(*) from user_login 
+		WHERE
+			1=1
+			<if test="name != null and name !='' ">
+			AND	NAME like  "%"#{name}"%"
+			</if>
+			<if test="phone != null and phone !='' ">
+			AND	PHONE like "%"#{phone}"%"
+			</if>
+			<if test="mail != null and mail !='' ">
+			AND	MAIL like "%"#{mail}"%"
+			</if>
+		
+			<if test="(start_time != null and start_time != '') and (end_time=='' or end_time==null)">
+			AND create_time between #{start_time} and now()
+			</if>
+			<if test="(end_time != null and end_time != '') and (start_time=='' or start_time==null)">
+			AND	create_time between 0 and #{end_time}
+			</if>
+			<if test="(start_time != null and start_time != '') and (end_time!='' and end_time!=null)">
+			AND	create_time between #{start_time} and #{end_time}
+			</if>		
+			<if test="status != null ">
+			AND	STATUS = #{status}
+			</if>							
+			<if test="is_delete != null ">
+			AND	IS_DELETE = #{is_delete}
+			</if>
+	</select>
+
+	<select id="findUserLoginById" parameterType="java.lang.String" resultType="userLogin" >
+		select ID,NAME,PASSWORD,PHONE,MAIL,PHONE_AUTH,MAIL_AUTH,STATUS ,IS_DELETE  from user_login
+		where id = #{id} 
+	</select>
+	
+	<update id="updateUserLogin" parameterType="userLogin">
+		update user_login 
+		<set>
+			<if test="name != null and name != '' ">
+				NAME = #{name},
+			</if>
+			<if test="password != null and password != '' ">
+				PASSWORD = #{password},
+			</if>
+			<if test="phone != null and phone != '' ">
+				PHONE = #{phone},
+			</if>
+			<if test="mail != null and mail != '' ">
+				MAIL = #{mail},
+			</if>
+			<if test="phone_auth != null and phone_auth != '' ">
+				PHONE_AUTH = #{phone_auth},
+			</if>
+			<if test="mail_auth != null and mail_auth != '' ">
+				MAIL_AUTH = #{mail_auth},
+			</if>
+			<if test="status != null">
+				STATUS = #{status},
+			</if>
+			UPDATE_TIME = now()
+		</set>
+		where ID = #{id}
+	</update>
+	
+	<update id="deleteUserLoginById" parameterType="userLogin">
+		update user_login SET  IS_DELETE = #{is_delete}  where  ID = #{id}
+	</update>	
+	
+
+</mapper>

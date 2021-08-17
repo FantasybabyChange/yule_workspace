@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.search.dao.ICompanyDao">
+	<resultMap type="company" id="company-sql-map">
+		<id     property="id"                  		column="ID" />
+		<result property="name"                		column="NAME" />
+
+	</resultMap>
+	
+	<select id="findOtherCompanyById"  parameterType="map"  resultMap="company-sql-map">
+	SELECT c.id,c.name FROM company c WHERE c.id IN(
+		SELECT ca.id FROM company_address ca WHERE area_county_id IN(
+				SELECT id FROM area_county WHERE area_city_id =#{city_id}
+			)
+		) 
+	ORDER BY c.create_time DESC
+	LIMIT #{pageStart},#{pageEnd}
+	</select>
+</mapper>
+

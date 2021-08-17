@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.detail.dao.ICompanyFavorableDao">
+
+	<resultMap type="companyFavorable" id="companyFavorable-sql-map">
+		<id     property="id"         column="ID" />
+		<result property="company_id" column="COMPANY_ID"/>
+		<result property="name"       column="NAME" />
+		<result property="price"      column="PRICE" />
+		<result property="content"    column="CONTENT" />
+	</resultMap>
+	<select id="findCompanyFavorableList" parameterType="java.lang.String" resultMap="companyFavorable-sql-map" >
+	    SELECT *FROM company_favorable WHERE company_id=#{id}
+	</select>
+</mapper>

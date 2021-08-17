@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.admin.dao.ICompanyEnterpriseDao">
+
+	<resultMap type="companyEnterprise" id="companyEnterprise-sql-map">
+		<id     property="id"          						column="ID" />
+		<result property="name"          				    column="NAME" />
+		<result property="pinyin"       					column="PINYIN" />
+		<result property="business_license"     			column="BUSINESS_LICENSE" />
+		<result property="legal_person_name"     			column="LEGAL_PERSON_NAME" />
+		<result property="is_delete"   						column="IS_DELETE" />
+		<result property="create_time" 						column="CREATE_TIME" />
+		<result property="update_time" 						column="UPDATE_TIME" />
+	</resultMap>
+
+	<insert id="insertCompanyEnterprise" parameterType="companyEnterprise">
+		insert into company_enterprise(
+		ID,NAME,PINYIN,BUSINESS_LICENSE,LEGAL_PERSON_NAME
+		,IS_DELETE,CREATE_TIME)
+		values( #{id},#{name},#{pinyin},#{business_license},#{legal_person_name}
+		,#{is_delete},now() )	
+	</insert>
+	
+	<delete id="deleteCompanyEnterprise" parameterType="java.lang.String">
+		UPDATE  company_enterprise SET IS_DELETE = 1 WHERE = #{id}
+	</delete>
+	
+	<update id="updateCompanyEnterprise" parameterType="companyEnterprise">
+		UPDATE  company_enterprise SET
+		<if test="name !=null and name !=''">
+		NAME = #{name} ,
+		</if>
+		<if test="pinyin !=null and pinyin !=''">
+		PINYIN = #{pinyin},
+		</if>
+		<if test="business_license !=null and business_license !=''">
+		BUSINESS_LICENSE = #{business_license},
+		</if>
+
+		<if test="legal_person_name !=null and legal_person_name !=''">
+		LEGAL_PERSON_NAME = #{legal_person_name},
+		</if>
+
+		<if test="is_delete !=null ">
+		IS_DELETE = #{is_delete},
+		</if>
+		UPDATE_TIME = now()
+		WHERE ID = #{id}
+	</update>
+
+</mapper>

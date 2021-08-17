@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.salesman.dao.ICompanyDao">
+
+	<resultMap type="company" id="company-sql-map">
+		<id     property="id"          				column="ID" />
+		<result property="name"         			column="NAME" />
+		<result property="pinyin"       			column="PINYIN" />
+		<result property="commmision"       		column="COMMMISION" />
+	</resultMap>
+	
+	<resultMap type="companyManagerVO" id="companyManagerVO-sql-map">
+		<id     property="id"           	column="ID" />
+		<result property="code"         	column="CODE" />
+		<result property="account"         	column="ACCOUNT" />
+		<result property="salesman_id"      column="SALESMAN_ID" />
+		<result property="name"        		column="NAME" />
+		<result property="password"       	column="PASSWORD" />
+		<result property="login_time"       column="LOGIN_TIME" />
+		<result property="status"           column="STATUS" />
+		<result property="is_delete" 		column="IS_DELETE" />
+		<result property="create_time"    	column="CREATE_TIME" />
+		<result property="update_time"    	column="UPDATE_TIME" />
+	</resultMap>
+
+	<select id="findCompanyList" resultMap="company-sql-map" parameterType="string">
+		SELECT id,name,pinyin,commision FROM company WHERE salesman_id =#{id} AND is_delete = 0;
+	</select>
+		
+	<select id="findCompanyManagerVOList" parameterType="map" resultMap="companyManagerVO-sql-map" >
+		SELECT a.id,a.name AS name,a.rebast,a.commision,b.name AS company_category_name,c.name AS company_grade_name FROM company a
+		LEFT JOIN company_category b ON a.company_category_id=b.id
+		LEFT JOIN company_grade c ON a.company_grade_id=c.id	
+		<where>
+			 1=1
+			<if test="name != null and name !='' ">
+			AND a.NAME like  "%"#{name}"%"
+			</if>
+			<if test="salesman_id != null and salesman_id !='' ">
+			AND	a.SALESMAN_ID = #{salesman_id}
+			</if>
+			<if test="(start_time != null and start_time != '') and (end_time=='' or end_time==null)">
+			AND a.create_time between #{start_time} and now()
+			</if>
+			<if test="(end_time != null and end_time != '') and (start_time=='' or start_time==null)">
+			AND	a.create_time between 0 and #{end_time}
+			</if>
+			<if test="(start_time != null and start_time != '') and (end_time!='' and end_time!=null)">
+			AND	a.create_time between #{start_time} and #{end_time}
+			</if>
+			<if test="status != null ">
+			AND	a.STATUS = #{status}
+			</if>							
+			<if test="is_delete != null ">
+			AND	a.IS_DELETE = #{is_delete}
+			</if>
+		</where>	
+		order by a.create_time desc
+		LIMIT #{pageStart},#{pageEnd}
+	</select>
+	
+	<select id="findCompanyManagerVOCount" resultType="int" >
+		SELECT count(a.id) FROM company a
+		LEFT JOIN company_category b ON a.company_category_id=b.id
+		LEFT JOIN company_grade c ON a.company_grade_id=c.id
+		<where>
+			 1=1
+		    <if test="accout != null and account != ''">
+			AND a.ACCOUNT like "%"#{account}"%"
+			</if>
+			<if test="name != null and name !='' ">
+			AND	a.NAME like  "%"#{name}"%"
+			</if>
+			<if test="salesman_id != null and salesman_id !='' ">
+			AND	a.SALESMAN_ID = #{salesman_id}
+			</if>
+			<if test="(start_time != null and start_time != '') and (end_time=='' or end_time==null)">
+			AND	a.create_time between #{start_time} and now()
+			</if>
+			<if test="(end_time != null and end_time != '') and (start_time=='' or start_time==null)">
+			AND	a.create_time between 0 and #{end_time}
+			</if>
+			<if test="(start_time != null and start_time != '') and (end_time!='' and end_time!=null)">
+			AND	a.create_time between #{start_time} and #{end_time}
+			</if>
+			<if test="status != null ">
+			AND	a.STATUS = #{status}
+			</if>							
+			<if test="is_delete != null ">
+			AND	a.IS_DELETE = #{is_delete}
+			</if>
+	   </where>
+	</select>
+	
+</mapper>

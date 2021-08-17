@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<company>
+
+	<privilege name="注册企业必填信息" url="javascript:;" is_show="1">
+		<privilege name="第一步" url="/step/step.do" is_show="1"/>
+		<privilege name="第二步" url="/mustInfo/companyInfo.do" is_show="1"/>
+		<privilege name="第三步" url="/mustInfo/companyAddressInfo.do" is_show="1"/>
+	</privilege>
+	
+	<privilege name="任务" url="/companyTask/findCompanyTask.do" is_show="1"/>
+	
+	<privilege name="订单处理" url="/orders/findOrders.do" is_show="0">
+			<privilege name="更新订单" url="/orders/updateOrders.do"  is_show="1"/>
+			<privilege name="更新订单状态" url="/orders/updateOrdersStatus.do" is_show="1" />
+			<privilege name="查询订单详情" url="/orders/findOrdersDetailsData.do" is_show="1" />
+			<privilege name="查询订单评论" url="/orders/findOrdersComment.do" is_show="1" />
+	</privilege>
+	
+	<privilege name="用户设置" url="/companyUser/findCompanyUser.do" is_show="0">
+			<privilege name="更新企业用户状态" url="/companyUser/updateCompanyUserStatus.do" is_show="1" />
+			<privilege name="更改企业用户密码" url="/companyUser/updateCompanyUserPassword.do" is_show="1" />
+			<privilege name="查询企业用户权限" url="/companyUser/findCompanyUserPrivilege.do" is_show="1" />
+			<privilege name="插入企业用户权限" url="/companyUser/insertCompanyUserPrivilege.do" is_show="1" />
+			<privilege name="插入新企业用户" url="/companyUser/insertCompanyUser.do" is_show="1" />
+			<privilege name="更新企业用户" url="/companyUser/updateCompanyUser.do" is_show="1" />
+			<privilege name="验证用户" url="/companyUser/verifyCompanyUser.do" is_show="1" />
+	</privilege>
+	
+	<privilege name="信息维护" url="javascript:;" is_show="0">
+		
+		<privilege name="基本信息" url="/company/findCompany.do" is_show="0">
+			<privilege name="更新" url="/company/updateCompany.do" is_show="1" />
+			<privilege name="更新" url="/companyEnterprise/updateCompanyEnterprise.do" is_show="1" />
+		</privilege>
+		<privilege name="交通地理" url="/companyAddress/findCompanyAddress.do" is_show="0">
+			<privilege name="更新" url="/companyAddress/updateCompanyAddress.do" is_show="1" />
+		</privilege>
+		
+		<privilege name="企业优惠" url="/companyFavorable/findCompanyFavorable.do" is_show="0">
+			<privilege name="新增" url="/companyFavorable/insertCompanyFavorable.do" is_show="1"/>
+			<privilege name="批量更新" url="/companyFavorable/batchUpdateCompanyFavorable.do" is_show="1"/>
+			<privilege name="删除" url="/companyFavorable/deleteCompanyFavorable.do" is_show="1"/>
+			<privilege name="更新" url="/companyFavorable/updateCompanyFavorable.do" is_show="1"/>
+		</privilege>
+		
+		<privilege name="联系方式" url="/companyPhone/findCompanyPhone.do" is_show="0" >
+			<privilege name="新增" url="/companyPhone/insertCompanyPhone.do" is_show="1"/>
+			<privilege name="批量更新" url="/companyPhone/batchUpdateCompanyPhone.do" is_show="1"/>
+			<privilege name="删除" url="/companyPhone/deleteCompanyPhone.do" is_show="1"/>
+			<privilege name="更新" url="/companyPhone/updateCompanyFavorable.do" is_show="1"/>
+		</privilege>
+		
+		<privilege name="服务设施" url="/companyServe/findCompanyServe.do" is_show="0" >
+		<privilege name="更新服务设施"  url="/companyServe/updateCompanyServe.do" is_show="1"/>
+		</privilege>
+		<privilege name="企业图册管理" url="/companyGallery/findCompanyGallery.do" is_show="0">
+		
+			<privilege name="新增" url="/companyGallery/batchInsertCompanyGallery.do" is_show="1" />
+			<privilege name="删除" url="/companyGallery/deleteCompanyGallery.do"  is_show="1" />
+		</privilege>
+		
+		<privilege name="微信关联" url="/companyWeixin/findCompanyWeiXinCode.do" is_show="0" />
+		
+	</privilege>
+	
+	<privilege name="包间维护" url="/product/findProduct.do" is_show="0">
+		<privilege name="产品图册管理" url="/productGallery/findProductGallery.do"  is_show="1">
+			<privilege name="新增" url="/productGallery/batchInsertProductGallery.do" is_show="1" />
+			<privilege name="删除" url="/productGallery/deleteProductGallery.do"  is_show="1" />
+		</privilege>
+		<privilege name="新增" url="/product/insertProduct.do" is_show="1"/>
+		<privilege name="更新" url="/product/updateProduct.do" is_show="1"/>
+		<privilege name="删除" url="/product/deleteProduct.do" is_show="1"/>
+		<privilege name="批量新增" url="/product/batchUpdateProduct.do" is_show="1"/>
+		<privilege name="修改状态" url="/product/updateProductStatus.do" is_show="1"/>
+	</privilege>
+	
+	<privilege name="企业消费管理" url="/companyExpense/findCompanyExpense.do" is_show="0">
+		<privilege name="新增" url="/companyExpense/insertCompanyExpense.do" is_show="1"/>
+		<privilege name="更新" url="/companyExpense/updateCompanyExpense.do" is_show="1"/>
+		<privilege name="删除" url="/companyExpense/deleteCompanyExpense.do" is_show="1"/>
+	</privilege>
+	
+	
+	<privilege name="点评管理" url="/companyComment/findCompanyComment.do" is_show="0">
+	<privilege name="评论查看" url="/companyComment/findCommentByOrderNum.do" is_show="1"/>
+	</privilege>
+
+	<privilege name="数据统计" url="javascript:;" is_show="0">
+		<privilege name="销售统计" url="/sale/saleStatistics.do" is_show="0" />
+		<privilege name="价格查询" url="/sale/comparePrice.do" is_show="0" />
+	</privilege>
+	
+	<privilege name="消息管理" url="/adminMessage/findAdminMessage.do" is_show="0">
+		<privilege name="查询消息详情" url="/adminMessage/findAdminMessageById.do" is_show="1"/>
+		<privilege name="更新消息" url="/adminMessage/updateAdminMessage.do" is_show="1"/>
+		<privilege name="查询用户角色" url="/adminMessage/findAdminRole.do" is_show="1"/>
+		<privilege name="发送消息" url="/adminMessage/insertAdminMessage.do" is_show="1"/>
+		<privilege name="删除消息" url="/adminMessage/deleteAdminMessage.do" is_show="1"/>
+	</privilege>
+	
+	<privilege name="通知管理" url="/adminNotice/findAdminNotice.do" is_show="0">
+		<privilege name="查询通知详情" url="/adminNotice/findAdminNoticeById.do" is_show="1"/>
+	</privilege>
+	
+	<privilege name="财务结算" url="/balance/findLastMonthBalance.do" is_show="0"/>
+	
+	<privilege name="系统日志" url="/companyLog/findCompanyLog.do" is_show="0"/>
+	
+	<category  name="夜总会" >
+		<product_category name="普通小包" />
+		<product_category name="豪华小包" />
+		<product_category name="普通中包" />
+		<product_category name="豪华中包" />
+		<product_category name="普通大包" />
+		<product_category name="豪华大包" />
+	</category>
+	<category  name="酒吧" >
+		<product_category name="普通卡座" />
+		<product_category name="豪华卡座" />
+		<product_category name="散台" />
+	</category>
+	<category  name="演艺会所" >
+		<product_category name="普通卡座" />
+		<product_category name="豪华卡座" />
+	</category>
+	<category  name="量贩KTV" >
+		<product_category name="普通小包" />
+		<product_category name="豪华小包" />
+		<product_category name="普通中包" />
+		<product_category name="豪华中包" />
+		<product_category name="普通大包" />
+		<product_category name="豪华大包" />
+	</category>
+	
+	<grade  name="豪华型" />
+	<grade  name="普通型" />
+	<grade  name="经济型" />
+	
+	<serve name="免费WIFI" />
+	<serve name="代驾" />
+	<serve name="收费停车场" />
+	
+	<comment_category  name="清洁程度" order="9"/>
+	<comment_category  name="舒适程度" order="8"/>
+	<comment_category  name="地理位置" order="7"/>
+	<comment_category  name="服务设施" order="6"/>
+	<comment_category  name="员工素质" order="5"/>
+	<comment_category  name="性价比" order="4"/>
+	
+	<point_category  name="好极了" point="5"/>
+	<point_category  name="非常好" point="4"/>
+	<point_category  name="好" point="3"/>
+	<point_category  name="令人愉悦" point="2"/>
+	<point_category  name="尚无评分" point="0"/>
+	
+	<expense_category name="普通酒消费">
+		<expense_category  name="啤酒"/>
+		<expense_category  name="白酒"/>
+	</expense_category>
+	<expense_category  name="烈酒消费">
+		<expense_category  name="干邑白兰地酒"/>
+		<expense_category  name="威士忌"/>
+		<expense_category  name="金酒"/>
+		<expense_category  name="朗姆酒"/>
+		<expense_category  name="伏特加"/>
+		<expense_category  name="龙舌兰"/>
+	</expense_category>
+	<expense_category  name="利口酒消费">
+		<expense_category  name="咖啡利口酒"/>
+		<expense_category  name="百利甜酒"/>
+		<expense_category  name="君度甜酒"/>
+		<expense_category  name="薄荷甜酒"/>
+		<expense_category  name="可哥甜酒"/>
+		<expense_category  name="香草甜酒"/>
+		<expense_category  name="圣勃卡利口酒"/>
+		<expense_category  name="杏仁甜酒"/>
+		<expense_category  name="杏子白兰地酒"/>
+		<expense_category  name="当姆香草利口酒"/>
+		<expense_category  name="杜林标利口酒"/>
+		<expense_category  name="樱桃白兰地酒"/>
+		<expense_category  name="鸡蛋黄白兰地酒"/>
+		<expense_category  name="香蕉甜酒"/>
+		<expense_category  name="黑醋栗甜酒"/>
+		<expense_category  name="苦艾酒"/>
+		<expense_category  name="香槟酒"/>
+		<expense_category  name="干白葡萄酒"/>
+		<expense_category  name="干红葡萄酒"/>
+	</expense_category>
+	<expense_category  name="果汁消费">
+		<expense_category  name="橙汁"/>
+		<expense_category  name="菠萝汁"/>
+		<expense_category name="西柚汁"/>
+		<expense_category  name="苹果汁"/>
+		<expense_category  name="番茄汁"/>
+		<expense_category  name="柠檬汁"/>
+		<expense_category name="青柠汁"/>
+	</expense_category>
+	<expense_category  name="其他消费">
+		<expense_category  name="手纸"/>
+	</expense_category>
+	
+</company>

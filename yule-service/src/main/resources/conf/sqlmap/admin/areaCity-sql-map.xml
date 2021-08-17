@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.admin.dao.IAreaCityDao">
+	<resultMap type="areaCity" id="areaCity-sql-map">
+		<id     property="id"               column="ID" />
+		<result property="area_province_id" column="AREA_PROVINCE_ID" />
+		<result property="name"             column="NAME" />
+		<result property="pinyin"              column="PINYIN" />
+	</resultMap>
+	<sql id="areaCity_first">
+		ID,AREA_PROVINCE_ID,NAME,PINYIN
+	</sql>
+
+	<select id="findAreaCityList" resultMap="areaCity-sql-map" parameterType="string">
+		select ID,AREA_PROVINCE_ID,NAME,PINYIN from area_city 
+		<where>
+			area_province_id = #{provinceId}
+		</where>
+		order by ID asc
+	</select>
+	
+	<select id="findAreaCityCount" resultType="int">
+		select count(*) from area_city
+	</select>
+
+	<insert id="insertAreaCity" parameterType="areaCity">
+		insert into area_city(
+		<include refid="areaCity_first" />
+		)
+		values(#{id},#{area_province_id},#{name},#{pinyin})
+	</insert>
+
+	<update id="updateAreaCity" parameterType="areaCity">
+		update area_city
+		<set>
+			<if test="name != null and name!=''">
+				NAME = #{name},
+			</if>
+			<if test="area_province_id != null and area_province_id !=''">
+				area_province_id = #{area_province_id}
+			</if>
+			<if test="pinyin != null and pinyin !=''">
+				pinyin = #{pinyin}
+			</if>
+		</set>
+		where ID = #{id}
+	</update>
+	
+	<insert id="batchInsertAreaCity" parameterType="list">  
+	    insert into area_city(
+		<include refid="areaCity_first" />
+		)
+		values
+	    <foreach collection="list" item="item" index="index" separator=",">  
+	        (#{item.id},#{item.area_province_id},#{item.name},#{item.pinyin})
+	    </foreach>  
+    </insert> 
+    
+    <delete id="deleteAreaCityAll">
+		truncate table area_city 
+	</delete>
+
+
+	<delete id="deleteAreaCityById" parameterType="java.lang.String">
+		delete from area_city where ID = #{id}
+	</delete>
+
+</mapper>

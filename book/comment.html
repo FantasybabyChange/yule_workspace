@@ -1,0 +1,383 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//zh-CN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/select2.css">
+</head>
+
+<body>
+    <div id="header-full">
+        <div role="navigation" id="menu-bar" class="cont-shadow">
+            <div class="g clearfix">
+                <ul class="right-nav">
+                    <li class="nav-item">
+                        <a data-trigger="ajax" href="ajax/histroy.html" data-target=".ajax-histroy-content" class="nav-item-a nav-histroy">最近浏览</a>
+                        <div class="ajax-content ajax-histroy">
+                            <div class="ajax-arr"></div>
+                            <div class="ajax-histroy-content"></div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a data-trigger="ajax" href="ajax/histroy.html" data-target=".ajax-fav-content" class="nav-item-a nav-fav">
+                            <img src="images/fav-icon.png">我的收藏</a>
+                        <div class="ajax-content ajax-histroy">
+                            <div class="ajax-arr"></div>
+                            <div class="ajax-fav-content"></div>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a href="ajax/login.html" data-trigger="modal" data-title="用户登录" class="nav-item-a nav-login">登录或注册账户</a>
+                    </li>
+                    <li class="nav-item"><a href="#" class="nav-item-a  nav-order-list">管理订单</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="breadcrumb clearfix">
+        <div class="g clearfix">
+            <div class="breadcrumb-item">
+                <p><a href="#">首页</a>
+                    <span>→</span>
+                </p>
+            </div>
+            <div class="breadcrumb-item">
+                <p><a href="#">北京</a> 
+                    <span>→</span>
+                </p>
+                <p class="breadcrumb-tips">6,744个住宿</p>
+            </div>
+            <div class="breadcrumb-item">
+                <p><a href="#">北京</a> 
+                </p>
+                <p class="breadcrumb-tips">6,744个住宿</p>
+            </div>
+            <div class="recent-order-status">（在过去的5分钟内） 82位来自中国的客人进行了预订</div>
+        </div>
+    </div>
+    <div class="col clearfix">
+
+        <div class="comment-detail">
+            <div class="sr_header">
+                <div class="sr_header-ctrl">
+                    <a href="#" class="b-button fav-btn mt10">保存至心愿单列表</a>
+                    <a href="#" class="b-button index-order-btn mt10">现在就预订</a>
+                </div>
+                <h1>五脚基旅馆中国城 <i class="b-sprite stars ratings_stars_5" title="5星级"></i>
+                </h1>
+                <p class="address">
+                    <span class="show_map_icon"></span>
+                    <span id="hp_address_subtitle">
+                        中正区馆前路8号11楼, 中正区, 10047 台北, 台湾
+                    </span>
+                    –
+                    <a class="show_map" href="javascript:void(0);" title="旅乐序精品旅馆, 台北 - 显示地图" id="show_id604572">显示地图</a>
+                </p>
+            </div>
+            <ul class="hp_nav_bar JS-scroll">
+                <li><a href="#ydkf">可供预订的客房</a>
+                </li>
+                <li><a href="#ss">设施</a>
+                </li>
+                <li><a href="#tk">条款规定</a>
+                </li>
+                <li class="brn"><a href="#" class="active">经过核实的评语</a>
+                </li>
+            </ul>
+            <div class="comment-content clearfix">
+                <div class="comment_list_outer_container">
+                    <div class="lang_ltr_arr"></div>
+                    <h4 class="comment_list_score_title">住客评分</h4>
+                    <p class="comment_list_score_count">分数来自
+                        <strong>172条评语</strong>
+                    </p>
+                    <div class="comment_list_score">9</div>
+                    <h4 class="comment_list_score_title">单项评分</h4>
+                    <ul class="comment_score_breakdown_list">
+                        <li class="clearfix">
+                            <p class="comment_score_name">清洁程度</p>
+                            <p class="comment_score_value">8.4</p>
+                            <div class="score_bar">
+                                <div class="score_bar_value" style="width: 84%;"></div>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <p class="comment_score_name">舒适程度</p>
+                            <p class="comment_score_value">8.4</p>
+                            <div class="score_bar">
+                                <div class="score_bar_value" style="width: 84%;"></div>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <p class="comment_score_name">设施</p>
+                            <p class="comment_score_value">8.4</p>
+                            <div class="score_bar">
+                                <div class="score_bar_value" style="width: 84%;"></div>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <p class="comment_score_name">员工素质</p>
+                            <p class="comment_score_value">8.4</p>
+                            <div class="score_bar">
+                                <div class="score_bar_value" style="width: 84%;"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="comment_list_container">
+                    <div class="comment_list_nav clearfix">
+                        <p>显示来自此类客人的评语：</p>
+                        <select class="commenter_type_filter" id="commenter_type_filter">
+                            <option data-quantity="172" data-customer-type="total" data-lang="zh-cn" data-cc="tw" data-dist="1" data-pagename="howard-plaza-kaohsiung" data-add="">
+                                全部评论者 (172)
+                            </option>
+                            <option data-quantity="62" data-customer-type="family_with_children" data-lang="zh-cn" data-cc="tw" data-dist="2" data-pagename="howard-plaza-kaohsiung" data-add="">
+                                家庭 (62)
+                            </option>
+                            <option data-quantity="57" data-customer-type="couple" data-lang="zh-cn" data-cc="tw" data-dist="3" data-pagename="howard-plaza-kaohsiung" data-add="">
+                                夫妻 (57)
+                            </option>
+                            <option data-quantity="27" data-customer-type="comment_category_group_of_friends" data-lang="zh-cn" data-cc="tw" data-dist="4" data-pagename="howard-plaza-kaohsiung" data-add="">
+                                朋友团组 (27)
+                            </option>
+                            <option data-quantity="27" data-customer-type="solo_traveller" data-lang="zh-cn" data-cc="tw" data-dist="5" data-pagename="howard-plaza-kaohsiung" data-add="">
+                                独行客人 (27)
+                            </option>
+                            <option data-quantity="21" data-customer-type="business_traveller" data-lang="zh-cn" data-cc="tw" data-dist="6" data-pagename="howard-plaza-kaohsiung" data-add="">
+                                商务旅客 (21)
+                            </option>
+                        </select>
+                    </div>
+                    <div class="comment_list_page_container">
+                        <div class="comment_list_pagination">
+                            <p class="page_link comment_previous_page">
+                                前一页
+                            </p>
+                            <p class="page_link comment_next_page">
+                                <a href="/commentlist.zh-cn.html?sid=56d1c91bf562e3f148e87e0dd7782d5a;dcid=1;cc1=tw;dist=1;pagename=howard-plaza-kaohsiung;type=total;offset=10;rows=10" id="comment_next_page_link">下一页</a>
+                            </p>
+                            <p class="page_showing">
+                                显示 1 - 10
+                            </p>
+                        </div>
+                        <ul class="comment_list">
+                            <li class="comment_item clearfix">
+                                <div class="comment_item_commenter">
+                                    <h4>
+                                        Weiyan
+                                    </h4>
+                                   
+                                </div>
+                                <div class="comment_item_comment">
+                                    <div class="comment_item_comment_container lang_ltr">
+                                        <div class="comment_item_comment_header">
+                                            <div class="comment_item_header_score_container">
+                                                <div class="comment_item_comment_score">
+                                                    5
+                                                </div>
+                                            </div>
+                                            <div class="comment_item_header_content_container">
+                                                <div class="comment_item_header_content">
+                                                    尚可
+                                                </div>
+                                            </div>
+                                            <div class="comment_item_header_date_container">
+                                                <div class="comment_item_header_date">
+                                                    2014年9月2日
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="comment_item_comment_content">
+                                            <p class="comment_pos">
+                                                <span>好评：</span>
+                                                泳池特别好，水很干净。有专门给小朋友设计的小泳池，还有按摩，真心赞。
+                                            </p>
+                                            <p class="comment_neg">
+                                            <span>差评：</span>
+                                                床太小了，设施稍显陈旧，与台北的福华无法比。 员工完全笑容欠奉，感觉我们像过路人一样，基本无视。
+                                            </p>
+                                        </div>
+                                        <span class="clearfix"></span>
+                                    </div>
+                                </div>
+                                <div class="comment_item_feedback">
+                                    <p>有帮助？</p>
+                                    <form class="review_feedback_form" action="/feedback?type=review_feedback&amp;comment=1&amp;object_id=989574969&amp;hotel_id=324929" method="post">
+                                        <input type="hidden" name="hotel_id" value="324929">
+                                        <input type="hidden" name="object_id" value="989574969">
+                                        <input type="submit" value="是">
+                                    </form>
+                                </div>
+                            </li>
+                            <li class="comment_item clearfix">
+                                <div class="comment_item_commenter">
+                                    <h4>
+                                        Weiyan
+                                    </h4>
+                                   
+                                </div>
+                                <div class="comment_item_comment">
+                                    <div class="comment_item_comment_container lang_ltr">
+                                        <div class="comment_item_comment_header">
+                                            <div class="comment_item_header_score_container">
+                                                <div class="comment_item_comment_score">
+                                                    5
+                                                </div>
+                                            </div>
+                                            <div class="comment_item_header_content_container">
+                                                <div class="comment_item_header_content">
+                                                    尚可
+                                                </div>
+                                            </div>
+                                            <div class="comment_item_header_date_container">
+                                                <div class="comment_item_header_date">
+                                                    2014年9月2日
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="comment_item_comment_content">
+                                            <p class="comment_pos">
+                                                <span>好评：</span>
+                                                泳池特别好，水很干净。有专门给小朋友设计的小泳池，还有按摩，真心赞。
+                                            </p>
+                                            <p class="comment_neg">
+                                            <span>差评：</span>
+                                                床太小了，设施稍显陈旧，与台北的福华无法比。 员工完全笑容欠奉，感觉我们像过路人一样，基本无视。
+                                            </p>
+                                        </div>
+                                        <span class="clearfix"></span>
+                                    </div>
+                                </div>
+                                <div class="comment_item_feedback">
+                                    <p>有帮助？</p>
+                                    <form class="review_feedback_form" action="/feedback?type=review_feedback&amp;comment=1&amp;object_id=989574969&amp;hotel_id=324929" method="post">
+                                        <input type="hidden" name="hotel_id" value="324929">
+                                        <input type="hidden" name="object_id" value="989574969">
+                                        <input type="submit" value="是">
+                                    </form>
+                                </div>
+                            </li>
+                            <li class="comment_item clearfix">
+                                <div class="comment_item_commenter">
+                                    <h4>
+                                        Weiyan
+                                    </h4>
+                                   
+                                </div>
+                                <div class="comment_item_comment">
+                                    <div class="comment_item_comment_container lang_ltr">
+                                        <div class="comment_item_comment_header">
+                                            <div class="comment_item_header_score_container">
+                                                <div class="comment_item_comment_score">
+                                                    5
+                                                </div>
+                                            </div>
+                                            <div class="comment_item_header_content_container">
+                                                <div class="comment_item_header_content">
+                                                    尚可
+                                                </div>
+                                            </div>
+                                            <div class="comment_item_header_date_container">
+                                                <div class="comment_item_header_date">
+                                                    2014年9月2日
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="comment_item_comment_content">
+                                            <p class="comment_pos">
+                                                <span>好评：</span>
+                                                泳池特别好，水很干净。有专门给小朋友设计的小泳池，还有按摩，真心赞。
+                                            </p>
+                                            <p class="comment_neg">
+                                            <span>差评：</span>
+                                                床太小了，设施稍显陈旧，与台北的福华无法比。 员工完全笑容欠奉，感觉我们像过路人一样，基本无视。
+                                            </p>
+                                        </div>
+                                        <span class="clearfix"></span>
+                                    </div>
+                                </div>
+                                <div class="comment_item_feedback">
+                                    <p>有帮助？</p>
+                                    <form class="review_feedback_form" action="/feedback?type=review_feedback&amp;comment=1&amp;object_id=989574969&amp;hotel_id=324929" method="post">
+                                        <input type="hidden" name="hotel_id" value="324929">
+                                        <input type="hidden" name="object_id" value="989574969">
+                                        <input type="submit" value="是">
+                                    </form>
+                                </div>
+                            </li>
+                        </ul>
+                         <div class="comment_list_pagination">
+                            <p class="page_link comment_previous_page">
+                                前一页
+                            </p>
+                            <p class="page_link comment_next_page">
+                                <a href="/commentlist.zh-cn.html?sid=56d1c91bf562e3f148e87e0dd7782d5a;dcid=1;cc1=tw;dist=1;pagename=howard-plaza-kaohsiung;type=total;offset=10;rows=10" id="comment_next_page_link">下一页</a>
+                            </p>
+                            <p class="page_showing">
+                                显示 1 - 10
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="footer">
+        <div class="g">
+            <ul class="footer-nav">
+                <li><a href="#">管理预订</a>
+                </li>
+                <li><a href="#">客户服务</a>
+                </li>
+                <li><a href="#">成为合作伙伴</a>
+                </li>
+                <li><a href="#">成为会员伙伴</a>
+                </li>
+
+            </ul>
+            <div class="apps">
+                <span class="text">下载我们的应用：</span>
+                <span class="logo">
+                    <a href="http://itunes.apple.com/app/id284971959" target="_blank" class="ios"></a>
+                    <a href="https://market.android.com/details?id=com.hcom.android" target="_blank" class="android"></a>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="footer-other">
+        <div class="g admin-login">
+            <a href="#">后台登录</a>
+        </div>
+        <div class="g copyright">
+            <p>版权 © 1996–2014Booking.com™. 版权所有.</p>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/slides.js"></script>
+    <script type="text/javascript" src="js/ajax.js"></script>
+    <script type="text/javascript" src="js/modal.js"></script>
+    <script type="text/javascript" src="js/panes.js"></script>
+    <script type="text/javascript" src="js/tab.js"></script>
+    <script type="text/javascript" src="js/imagePreview.js"></script>
+    <script type="text/javascript" src="js/select2.js"></script>
+    <script type="text/javascript" src="js/collapse.js"></script>
+    <script src="js/slides.min.jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="js/l.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        $('.detailAblum').slides({
+            effect: 'slide, fade',
+            crossfade: true,
+            slideSpeed: 350,
+            fadeSpeed: 500,
+            generateNextPrev: true,
+            generatePagination: false
+        });
+    });
+    </script>
+</body>
+
+</html>

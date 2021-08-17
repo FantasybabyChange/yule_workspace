@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.orders.dao.IUserLoginDao">
+
+	<select id="findUserAreaVOById" resultType="userAreaVO" parameterType="string">
+		SELECT u.`area_city_id` AS user_area_city_id , ac.name AS user_area_city_name FROM user_login  ul  LEFT JOIN 
+		 `user`  u ON u.id = ul.id  LEFT JOIN `area_city` ac 
+		 ON ac.id = u.`area_city_id` where ul.id =#{id}
+	</select>
+
+	<update id="updateUserLogin" parameterType="userLogin">
+		update user_login 
+		<set>
+			<if test="name != null and name != '' ">
+				NAME = #{name},
+			</if>
+			<if test="phone != null and phone != '' ">
+				PHONE = #{phone},
+			</if>
+			<if test="mail != null and mail != '' ">
+				MAIL = #{mail},
+			</if>
+			UPDATE_TIME = now()
+		</set>
+		where ID = #{id}
+	</update>
+	
+</mapper>

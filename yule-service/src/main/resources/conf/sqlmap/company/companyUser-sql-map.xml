@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.company.dao.ICompanyUserDao">
+<resultMap type="companyUser" id="companyUser-sql-map">
+		<id     property="id"          				column="ID" />
+		<result property="company_id"                	column="COMPANY_ID" />
+		<result property="name"         			column="NAME" />
+		<result property="account"         			column="ACCOUNT" />
+		<result property="password"               column="PASSWORD" />
+		<result property="is_delete"       			column="IS_DELETE" />
+		<result property="status"        			column="STATUS" />
+		<result property="login_time"        			column="LOGIN_TIME" />
+		<result property="create_time"        			column="CREATE_TIME" />
+		<result property="update_time"        			column="UPDATE_TIME" />
+	</resultMap>
+	  
+    <select id="findCompanyUserList" parameterType="map" resultMap="companyUser-sql-map" >
+	SELECT cu.ID,cu.ACCOUNT,cu.LOGIN_TIME,cu.CREATE_TIME,cu.STATUS  FROM company_user cu
+		<where>
+			 1=1
+		    <if test="account != null and account != ''">
+			AND cu.ACCOUNT like "%"#{account}"%"
+			</if>
+			<if test="(start_time != null and start_time != '') and (end_time=='' or end_time==null)">
+			AND cu.create_time between #{start_time} and now()
+			</if>
+			<if test="(end_time != null and end_time != '') and (start_time=='' or start_time==null)">
+			AND	cu.create_time between 0 and #{end_time}
+			</if>
+			<if test="(start_time != null and start_time != '') and (end_time!='' and end_time!=null)">
+			AND	cu.create_time between #{start_time} and #{end_time}
+			</if>
+			<if test="status != null ">
+			AND	cu.STATUS = #{status}
+			</if>
+			AND cu.company_id!=cu.id
+			AND cu.company_id=#{company_id}
+			AND	cu.IS_DELETE = '0'
+		</where>	
+		order by cu.create_time desc
+		LIMIT #{pageStart},#{pageEnd}
+	</select>
+	 <select id="findCompanyUserCount" parameterType="map" resultType="int" >
+		SELECT count(cu.id) FROM company_user cu
+		<where>
+			 1=1
+		    <if test="account != null and account != ''">
+			AND cu.ACCOUNT like "%"#{account}"%"
+			</if>
+			<if test="(start_time != null and start_time != '') and (end_time=='' or end_time==null)">
+			AND cu.create_time between #{start_time} and now()
+			</if>
+			<if test="(end_time != null and end_time != '') and (start_time=='' or start_time==null)">
+			AND	cu.create_time between 0 and #{end_time}
+			</if>
+			<if test="(start_time != null and start_time != '') and (end_time!='' and end_time!=null)">
+			AND	cu.create_time between #{start_time} and #{end_time}
+			</if>
+			<if test="status != null ">
+			AND	cu.STATUS = #{status}
+			</if>
+			<if test="company_id != null and company_id != '' ">
+			AND cu.company_id=#{company_id}
+			</if>							
+			AND	cu.IS_DELETE = '0'
+		</where>	
+	</select>
+	
+	<select id="findCompanyUserVOByAccount" parameterType="map" resultType="companyUserVO">
+		SELECT * FROM 	v_findCompanyUserVO where account = #{account} and code = #{code}
+		<!-- 
+	 select a.ID,a.COMPANY_ID,a.ACCOUNT,b.NAME,a.PASSWORD,a.STATUS,b.CODE,b.mail,b.COMMISION  from company_user a
+	 left join company b on a.company_id = b.id
+		WHERE a.ACCOUNT=#{account} 
+		AND b.code=#{code}
+		AND a.IS_DELETE=0 
+		 -->
+	</select>	
+	
+	<select id="findCompanyUserById" parameterType="java.lang.String" resultType="companyUser" >
+		select a.ID,a.COMPANY_ID,a.ACCOUNT,a.PASSWORD,a.STATUS from company_user a
+		where a.ID = #{id} and a.IS_DELETE = 0 AND a.STATUS = 0
+	</select>
+	
+	<select id="findCompanyUserVOById" parameterType="java.lang.String" resultType="companyUserVO" >
+<!-- 		SELECT cu.ID,cu.COMPANY_ID,cu.ACCOUNT,cu.PASSWORD,cu.STATUS,c.code,c.commision FROM company_user cu
+		SELECT cu.ID,cu.COMPANY_ID,cu.ACCOUNT,cu.PASSWORD,cu.STATUS,c.image_path,c.code,c.commision FROM company_user cu
+			LEFT JOIN company c ON c.id=cu.company_id
+			WHERE cu.id=#{id}
+			AND cu.IS_DELETE = 0 AND cu.STATUS = 0 -->
+			SELECT * FROM 	v_findCompanyUserVO WHERE id=#{id}
+	</select>
+	
+	<update id="updateCompanyUser" parameterType="companyUser">
+		update company_user
+		<set>
+			<if test="account != null and account != '' ">
+				ACCOUNT = #{account},
+			</if>
+			<if test="password != null and password != '' ">
+				PASSWORD = #{password},
+			</if>
+			<if test="is_delete != null and is_delete != '' ">
+				IS_DELETE = #{is_delete},
+			</if>
+			<if test="login_time != null and login_time != '' ">
+				LOGIN_TIME = #{login_time},
+			</if>
+			<if test="status != null">
+				STATUS = #{status},
+			</if>
+			UPDATE_TIME=now()
+		</set>
+		where ID = #{id}
+	</update>
+	<insert id="insertCompanyUser"  parameterType="companyUser">
+		insert into company_user(
+		ID,COMPANY_ID,ACCOUNT,PASSWORD,IS_DELETE,STATUS,CREATE_TIME
+		)
+		values(#{id},#{company_id},#{account},#{password},#{is_delete},#{status},now())
+	</insert>
+	<select id="findCompanyUserMap" parameterType="map" resultType="int">
+	 	SELECT count(cp.id) FROM (
+	 	SELECT c.id FROM company c
+		LEFT JOIN company_user cu ON c.id=cu.id
+		WHERE cu.account=#{account}
+		UNION ALL
+		SELECT cu.id FROM company_user cu
+		WHERE cu.account=#{account}
+		AND cu.company_id=#{companyId}) cp
+	</select>
+</mapper>

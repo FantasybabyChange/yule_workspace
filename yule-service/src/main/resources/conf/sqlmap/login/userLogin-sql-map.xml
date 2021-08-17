@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.login.dao.IUserLoginDao">
+
+	<select id="findUserLoginVOByAccount" parameterType="java.lang.String" resultType="userLoginVO" >
+		select a.ID,a.OPENID,a.NAME,a.PASSWORD,a.PHONE,MAIL,a.PHONE_AUTH,a.MAIL_AUTH,a.STATUS,b.IMAGE_PATH 
+		FROM user_login a LEFT JOIN user b 
+		ON a.ID = b.ID 
+		where (a.mail = #{account} or a.phone = #{account}) and a.is_delete = 0 
+	</select>
+	
+	<select id="findUserLoginVOById" parameterType="java.lang.String" resultType="userLoginVO" >
+		select a.ID,a.OPENID,a.NAME,a.PASSWORD,a.PHONE,MAIL,a.PHONE_AUTH,a.MAIL_AUTH,a.STATUS,b.IMAGE_PATH 
+		FROM user_login a LEFT JOIN user b 
+		ON a.ID = b.ID 
+		where a.id = #{id} and a.is_delete = 0 
+	</select>
+	
+	<select id="findUserLoginInfoVOByAccount" parameterType="java.lang.String" resultType="userLoginInfoVO" >
+		select a.ID,a.NAME,a.PASSWORD,a.PHONE,MAIL,a.PHONE_AUTH,a.MAIL_AUTH,a.STATUS
+		FROM user_login a 
+		where (a.mail = #{account} or a.phone = #{account}) and a.is_delete = 0 
+	</select>
+	
+	<select id="findUserLoginCountByAccount" parameterType="java.lang.String" resultType="int" >
+		select count(a.ID)  from user_login a
+		where a.mail = #{account} or a.phone = #{account} and a.is_delete=0
+	</select>
+	
+	<update id="updateUserLogin" parameterType="userLogin">
+		update user_login 
+		<set>
+			<if test="name != null and name != '' ">
+				NAME = #{name},
+			</if>
+			<if test="password != null and password != '' ">
+				PASSWORD = #{password},
+			</if>
+			<if test="phone != null and phone != '' ">
+				PHONE = #{phone},
+			</if>
+			<if test="mail != null and mail != '' ">
+				MAIL = #{mail},
+			</if>
+			<if test="phone_auth != null and phone_auth != '' ">
+				PHONE_AUTH = #{phone_auth},
+			</if>
+			<if test="mail_auth != null and mail_auth != '' ">
+				MAIL_AUTH = #{mail_auth},
+			</if>
+			<if test="status != null">
+				STATUS = #{status},
+			</if>
+			<if test="login_time != null and login_time != '' ">
+			    LOGIN_TIME = #{login_time},
+			</if>
+			UPDATE_TIME = now()
+		</set>
+		where ID = #{id}
+	</update>
+	
+	<insert id="insertUserLogin"  parameterType="userLogin">
+		insert into user_login(
+			ID,NAME,PASSWORD,PHONE,PHONE_AUTH,MAIL,MAIL_AUTH,CREATE_TIME
+		)
+		values(#{id},#{name},#{password},#{phone},#{phone_auth},#{mail},#{mail_auth},now());
+		insert into user(
+			ID,USER_LEVEL_ID,CREATE_TIME
+		)
+		values(#{id},(SELECT id FROM user_level ORDER BY expense ASC LIMIT 0,1),now());
+		insert into user_interest(
+			ID,CREATE_TIME
+		) 
+		values(#{id},now());
+	</insert>
+
+</mapper>

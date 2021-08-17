@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.company.dao.IProductDao">
+
+	<resultMap type="product" id="product-sql-map">
+		<id     property="id"                  column="ID" />
+		<result property="product_category_id" column="PRODUCT_CATEGORY_ID" />
+		<result property="company_id"          column="COMPANY_ID" />
+		<result property="person_num"          column="PERSON_NUM" />
+		<result property="status"              column="STATUS" />
+		<result property="is_delete"           column="IS_DELETE" />
+		<result property="create_time"         column="CREATE_TIME" />
+		<result property="update_time"         column="UPDATE_TIME" />
+		<result property="min_expense"         column="MIN_EXPENSE" />
+	</resultMap>
+	
+	<resultMap type="productVO" id="productVO-sql-map">
+		<id     property="id"         			 column="ID" />
+		<result property="name"        			 column="NAME" />
+		<result property="product_category_id"   column="PRODUCT_CATEGORY_ID"/>
+		<result property="min_expense" 			 column="MIN_EXPENSE" />
+		<result property="person_num"            column="PERSON_NUM" />
+		<result property="status"     			 column="STATUS" />
+		<result property="company_name"     	 column="COMPANY_NAME" />
+	</resultMap>
+   
+	<select id="findSimpleProductVOList" parameterType="string" resultMap="productVO-sql-map">
+	SELECT id ,`name` FROM `product_category` WHERE `company_category_id` =
+	 (SELECT company_category_id FROM company WHERE id =#{companyId})
+	</select>
+	
+	<select id="findProductVOList" parameterType="string" resultMap="productVO-sql-map">
+		select a.ID,a.product_category_id,a.NAME,a.MIN_EXPENSE,a.PERSON_NUM,a.STATUS from (
+		select p.ID,p.product_category_id,pc.NAME,p.MIN_EXPENSE,p.PERSON_NUM,p.STATUS,pc.`ORDER` 
+		from product p LEFT JOIN product_category pc on p.product_category_id = pc.ID 
+		where company_id =  #{companyId}
+		and p.is_delete = 0
+		union all
+		select '' ID,ID product_category_id,NAME,'' MIN_EXPENSE,'' PERSON_NUM,'' STATUS,`ORDER` from product_category 
+		where id not in (select product_category_id from product where company_id =  #{companyId} and is_delete = 0) 
+		and company_category_id = (select company_category_id from company where id =  #{companyId})
+		and is_delete = 0
+		 ) a order by a.`ORDER` desc
+	</select>
+	
+	<select id="findProductById" parameterType="string" resultType="product">
+		select ID,PRODUCT_CATEGORY_ID,COMPANY_ID,PERSON_NUM,MIN_EXPENSE,STATUS,IS_DELETE from product
+		where ID = #{id}
+	</select>
+	
+	<insert id="insertProduct" parameterType="product">
+		insert into product(
+		ID,PRODUCT_CATEGORY_ID,COMPANY_ID,PERSON_NUM,MIN_EXPENSE,STATUS,IS_DELETE,CREATE_TIME
+		)
+		values(
+		#{id},#{product_category_id},#{company_id},#{person_num},#{min_expense},#{status},#{is_delete},now()
+		) 
+	</insert>
+	
+	<insert id="batchInsertProduct" parameterType="list">
+		insert into product(
+		ID,PRODUCT_CATEGORY_ID,COMPANY_ID,PERSON_NUM,MIN_EXPENSE,STATUS,IS_DELETE,CREATE_TIME
+		)
+		values
+		<foreach collection="list" item="item" index="index" separator=","> 
+		     (#{item.id},#{item.product_category_id},#{item.company_id},#{item.person_num},#{item.min_expense},#{item.status},#{item.is_delete},now()) 
+	    </foreach>   
+	</insert>
+	
+	<update id="batchUpdateProduct" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" separator=";" close=""> 
+			update product
+			<set>
+				PERSON_NUM = #{item.person_num},
+				MIN_EXPENSE = #{item.min_expense},
+				UPDATE_TIME = now()
+			</set>
+			where ID =  #{item.id}
+	    </foreach>  
+	</update>
+
+	<update id="updateProduct" parameterType="product">
+		update product 
+		<set>
+			<if test="product_category_id != null and product_category_id != '' ">
+				PRODUCT_CATEGORY_ID = #{product_category_id},
+			</if>
+			<if test="company_id != null and company_id != '' ">
+				COMPANY_ID = #{company_id},
+			</if>
+			<if test="person_num != null and person_num != '' ">
+				PERSON_NUM = #{person_num},
+			</if>
+			<if test="min_expense != null and min_expense != '' ">
+				MIN_EXPENSE = #{min_expense},
+			</if>
+			<if test="status != null ">
+				STATUS = #{status},
+			</if>
+			UPDATE_TIME = now()
+		</set>
+		where ID = #{id}
+	</update>
+	
+	<delete id="deleteProductById" parameterType="java.lang.String" >
+		update product set is_delete=1 where ID = #{id}
+	</delete>
+	
+	<select id="findOtherCompanyProductList"  parameterType="map"  resultMap="productVO-sql-map">
+		SELECT c.id,c.name COMPANY_NAME, pc.name ,p.`person_num`,p.`min_expense` FROM company c 
+		LEFT JOIN product p ON p.company_id =c.id RIGHT JOIN `product_category` pc ON pc.id = p.`product_category_id`  
+		LEFT JOIN company_address a ON c.ID = a.ID LEFT JOIN area_county b ON a.area_county_id = b.id
+		 WHERE
+		c.company_category_id = (SELECT company_category_id FROM company WHERE id = #{id}) AND b.area_city_id = 
+		(SELECT d.area_city_id FROM area_county d LEFT JOIN company_address e ON 
+		d.id = e.area_county_id WHERE e.id = #{id})
+		AND c.id !=#{id}
+	    <if test="company_name !=null and company_name !='' ">
+		AND	c.name LIKE "%"#{company_name}"%" 
+		</if>		
+		ORDER BY p.company_id
+	    <if test="pageStart != null  and pageEnd != null">
+		   LIMIT #{pageStart},#{pageEnd}
+		</if>
+	</select>
+		
+	<select id="findOtherCompanyProductCount"  parameterType="map"  resultType="int">
+		SELECT count(*) FROM company c 
+		LEFT JOIN product p ON p.company_id =c.id RIGHT JOIN `product_category` pc ON pc.id = p.`product_category_id`  
+		LEFT JOIN company_address a ON c.ID = a.ID LEFT JOIN area_county b ON a.area_county_id = b.id
+		 WHERE
+		c.company_category_id = (SELECT company_category_id FROM company WHERE id = #{id}) AND b.area_city_id = 
+		(SELECT d.area_city_id FROM area_county d LEFT JOIN company_address e ON 
+		d.id = e.area_county_id WHERE e.id = #{id})
+		
+		AND c.id != #{id}
+	    <if test="company_name !=null and company_name !='' ">
+		AND	c.name LIKE "%"#{company_name}"%" 
+		</if>
+						
+	</select>
+	
+</mapper>

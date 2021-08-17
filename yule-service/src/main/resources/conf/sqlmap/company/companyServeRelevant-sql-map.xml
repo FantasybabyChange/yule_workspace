@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.company.dao.ICompanyServeRelevantDao">
+
+	<sql id="companyServeRelevant_first">
+		ID,COMPANY_SERVE_ID,COMPANY_ID
+	</sql>
+
+	<insert id="batchInsertCompanyServeRelevant" parameterType="list">
+		insert into company_serve_relevant(
+		<include refid="companyServeRelevant_first" />
+		)
+		values 
+		<foreach collection="list" item="item" index="index" separator=",">  
+	        (#{item.id},#{item.company_serve_id},#{item.company_id})
+	    </foreach>  
+	</insert>
+
+	<delete id="deleteCompanyServeRelevantByCompanyId" parameterType="java.lang.String">
+		delete from company_serve_relevant where COMPANY_ID = #{companyId}
+	</delete>
+
+</mapper>

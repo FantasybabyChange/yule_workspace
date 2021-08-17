@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.detail.dao.ICompanyExpenseDao">
+	
+	<resultMap type="companyExpenseVO" id="companyExpenseVO-sql-map">
+		<id     property="id"           	 		column="ID" />
+		<result     property="parent_id"           	 		column="PARENT_ID" />
+		<result property="name"         	 		column="NAME" />
+		<result property="price"             		column="PRICE" />
+	</resultMap>
+	
+	<select id="findCompanyExpenseVoList"  resultMap="companyExpenseVO-sql-map" parameterType="string">
+	SELECT son.id,son.parent_id,son.name,ce.price FROM company_expense_category  fa
+		LEFT JOIN company_expense_category  son
+		ON fa.id=son.parent_id
+		LEFT JOIN company_expense ce ON ce.expense_category_id=son.id
+		WHERE ce.company_id=#{id}
+		UNION ALL 
+		SELECT cc.id,cc.parent_id,cc.name,'' price FROM company_expense_category cc WHERE  cc. id IN(
+		SELECT cc.parent_id FROM company_expense ce 
+		LEFT JOIN company_expense_category cc ON ce.expense_category_id=cc.id WHERE ce.company_id=#{id} )
+	</select>
+
+	
+</mapper>

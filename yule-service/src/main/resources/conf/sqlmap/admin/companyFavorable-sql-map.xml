@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.admin.dao.ICompanyFavorableDao">
+
+	<resultMap type="companyFavorable" id="companyFavorable-sql-map">
+		<id     property="id"         column="ID" />
+		<result property="company_id" column="COMPANY_ID"/>
+		<result property="name"       column="NAME" />
+		<result property="price"      column="PRICE" />
+		<result property="content"    column="CONTENT" />
+	</resultMap>
+	
+	<sql id="companyFavorable_first">
+		ID,COMPANY_ID,NAME,PRICE,CONTENT
+	</sql>
+	
+	<select id="findCompanyFavorableList" parameterType="java.lang.String" resultMap="companyFavorable-sql-map" >
+	    select <include refid="companyFavorable_first" /> from company_favorable
+		<where>
+		     COMPANY_ID= #{company_id}
+		</where>
+	</select>
+	
+	<update id="batchUpdateCompanyFavorable" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" separator=";" close=""> 
+			update company_favorable
+			<set>
+				NAME = #{item.name},
+				PRICE = #{item.price},
+				CONTENT = #{item.content},
+			</set>
+			where ID =  #{item.id}
+	    </foreach>  
+	</update>
+	  
+	<insert id="batchInsertCompanyFavorable" parameterType="list">
+		insert into company_favorable(
+		<include refid="companyFavorable_first" />
+		)
+		values 
+		<foreach collection="list" item="item" index="index" separator=","> 
+		     (#{item.id}, #{item.company_id},#{item.name},#{item.price},#{item.content}) 
+	    </foreach>  
+	</insert>
+	
+	<delete id="deleteCompanyFavorableById" parameterType="string">
+		delete from company_favorable where ID = #{id}
+	</delete>
+	
+	<insert id="insertCompanyFavorable" parameterType="companyFavorable">
+		insert into company_favorable(
+			<include refid="companyFavorable_first" />
+		)
+		values(#{id},#{company_id},#{name},#{price},#{content})
+	</insert>
+	
+	<update id="updateCompanyFavorable" parameterType="companyFavorable">
+		update company_favorable
+		<set>
+			<if test="name != null and name != '' ">
+				NAME = #{name},
+			</if>
+			<if test="company_id != null and company_id != '' ">
+				COMPANY_ID = #{company_id},
+			</if>
+			<if test="price != null and price != '' ">
+				PRICE = #{price},
+			</if>
+			<if test="content != null and content != '' ">
+				CONTENT = #{content},
+			</if>
+		</set>
+		where ID = #{id} 
+	</update>
+	
+</mapper>

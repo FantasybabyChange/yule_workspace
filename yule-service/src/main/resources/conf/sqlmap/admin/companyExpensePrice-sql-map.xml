@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.admin.dao.ICompanyExpensePriceDao">
+	
+	<resultMap type="companyExpensePrice" id="companyExpensePrice-sql-map">
+		<id     property="id"           column="ID" />
+		<result property="company_id"   column="COMPANY_ID"/>
+		<result property="name"         column="NAME" />
+		<result property="price"        column="PRICE" />
+		<result property="is_delete"    column="IS_DELETE" />
+		<result property="create_time"  column="CREATE_TIME" />
+		<result property="update_time"  column="UPDATE_TIME" />
+	</resultMap>
+	
+<!-- 	<resultMap type="companyExpensePriceVO" id="companyExpensePriceVO-sql-map">
+		<id     property="id"           column="ID" />
+		<result property="company_name" column="COMPANY_NAME"/>
+		<result property="company_id"   column="COMPANY_ID"/>
+		<result property="name"         column="NAME" />
+		<result property="price"        column="PRICE" />
+		<result property="is_delete"    column="IS_DELETE" />
+		<result property="create_time"  column="CREATE_TIME" />
+		<result property="update_time"  column="UPDATE_TIME" />
+	</resultMap> -->
+	
+	<sql id="companyExpensePrice_first">
+		ID,COMPANY_ID,NAME,PRICE,IS_DELETE,CREATE_TIME,UPDATE_TIME
+	</sql>
+<!-- 	
+	<sql id="companyExpensePriceVO_first">
+		ID,COMPANY_NAME,COMPANY_ID,NAME,PRICE,IS_DELETE,CREATE_TIME,UPDATE_TIME
+	</sql> -->
+	
+	
+	<insert id="insertCompanyExpensePrice">
+		insert into  company_expense_price(
+		ID,COMPANY_ID,NAME,PRICE,IS_DELETE,CREATE_TIME
+		)
+		values(
+		#{id},#{company_id},#{name},#{price},#{is_delete},now()
+		)
+	</insert>
+	
+	<update id="updateCompanyExpensePrice">
+		update company_expense_price
+		<set>
+			<if test="id != null and id !='' ">
+				ID = #{id},
+			</if>
+			<if test="company_id != null and company_id != ''">
+				COMPANY_ID =#{company_id},
+			</if>
+			<if test="name != null and name != '' ">
+				NAME = #{name},
+			</if>
+			<if test="price != null and price != '' ">
+				PRICE = #{price},
+			</if>
+				create_time = now()
+		</set>
+		where ID = #{id} 
+	</update>
+	
+	<delete id="deleteCompanyExpensePriceById">
+		UPDATE company_expense_price SET IS_DELETE = 1 ,UPDATE_TIME = now() 
+		WHERE ID = #{id}
+	</delete>
+	
+	<select id="findCompanyExpensePriceListByCompanyId" resultMap="companyExpensePrice-sql-map" parameterType="map">
+		SELECT 
+		<include refid="companyExpensePrice_first"/>
+		FROM company_expense_price	 WHERE COMPANY_ID = #{company_id}  and  IS_DELETE = 0
+		ORDER BY PRICE  ASC
+	    <if test="pageStart != null  and pageEnd != null">
+		   LIMIT #{pageStart},#{pageEnd}
+		</if>
+	</select>
+	
+	<select id="findCompanyExpensePriceCountByCompanyId" resultType="int" parameterType="java.lang.String" >
+		select count(*) FROM company_expense_price	 WHERE COMPANY_ID = #{company_id} and  IS_DELETE = 0
+	</select>
+		
+</mapper>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.admin.dao.ICompanyAddressDao">
+	<!-- 
+	<resultMap type="companyAddress" id="companyAddress-sql-map">
+		<id     property="id"               column="ID" />
+		<result property="area_county_id"   column="AREA_COUNTY_ID" />
+		<result property="area_business_id" column="AREA_BUSINESS_ID" />
+		<result property="address_detail"   column="ADDRESS_DETAIL" />
+		<result property="lng"              column="LNG" />
+		<result property="lat"              column="LAT" />
+		<result property="is_delete"              column="IS_DELETE" />
+		<result property="create_time"      column="CREATE_TIME" />
+		<result property="update_time"      column="UPDATE_TIME" />
+	</resultMap>
+	
+	<resultMap type="companyAddressVO" id="companyAddressVO-sql-map">
+		<id     property="id"                 column="ID" />
+		<result property="address_detail"     column="ADDRESS_DETAIL" />
+		<result property="lng"                column="LNG" />
+		<result property="lat"                column="LAT" />
+		<result property="area_business_id"   column="AREA_BUSINESS_ID" />
+		<result property="area_business_name" column="AREA_BUSINESS_NAME" />
+		<result property="area_county_id"     column="AREA_COUNTY_ID" />
+		<result property="area_county_name"   column="AREA_COUNTY_NAME" />
+		<result property="area_city_name"     column="AREA_CITY_NAME" />
+		<result property="area_city_id"       column="AREA_CITY_ID" />
+		<result property="area_province_id"   column="AREA_PROVINCE_ID" />
+		<result property="area_province_name" column="AREA_PROVINCE_NAME" />
+	</resultMap>
+	 -->
+	
+	<select id="findCompanyAddressVOById" parameterType="java.lang.String" resultType="companyAddressVO" >
+		SELECT * FROM v_findCompanyAddressVOById 
+		<where>
+			ID = #{id}
+		</where>
+	</select>
+
+	<insert id="insertCompanyAddress" parameterType="companyAddress">
+		insert into company_address(ID) values(#{id})
+	</insert>
+
+	<update id="updateCompanyAddress" parameterType="companyAddress">
+		update company_address 
+		<set>
+			<if test="area_county_id != null and area_county_id != '' ">
+				AREA_COUNTY_ID = #{area_county_id},
+			</if>
+			<if test="area_business_id != null and area_business_id != '' ">
+				AREA_BUSINESS_ID = #{area_business_id},
+			</if>
+			<if test="address_detail != null and address_detail != '' ">
+				ADDRESS_DETAIL = #{address_detail},
+			</if>
+			<if test="lng != null and lng != '' ">
+				LNG = #{lng},
+			</if>
+			<if test="lng != null and lng != '' ">
+				LNG = #{lng},
+			</if>
+			<if test="lat != null and lat != '' ">
+				LAT = #{lat},
+			</if>
+			<if test="is_delete != null">
+				IS_DELETE = #{is_delete},
+			</if>
+			
+			UPDATE_TIME = now()
+		</set>
+		where ID = #{id}
+	</update>
+
+	<delete id="deleteCompanyAddressById" parameterType="java.lang.String">
+		update company_address set is_delete = 1 where ID = #{id}
+	</delete>
+</mapper>

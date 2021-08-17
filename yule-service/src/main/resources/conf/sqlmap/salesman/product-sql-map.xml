@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.salesman.dao.IProductDao">
+
+	
+	<resultMap type="productVO" id="productVO-sql-map">
+		<id     property="id"         			 column="ID" />
+		<result property="name"        			 column="NAME" />
+		<result property="product_category_id"   column="PRODUCT_CATEGORY_ID"/>
+		<result property="min_expense" 			 column="MIN_EXPENSE" />
+		<result property="person_num"            column="PERSON_NUM" />
+		<result property="status"     			 column="STATUS" />
+		<result property="company_name"     	 column="COMPANY_NAME" />
+	</resultMap>
+   
+	<select id="findSimpleProductVOList" parameterType="string" resultMap="productVO-sql-map">
+	SELECT id ,`name` FROM `product_category` WHERE `company_category_id` =
+	 (SELECT company_category_id FROM company WHERE id =#{companyId})
+	</select>
+
+	
+</mapper>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>订单</title>
+    <style type="text/css">
+    * {
+        margin: 0 auto;
+    }
+    .content {
+        width: 980px;
+        margin: 0 auto;
+    }
+    .head {
+        height: 49px;
+        background-color: #5b1750;
+        padding: 10px;
+    }
+    .left {
+        float: left;
+    }
+    .right {
+        float: right;
+    }
+    .main {
+        width: 918px;
+        border: 1px solid #5b1750;
+        padding: 30px;
+    }
+    .main h1 {
+        font-size: 16px;
+        text-align: center;
+        color: #5b1750;
+    }
+     .main p{font-size: 14px; line-height: 30px; color: #5b1750;}
+     .tips{font-size: 12px; color:#fff; margin-top: 30px;}
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <div class="head">
+            <img class="left" src="http://images.yuleing.com/logo/yuleing.png">
+            <p class="right tips"></p>
+        </div>
+        <div class="main">
+		
+<table cellspacing="0" cellpadding="0" width="700" border="0" style="font-family:'Tahoma',sans-serif;font-size:12px;color:#4a4a4a;">	
+	<tbody>
+              <tr>
+          <td bgcolor="#ebf2fc" align="center" style="padding:8px 0;">
+            <table cellspacing="0" cellpadding="0" border="0" style="font-family:'Tahoma',sans-serif;font-size:12px;color:#666666;">
+              <tbody><tr>
+                <td width="32">
+                </td>
+                <td align="left" style="line-height:24px;font-size:14px;">
+                  <strong>#{name}您好，您<span times="" t="5" style="border-bottom: 1px dashed rgb(204, 204, 204);">#{create_time}</span>在预乐网的预订已成功。
+                      </strong>
+                </td>
+              </tr>
+            </tbody></table>
+          </td>
+        </tr>
+		       <tr>
+          <td height="15" style="font-size:0;line-height:0;">
+        </td></tr>
+		       <tr>
+          <td align="left">
+            <table cellspacing="0" cellpadding="0" width="100%" border="0" style="font-family:'Tahoma',sans-serif;font-size:12px;color:#4a4a4a;">
+              <tbody><tr>
+                <td width="340" valign="top">
+                  <table cellspacing="0" cellpadding="0" width="100%" border="0" style="font-family:'Tahoma',sans-serif;font-size:12px;color:#666666;">
+                    <tbody><tr>
+                      <td style="padding:0 10px;border:1px solid #dddddd;" colspan="2">
+                        <table cellspacing="0" cellpadding="0" width="100%" border="0" style="font-family:'Tahoma',sans-serif;font-size:12px;color:#666666;">
+                          <tbody><tr>
+                            <td style="padding:12px 0;border-bottom:1px dotted #d8d8d8;">
+                              <strong>订单号</strong>
+                            </td>
+                            <td width="200" style="padding:12px 0;border-bottom:1px dotted #d8d8d8;">
+                              <strong>#{num}</strong>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="padding:12px 0;border-bottom:1px dotted #d8d8d8;">
+                              <strong>入住人</strong>
+                            </td>
+                            <td width="200" style="padding:12px 0;border-bottom:1px dotted #d8d8d8;word-break:break-all;">#{name}</td>
+                          </tr>
+                          <tr>
+                            <td style="padding:12px 0;border-bottom:1px dotted #d8d8d8;">
+                              <strong>预计到店时间</strong>
+                            </td>
+                            <td width="200" style="padding:12px 0;border-bottom:1px dotted #d8d8d8;"><span times="(11:30" t="5" style="border-bottom:1px dashed #ccc;">#{estimate_arrive_time}</span></td>
+                          </tr>
+                        </tbody></table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td height="10" style="font-size:0;line-height:0;" colspan="2">
+                    </td></tr>
+                    <tr>
+                      <td style="padding:0 10px;border:1px solid #dddddd;" colspan="2">
+                        <table cellspacing="0" cellpadding="0" width="100%" border="0" style="font-family:'Tahoma',sans-serif;font-size:12px;color:#666666;">
+                          <tbody><tr>
+                            <td style="padding:12px 0;border-bottom:1px dotted #d8d8d8;">
+                              <strong>房型</strong>
+                            </td>
+                            <td width="200" style="padding:12px 0;border-bottom:1px dotted #d8d8d8;">
+                              <strong>#{product_name}</strong>
+                            </td>
+                          </tr>
+
+                        </tbody></table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td height="10" style="font-size:0;line-height:0;" colspan="2">
+                    </td></tr>
+
+                    <tr>
+                      <td height="20" style="font-size:0;line-height:0;" colspan="2">
+                    </td></tr>
+
+                  </tbody></table>
+                </td>
+                <td width="20" style="font-size:0;line-height:0;">
+                </td><td valign="top">
+                  <table cellspacing="0" cellpadding="0" width="100%" border="0" style="font-family:'Tahoma',sans-serif;font-size:12px;color:#666666;">
+                    <tbody><tr>
+                      <td colspan="2">
+                        <a 	href="http://detail.yuleing.com/company/findCompanyDetails.do?id=#{company_id}" style="color:#0066cc;font-size:14px;font-weight:bold;text-decoration:none;" target="_blank">#{company_name}<br></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding:5px 0;line-height:20px;" colspan="2">
+                            地址：#{detal_address}<br>
+							</td>
+                    </tr>
+                    <tr>
+                      <td style="padding-bottom:20px;" colspan="2">
+		
+                        <a href="http://detail.yuleing.com/company/findCompanyDetails.do?id=#{company_id}"  target="_blank" style="vertical-align:middle;color:#0062BE;">
+                          <img width="340" height="135" border="0" src="#{company_face}" style="float:left;">
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding-bottom:15px;line-height:22px;" colspan="2">
+                    </tr>
+					        <tr>
+          <td align="right" style="padding:30px 0;">
+            <p>感谢您选择预乐，祝您旅途愉快！</p>
+                    预乐网客户服务部 <br><span times="" t="5" style="border-bottom: 1px dashed rgb(204, 204, 204);">#{create_time}</span></td>
+        </tr>
+                  </tbody></table>
+                </td>
+              </tr>
+            </tbody></table>
+          </td>
+        </tr>
+	 </tbody>
+</table>              
+            </div>
+        </div>
+</body>
+
+</html>

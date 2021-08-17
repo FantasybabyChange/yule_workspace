@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.admin.dao.ICompanyPrivilegeDao">
+	<resultMap type="companyPrivilege" id="companyPrivilege-sql-map">
+		<id     property="id"          column="ID" />
+		<result property="parent_id"        column="PARENT_ID" />
+		<result property="company_category_id"        column="COMPANY_CATEGORY_ID" />
+		<result property="name"        column="NAME" />
+		<result property="is_show"        column="IS_SHOW" />
+		<result property="url"         column="URL" />
+		<result property="order"       column="ORDER" />
+		<result property="create_time" column="CREATE_TIME" />
+		<result property="update_time" column="UPDATE_TIME" />
+	</resultMap>
+	<resultMap type="companyUserPrivilegeVO" id="companyUserPrivilegeVO-sql-map">
+		<id     property="id"          column="ID" />
+		<result property="parent_id"        column="PARENT_ID" />
+		<result property="name"        column="NAME" />
+		<result property="privilege_id" column="PRIVILEGE_ID" />
+		<result property="is_check" column="IS_CHECK" />
+		<result property="user_id" column="USER_ID" />
+		<result property="is_show"        column="IS_SHOW" />
+	</resultMap>
+	
+	<insert id="insertCompanyPrivilege" parameterType="companyPrivilege">
+		insert into company_privilege(
+			ID,PARENT_ID,COMPANY_CATEGORY_ID,IS_SHOW,NAME,URL,`ORDER`,CREATE_TIME
+		)
+		values(#{id},#{parent_id},#{company_category_id},#{is_show},#{name},#{url},#{order},now())
+	</insert>
+	<select id="findCompanyPrivilegeList" parameterType="map" resultMap="companyPrivilege-sql-map">
+		select  a.ID,a.PARENT_ID,a.IS_SHOW,a.COMPANY_CATEGORY_ID,a.NAME,a.URL,a.CREATE_TIME,a.UPDATE_TIME,a.ORDER  from company_privilege a
+		<where>
+			<if test="company_category_id != null and company_category_id != '' ">
+				a.COMPANY_CATEGORY_ID=#{company_category_id}
+			</if>
+			<if test="company_category_id == null or company_category_id == '' ">
+				a.COMPANY_CATEGORY_ID IS NULL
+			</if>
+			and
+			<if test="parent_id != null and parent_id != '' ">
+				a.PARENT_ID = #{parent_id}
+			</if>
+			<if test="parent_id == null or parent_id == '' ">
+				a.PARENT_ID IS NULL
+			</if>
+		</where>
+		ORDER BY `ORDER` DESC 
+	</select>
+	<select id="findCompanyPrivilegeListByUserId" parameterType="string" resultMap="companyPrivilege-sql-map">
+		SELECT ID,PARENT_ID,NAME,URL FROM v_findCompanyPrivilegeListByUserId  
+		<where>
+		company_user_id = #{company_user_id}
+		<if test="is_show != null">
+				and is_show = #{is_show}
+		</if>
+		</where>
+	</select>
+	
+	<select id="findCompanyPrivilegeListByCategoryId" parameterType="string" resultMap="companyPrivilege-sql-map">
+	SELECT  a.ID,a.PARENT_ID,a.COMPANY_CATEGORY_ID,a.NAME,a.URL,a.CREATE_TIME,a.UPDATE_TIME  FROM company_privilege a
+WHERE a.company_category_id IS NULL
+OR a.company_category_id =#{id} 
+	</select>
+		
+	<select id="findCompanyPrivilegesByParentId" parameterType="string" resultMap="companyPrivilege-sql-map">
+		SELECT id FROM company_privilege WHERE id = #{id} OR parent_id=#{id}
+		UNION ALL 
+		SELECT id FROM company_privilege cp WHERE cp.parent_id IN (SELECT id FROM company_privilege p  WHERE p.parent_id=#{id})
+	</select>
+	<select id="findCompanyPrivilegeById" parameterType="java.lang.String" resultType="companyPrivilege" >
+		select  a.ID,a.PARENT_ID,a.COMPANY_CATEGORY_ID,a.NAME,a.URL,a.CREATE_TIME,a.UPDATE_TIME  from company_privilege a 
+		where ID = #{id}
+	</select>
+	
+	
+	<delete id="deleteCompanyPrivivlegeById"  parameterType="list"  >
+		delete from company_privilege where id in 
+	(<foreach collection="list" item="item" index="index" separator=","> 
+		  #{item.id} 
+	 </foreach>);
+		DELETE FROM company_user_privilege  WHERE company_privilege_id in
+	(<foreach collection="list" item="item" index="index" separator=","> 
+		  #{item.id} 
+	 </foreach>); 
+	
+	</delete>
+	
+	<delete id="deleteCompanyPrivivlegeByAll" >
+		delete from company_privilege 
+	</delete>
+	
+	<select id="findCompanyPrivilegeVOList" parameterType="map" resultMap="companyUserPrivilegeVO-sql-map">
+		SELECT id PRIVILEGE_ID,NAME,is_check,parent_id,is_show FROM(
+			SELECT ca.id,ca.parent_id,ca.name,0 is_check,ca.create_time,ca.order,ca.is_show FROM(SELECT cp.id,cp.name,cp.create_time,cp.parent_id,cp.order,cp.is_show FROM company_privilege cp WHERE cp.company_category_id IS NULL OR cp.company_category_id 
+			IN(SELECT c.company_category_id FROM company c WHERE c.id=#{company_id}))ca WHERE ca.id IN(
+			SELECT company_privilege_id FROM company_user_privilege cp WHERE cp.company_user_id=#{user_id})
+		UNION ALL
+		SELECT ca.id,ca.parent_id,ca.name ,1 is_check,ca.create_time ,ca.order,ca.is_show  FROM(SELECT cp.id,cp.name,cp.create_time,cp.parent_id,cp.order,cp.is_show FROM company_privilege cp WHERE cp.company_category_id IS NULL OR cp.company_category_id 
+			IN(SELECT c.company_category_id FROM company c WHERE c.id=#{company_id}))ca WHERE ca.id NOT IN(
+			SELECT company_privilege_id FROM company_user_privilege cp WHERE cp.company_user_id=#{user_id}
+			)) privilege    ORDER BY `ORDER` DESC
+	</select>
+	
+	<insert id="batchInsertCompanyPrivilege" parameterType="list">
+		insert into company_privilege(
+			ID,PARENT_ID,COMPANY_CATEGORY_ID,IS_SHOW,NAME,URL,`ORDER`,CREATE_TIME
+		)
+		values 
+		<foreach collection="list" item="item" index="index" separator=","> 
+		     (#{item.id},#{item.parent_id},#{item.company_category_id},#{item.is_show},#{item.name},#{item.url},#{item.order},now()) 
+	    </foreach>  
+	</insert>
+</mapper>

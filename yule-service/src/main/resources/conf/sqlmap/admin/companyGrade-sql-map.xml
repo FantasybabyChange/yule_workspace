@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.admin.dao.ICompanyGradeDao">
+	<resultMap type="companyGrade" id="companyGrade-sql-map">
+		<id     property="id"          column="ID" />
+		<result property="name"        column="NAME" />
+		<result property="order"        column="ORDER" />
+		<result property="is_delete"   column="IS_DELETE" />
+		<result property="create_time" column="CREATE_TIME" />
+		<result property="update_time" column="UPDATE_TIME" />
+	</resultMap>
+	
+	<resultMap type="companyGradeVO" id="companyGradeVO-sql-map">
+		<id     property="id"          column="ID" />
+		<result property="name"        column="NAME" />
+	</resultMap>
+
+	<select id="findCompanyGradeVOList" resultMap="companyGradeVO-sql-map">
+		select ID,NAME from company_grade where IS_DELETE = 0 ORDER BY `ORDER` ASC 
+	</select>
+
+	<select id="findCompanyGradeList" parameterType="map" resultMap="companyGrade-sql-map">
+		select ID,NAME,`ORDER` from company_grade where IS_DELETE = 0 ORDER BY `ORDER` ASC 
+		<if test="pageStart!=null and pageEnd !=null">
+			LIMIT #{pageStart},#{pageEnd}
+		</if>
+	</select>
+
+	<insert id="batchInsertCompanyGrade" parameterType="list">
+		insert into company_grade(
+		ID,NAME,`ORDER`,IS_DELETE,CREATE_TIME
+		)
+		values
+		<foreach collection="list" item="item" index="index" separator=","> 
+		    (#{item.id}, #{item.name},#{item.order},#{item.is_delete},now())
+	    </foreach>  
+	</insert>
+	
+	<update id="batchUpdateCompanyGrade" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" separator=";" close=""> 
+			update company_grade
+			<set>
+				NAME = #{item.name},
+				`ORDER` = #{item.order},
+				UPDATE_TIME = now()
+			</set>
+			where ID =  #{item.id}
+	    </foreach>  
+	</update>
+	
+	<insert id="insertCompanyGrade" parameterType="companyGrade">
+		insert into company_grade(
+		ID,NAME,`ORDER`,IS_DELETE,CREATE_TIME
+		)
+		values(#{id},#{name},#{order},#{is_delete},now())
+	</insert>
+
+	<update id="updateCompanyGrade" parameterType="companyGrade">
+		update company_grade
+		<set>
+			<if test="name != null and name != '' ">
+				NAME = #{name},
+			</if>
+			<if test="order != null and order != '' ">
+				`ORDER` = #{order},
+			</if>
+			<if test="is_delete != null and is_delete != '' ">
+				IS_DELETE = #{is_delete},
+			</if>
+			UPDATE_TIME = now()
+		</set>
+		where ID = #{id}
+	</update>
+
+	<delete id="deleteCompanyGradeById" parameterType="java.lang.String">
+		update company_grade set is_delete = 1 where ID = #{id}
+	</delete>
+	
+	<delete id="deleteCompanyGradeAll">
+		delete from company_grade 
+	</delete>
+
+</mapper>

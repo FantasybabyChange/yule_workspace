@@ -1,0 +1,604 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//zh-CN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/select2.css">
+</head>
+
+<body>
+    <div id="header-full">
+        <div role="navigation" id="menu-bar" class="cont-shadow">
+            <div class="g clearfix">
+                <ul class="right-nav">
+                    <li class="nav-item">
+                        <a data-trigger="ajax" href="ajax/histroy.html" data-target=".ajax-histroy-content" class="nav-item-a nav-histroy">最近浏览</a>
+                        <div class="ajax-content ajax-histroy">
+                            <div class="ajax-arr"></div>
+                            <div class="ajax-histroy-content"></div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a data-trigger="ajax" href="ajax/histroy.html" data-target=".ajax-fav-content" class="nav-item-a nav-fav">
+                            <img src="images/fav-icon.png">我的收藏</a>
+                        <div class="ajax-content ajax-histroy">
+                            <div class="ajax-arr"></div>
+                            <div class="ajax-fav-content"></div>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a href="ajax/login.html" data-trigger="modal" data-title="用户登录" class="nav-item-a nav-login">登录或注册账户</a>
+                    </li>
+                    <li class="nav-item"><a href="#" class="nav-item-a  nav-order-list">管理订单</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="breadcrumb clearfix">
+        <div class="g clearfix">
+            <div class="breadcrumb-item">
+                <p><a href="#">首页</a>
+                    <span>→</span>
+                </p>
+            </div>
+            <div class="breadcrumb-item">
+                <p><a href="#">北京</a> 
+                </p>
+                <p class="breadcrumb-tips">6,744个住宿</p>
+            </div>
+            <div class="recent-order-status">（在过去的5分钟内） 82位来自中国的客人进行了预订</div>
+        </div>
+    </div>
+    <div class="col clearfix">
+        <div class="col-left">
+            <div class="search-wapper">
+                <form action="index_submit" method="get" accept-charset="utf-8">
+                    <h3 class="c-form-title mb15">
+                        <span class="c-form-title__text f24">搜索位于北京的酒店</span>
+                    </h3>
+                    <h4>
+                        <label for="destination">目的地/酒店名称：</label>
+                    </h4>
+                    <div class="input-wrapper">
+                        <input class="input-style" autocomplete="off" type="text" placeholder="例如：城市、地区、区或特定酒店名称" id="destination" name="ss" value="西安">
+                        <div class="input-icon">热门
+                            <span class="input-icon-arrow">▸</span>
+                        </div>
+                        <div class="input-pop-dest" style=" top: 34px; width: 514px;">
+                            <div class="destination-suggestion destination-suggestion-with-history">
+                                <div class="destination-section domestic-destination has-no-tab">
+                                    <div class="tab-header">
+                                        热门目的地 - 国内
+                                        <div class="destination-tab-clear"></div>
+                                    </div>
+                                    <div class="tab-content">
+                                        <div class="tab-panel tab-panel-active">
+                                            <ul class="destination-area">
+                                                <li>
+                                                    <a href="#" title="北京 (519家酒店)">北京</a>
+                                                    <span class="hotel-num">(519)</span>
+                                                </li>
+                                                <li>
+                                                    <a href="#" title="上海 (490家酒店)">上海</a>
+                                                    <span class="hotel-num">(490)</span>
+                                                </li>
+                                                <li>
+                                                    <a href="#" title="成都 (308家酒店)">成都</a>
+                                                    <span class="hotel-num">(308)</span>
+                                                </li>
+                                                <li>
+                                                    <a href="#" title="三亚 (183家酒店)">三亚</a>
+                                                    <span class="hotel-num">(183)</span>
+                                                </li>
+                                                <li>
+                                                    <a href="#" title="西安 (194家酒店)">西安</a>
+                                                    <span class="hotel-num">(194)</span>
+                                                </li>
+                                                <li>
+                                                    <a href="#" title="广州 (484家酒店)">广州</a>
+                                                    <span class="hotel-num">(484)</span>
+                                                </li>
+                                                <li>
+                                                    <a href="#" title="深圳 (309家酒店)">深圳</a>
+                                                    <span class="hotel-num">(309)</span>
+                                                </li>
+                                                <li>
+                                                    <a href="#" title="天津 (79家酒店)">天津</a>
+                                                    <span class="hotel-num">(79)</span>
+                                                </li>
+                                                <li>
+                                                    <a href="#" title="重庆 (115家酒店)">重庆</a>
+                                                    <span class="hotel-num">(115)</span>
+                                                </li>
+                                                <li>
+                                                    <a href="#" title="天竺区 (36家酒店)">天竺区</a>
+                                                    <span class="hotel-num">(36)</span>
+                                                </li>
+                                                <li>
+                                                    <a href="#" title="阳朔 (151家酒店)">阳朔</a>
+                                                    <span class="hotel-num">(151)</span>
+                                                </li>
+                                                <li>
+                                                    <a href="#" title="桂林 (105家酒店)">桂林</a>
+                                                    <span class="hotel-num">(105)</span>
+                                                </li>
+                                                <li>
+                                                    <a href="#" title="杭州 (233家酒店)">杭州</a>
+                                                    <span class="hotel-num">(233)</span>
+                                                </li>
+                                                <li>
+                                                    <a href="#" title="厦门 (146家酒店)">厦门</a>
+                                                    <span class="hotel-num">(146)</span>
+                                                </li>
+                                                <li>
+                                                    <a href="#" title="苏州 (114家酒店)">苏州</a>
+                                                    <span class="hotel-num">(114)</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="from-btn clearfix">
+                            <button class="b-button f23  pull-right br6" type="submit">
+                                <span class="b-button__text">搜索</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="oneusp usp_tick2 top">
+                <i class="b-sprite usp-tick2-small"></i>
+                <h3>现在预订，入住期间付款！
+                    <br>
+                    <span style="font-size:.9em; font-weight: normal;">多数客房可免费取消</span>
+                </h3>
+            </div>
+            <div class="list-map">
+                <img src="pic/map.png">
+            </div>
+            <div class="list-title">北京及其周围地区</div>
+            <div class="list-part-near mb15">
+                <ul data-trigger="tab" class="part-near-title">
+                    <li class="active"><span class="tab_city"></span><a href="#">地区</a>
+                    </li>
+                    <li><span class="tab_airport"></span><a href="#">机场</a>
+                    </li>
+                    <li><span class="tab_city"></span><a href="#">城市</a>
+                    </li>
+                    <li><span class="tab_types"></span><a href="#">其他住宿</a>
+                    </li>
+                    <li><span class="tab_themes"></span><a href="#">其他住宿</a>
+                    </li>
+                </ul>
+                <div class="pane-wrapper part-near-content">
+                    <div class="part-near-content-item active">
+                        <h2>显示附近城市的酒店:</h2>
+                        <ul>
+                            <li><a href="#">47家宾馆</a>
+                            </li>
+                            <li><a href="#">47家宾馆</a>
+                            </li>
+                            <li><a href="#">47家宾馆</a>
+                            </li>
+                            <li><a href="#">47家宾馆</a>
+                            </li>
+                            <li><a href="#">6个度假村</a>
+                            </li>
+
+                            <ul>
+                    </div>
+                    <div class="part-near-content-item">
+                        <h2>显示附近地标的酒店:</h2>
+                        <ul>
+                            <li><a href="#">47家宾馆</a>
+                            </li>
+                            <li><a href="#">47家宾馆</a>
+                            </li>
+                            <li><a href="#">47家宾馆</a>
+                            </li>
+                            <li><a href="#">47家宾馆</a>
+                            </li>
+                            <li><a href="#">6个度假村</a>
+                            </li>
+
+                            <ul>
+                    </div>
+                    <div class="part-near-content-item">
+                        <h2>显示附近城市的酒店:</h2>
+                        <ul>
+                            <li><a href="#">47家宾馆</a>
+                            </li>
+                            <li><a href="#">47家宾馆</a>
+                            </li>
+                            <li><a href="#">47家宾馆</a>
+                            </li>
+                            <li><a href="#">47家宾馆</a>
+                            </li>
+                            <li><a href="#">6个度假村</a>
+                            </li>
+
+                            <ul>
+                    </div>
+                    <div class="part-near-content-item">
+                        <h2>显示附近城市的酒店:</h2>
+                        <ul>
+                            <li><a href="#">47家宾馆</a>
+                            </li>
+                            <li><a href="#">47家宾馆</a>
+                            </li>
+                            <li><a href="#">47家宾馆</a>
+                            </li>
+                            <li><a href="#">47家宾馆</a>
+                            </li>
+                            <li><a href="#">6个度假村</a>
+                            </li>
+
+                            <ul>
+                    </div>
+                     <div class="part-near-content-item">
+                        <h2>显示附近城市的酒店:</h2>
+                        <ul>
+                            <li><a href="#">47家宾馆</a>
+                            </li>
+                            <li><a href="#">47家宾馆</a>
+                            </li>
+                            <li><a href="#">47家宾馆</a>
+                            </li>
+                            <li><a href="#">47家宾馆</a>
+                            </li>
+                            <li><a href="#">6个度假村</a>
+                            </li>
+
+                            <ul>
+                    </div>
+
+                </div>
+            </div>
+            <div class="city-hot">
+                <h2 class="f20">北京热门酒店</h2>
+                <p>了解其他客人选择的住宿</p>
+                <ul class="city-hot-list">
+                    <li>
+                        <strong class="pull-right">令人愉悦 6.9 <span style="cursor: help;display:inline-block;" class="use_sprites icon_minibubble"></span></strong>
+                        <span class="b-sprite-wapper"><i class="b-sprite ratings_stars_1_sm" title="4星级"></span></i><a href="#">乙支库普住宿酒店</a>
+                    </li>
+                    <li>
+                        <strong class="pull-right">令人愉悦 6.9 <span style="cursor: help;display:inline-block;" class="use_sprites icon_minibubble"></span></strong>
+                        <span class="b-sprite-wapper"><i class="b-sprite ratings_stars_2_sm" title="4星级"></span></i><a href="#">乙支库普住宿酒店</a>
+                    </li>
+                    <li>
+                        <strong class="pull-right">令人愉悦 6.9 <span style="cursor: help;display:inline-block;" class="use_sprites icon_minibubble"></span></strong>
+                        <span class="b-sprite-wapper"><i class="b-sprite ratings_stars_3_sm" title="4星级"></span></i><a href="#">乙支库普住宿酒店</a>
+                    </li>
+                    <li>
+                        <strong class="pull-right">令人愉悦 6.9 <span style="cursor: help;display:inline-block;" class="use_sprites icon_minibubble"></span></strong>
+                        <span class="b-sprite-wapper"><i class="b-sprite ratings_stars_4_sm" title="4星级"></span></i><a href="#">乙支库普住宿酒店</a>
+                    </li>
+                    <li>
+                        <strong class="pull-right">令人愉悦 6.9 <span style="cursor: help;display:inline-block;" class="use_sprites icon_minibubble"></span></strong>
+                        <span class="b-sprite-wapper"><i class="b-sprite ratings_stars_5_sm" title="4星级"></span></i><a href="#">乙支库普住宿酒店</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-right">
+            <div class="list-choice">
+                <div class="list-choice-title">让我们帮助您找到最佳目的地</div>
+                <div class="list-choice-list">
+                    <div class="mt10">
+                        <select class="list-choice-select" data-trigger="select" multiple placeholder="点击此处选择主题">
+                            <option selected>文化</option>
+                            <option>经济</option>
+                            <option>科学</option>
+                            <option>文化1</option>
+                            <option>经济2</option>
+                            <option>科学3</option>
+                            <option>文化4</option>
+                            <option>经济5</option>
+                            <option>科学6</option>
+                        </select>
+                        <button class="b-button f24 pull-right" type="submit">
+                            <span class="b-button__text">搜索</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="list-title">北京的目的地</div>
+            <div class="list-place-recommendation clearfix">
+                <div class="list-place-recommendation-item">
+                    <a href="#" class="list-place-pic">
+                        <img src="http://r-cc.bstatic.com/images/city/400x136/939/93910.jpg">
+                        <p>天竺区</p>
+                    </a>
+                    <p class="ds_acctypes">
+                        <a href="/searchresults.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4;dest_id=-1898541;dest_type=city;ht_id=204;dathm=0">376家酒店</a>,
+                        <a href="/searchresults.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4;dest_id=-1898541;dest_type=city;ht_id=203;dathm=0">41家旅馆</a>,
+                        <a href="/searchresults.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4;dest_id=-1898541;dest_type=city;ht_id=218;dathm=0">41家宾馆</a>,
+                        <a href="/searchresults.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4;dest_id=-1898541;dest_type=city;ht_id=219">34家公寓式酒店</a>,
+                        <a href="/searchresults.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4;dest_id=-1898541;dest_type=city;ht_id=201">22间公寓</a>
+                    </p>
+                    <a class="ds_similar" href="/destinationfinder/cities/beijing_cn.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4">查看与北京相似的城市</a>
+                </div>
+                <div class="list-place-recommendation-item">
+                    <a href="#" class="list-place-pic">
+                        <img src="http://r-cc.bstatic.com/images/city/400x136/939/93910.jpg">
+                        <p>天竺区</p>
+                    </a>
+                    <p class="ds_acctypes">
+                        <a href="/searchresults.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4;dest_id=-1898541;dest_type=city;ht_id=204;dathm=0">376家酒店</a>,
+                        <a href="/searchresults.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4;dest_id=-1898541;dest_type=city;ht_id=203;dathm=0">41家旅馆</a>,
+                        <a href="/searchresults.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4;dest_id=-1898541;dest_type=city;ht_id=218;dathm=0">41家宾馆</a>,
+                        <a href="/searchresults.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4;dest_id=-1898541;dest_type=city;ht_id=219">34家公寓式酒店</a>,
+                        <a href="/searchresults.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4;dest_id=-1898541;dest_type=city;ht_id=201">22间公寓</a>
+                    </p>
+                    <a class="ds_similar" href="/destinationfinder/cities/beijing_cn.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4">查看与北京相似的城市</a>
+                </div>
+                <div class="list-place-recommendation-item">
+                    <a href="#" class="list-place-pic">
+                        <img src="http://r-cc.bstatic.com/images/city/400x136/939/93910.jpg">
+                        <p>天竺区</p>
+                    </a>
+                    <p class="ds_acctypes">
+                        <a href="/searchresults.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4;dest_id=-1898541;dest_type=city;ht_id=204;dathm=0">376家酒店</a>,
+                        <a href="/searchresults.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4;dest_id=-1898541;dest_type=city;ht_id=203;dathm=0">41家旅馆</a>,
+                        <a href="/searchresults.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4;dest_id=-1898541;dest_type=city;ht_id=218;dathm=0">41家宾馆</a>,
+                        <a href="/searchresults.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4;dest_id=-1898541;dest_type=city;ht_id=219">34家公寓式酒店</a>,
+                        <a href="/searchresults.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4;dest_id=-1898541;dest_type=city;ht_id=201">22间公寓</a>
+                    </p>
+                    <a class="ds_similar" href="/destinationfinder/cities/beijing_cn.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4">查看与北京相似的城市</a>
+                </div>
+                <div class="list-place-recommendation-item">
+                    <a href="#" class="list-place-pic">
+                        <img src="http://r-cc.bstatic.com/images/city/400x136/939/93910.jpg">
+                        <p>天竺区</p>
+                    </a>
+                    <p class="ds_acctypes">
+                        <a href="/searchresults.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4;dest_id=-1898541;dest_type=city;ht_id=204;dathm=0">376家酒店</a>,
+                        <a href="/searchresults.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4;dest_id=-1898541;dest_type=city;ht_id=203;dathm=0">41家旅馆</a>,
+                        <a href="/searchresults.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4;dest_id=-1898541;dest_type=city;ht_id=218;dathm=0">41家宾馆</a>,
+                        <a href="/searchresults.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4;dest_id=-1898541;dest_type=city;ht_id=219">34家公寓式酒店</a>,
+                        <a href="/searchresults.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4;dest_id=-1898541;dest_type=city;ht_id=201">22间公寓</a>
+                    </p>
+                    <a class="ds_similar" href="/destinationfinder/cities/beijing_cn.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4">查看与北京相似的城市</a>
+                </div>
+            </div>
+            <a class="ds_morelink" href="/destinationfinder/regions/beijing_cn.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4">
+                <span class="ds_moremore" title="点击此处以便浏览更多目的地">更多目的地</span>
+            </a>
+            <div class="list-title">位于北京地区的特色酒店</div>
+            <ul class="postcard-nav consolidated-tabs">
+                <li class="selected ">
+                    酒店
+                </li>
+                <li>
+                    <a href="/inns/region/cn/beijing.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4">宾馆</a>
+                </li>
+                <li>
+                    <a href="/hostels/region/cn/beijing.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4">旅舍</a>
+                </li>
+                <li>
+                    <a href="/aparthotels/region/cn/beijing.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4">公寓式酒店</a>
+                </li>
+                <li class="see_all_link">
+                    <a href="/searchresults.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4;region=1221;src=region" title="搜索位于北京的酒店, 中国">查看所有住宿 »</a>
+                </li>
+            </ul>
+            <div class="recommendation-part">
+
+                <ul class="recommendation-list">
+                    <li class="recommendation-item clearfix">
+                        <a href="/city/cn/shanghai.zh-cn.html?sid=b02dab10595e6485e28e61112667ffe0;dcid=1;city=-1924465;ilp=1">
+                            <img src="http://r-cc.bstatic.com/images/city/square100/120/120034.jpg" data-trigger="preview" data-href="http://r-cc.bstatic.com/images/hotel/max300/112/11294808.jpg" data-title="上海 中国 酒店" alt="上海 中国 酒店" title="位于上海的酒店, 中国" width="80" height="80">
+                        </a>
+                        <div class="recommendation-item-info">
+                            <div><a href="#" class="history-list-title">五脚基旅馆中国城2号店</a> <i class="b-sprite stars ratings_stars_3" title="3星级酒店"></i>
+                            </div>
+
+                            <p>分数来自1110个评分: <strong>非常好 8.3</strong> <span style="cursor: help;display:inline-block;" class="use_sprites icon_minibubble"></span></p>
+                            <span class="feataddress">民生东路一段28号, 中山区, 台北</span>
+                            <span class="lastbooking">最新的预订：27分钟之前</span>
+                            <span class="featdesc">
+                                北京上地智选假日酒店距离上地地铁站（13号线）有10分钟步行路程，拥有带免费无线网络连接的现代化客房。酒店提供免费停车场、商务中心和自动取款机。 北京上地智选假日酒店距离圆明园有10分钟车程，距离颐和园有15分钟车程，距离市中心的天安门广场有40分钟车程。机场巴士站就位于酒店旁边。 所有空调客房均配有有线电视、电水壶和办公桌。连接浴室提供免费洗浴用品、吹风机和淋浴设施。...
+                                <a href="/hotel/cn/beijing-holiday-inn-express-shangdi.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4" title="更多资料 - 北京上地智选假日酒店">更多信息…</a>
+                            </span>
+                        </div>
+                        <div class="recommendation-item-right">
+                            <p>最低消费</p>
+                            <p class="price">￥9000</p>
+                            <a href="#" class="b-button index-order-btn">立即预定</a>
+                        </div>
+                    </li>
+                    <li class="recommendation-item clearfix">
+                        <a href="/city/cn/shanghai.zh-cn.html?sid=b02dab10595e6485e28e61112667ffe0;dcid=1;city=-1924465;ilp=1">
+                            <img src="http://r-cc.bstatic.com/images/city/square100/120/120034.jpg" data-trigger="preview" data-href="http://r-cc.bstatic.com/images/hotel/max300/112/11294808.jpg" data-title="上海 中国 酒店" alt="上海 中国 酒店" title="位于上海的酒店, 中国" width="80" height="80">
+                        </a>
+                        <div class="recommendation-item-info">
+                            <div><a href="#" class="history-list-title">五脚基旅馆中国城2号店</a> <i class="b-sprite stars ratings_stars_3" title="3星级酒店"></i>
+                            </div>
+
+                            <p>分数来自1110个评分: <strong>非常好 8.3</strong> <span style="cursor: help;display:inline-block;" class="use_sprites icon_minibubble"></span></p>
+                            <span class="feataddress">民生东路一段28号, 中山区, 台北</span>
+                            <span class="lastbooking">最新的预订：27分钟之前</span>
+                            <span class="featdesc">
+                                北京上地智选假日酒店距离上地地铁站（13号线）有10分钟步行路程，拥有带免费无线网络连接的现代化客房。酒店提供免费停车场、商务中心和自动取款机。 北京上地智选假日酒店距离圆明园有10分钟车程，距离颐和园有15分钟车程，距离市中心的天安门广场有40分钟车程。机场巴士站就位于酒店旁边。 所有空调客房均配有有线电视、电水壶和办公桌。连接浴室提供免费洗浴用品、吹风机和淋浴设施。...
+                                <a href="/hotel/cn/beijing-holiday-inn-express-shangdi.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4" title="更多资料 - 北京上地智选假日酒店">更多信息…</a>
+                            </span>
+                        </div>
+                        <div class="recommendation-item-right">
+                            <p>最低消费</p>
+                            <p class="price">￥9000</p>
+                            <a href="#" class="b-button index-order-btn">立即预定</a>
+                        </div>
+                    </li>
+                    <li class="recommendation-item clearfix">
+                        <a href="/city/cn/shanghai.zh-cn.html?sid=b02dab10595e6485e28e61112667ffe0;dcid=1;city=-1924465;ilp=1">
+                            <img src="http://r-cc.bstatic.com/images/city/square100/120/120034.jpg" data-trigger="preview" data-href="http://r-cc.bstatic.com/images/hotel/max300/112/11294808.jpg" data-title="上海 中国 酒店" alt="上海 中国 酒店" title="位于上海的酒店, 中国" width="80" height="80">
+                        </a>
+                        <div class="recommendation-item-info">
+                            <div><a href="#" class="history-list-title">五脚基旅馆中国城2号店</a> <i class="b-sprite stars ratings_stars_3" title="3星级酒店"></i>
+                            </div>
+
+                            <p>分数来自1110个评分: <strong>非常好 8.3</strong> <span style="cursor: help;display:inline-block;" class="use_sprites icon_minibubble"></span></p>
+                            <span class="feataddress">民生东路一段28号, 中山区, 台北</span>
+                            <span class="lastbooking">最新的预订：27分钟之前</span>
+                            <span class="featdesc">
+                                北京上地智选假日酒店距离上地地铁站（13号线）有10分钟步行路程，拥有带免费无线网络连接的现代化客房。酒店提供免费停车场、商务中心和自动取款机。 北京上地智选假日酒店距离圆明园有10分钟车程，距离颐和园有15分钟车程，距离市中心的天安门广场有40分钟车程。机场巴士站就位于酒店旁边。 所有空调客房均配有有线电视、电水壶和办公桌。连接浴室提供免费洗浴用品、吹风机和淋浴设施。...
+                                <a href="/hotel/cn/beijing-holiday-inn-express-shangdi.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4" title="更多资料 - 北京上地智选假日酒店">更多信息…</a>
+                            </span>
+                        </div>
+                        <div class="recommendation-item-right">
+                            <p>最低消费</p>
+                            <p class="price">￥9000</p>
+                            <a href="#" class="b-button index-order-btn">立即预定</a>
+                        </div>
+                    </li>
+                    <li class="recommendation-item clearfix">
+                        <a href="/city/cn/shanghai.zh-cn.html?sid=b02dab10595e6485e28e61112667ffe0;dcid=1;city=-1924465;ilp=1">
+                            <img src="http://r-cc.bstatic.com/images/city/square100/120/120034.jpg" data-trigger="preview" data-href="http://r-cc.bstatic.com/images/hotel/max300/112/11294808.jpg" data-title="上海 中国 酒店" alt="上海 中国 酒店" title="位于上海的酒店, 中国" width="80" height="80">
+                        </a>
+                        <div class="recommendation-item-info">
+                            <div><a href="#" class="history-list-title">五脚基旅馆中国城2号店</a> <i class="b-sprite stars ratings_stars_3" title="3星级酒店"></i>
+                            </div>
+
+                            <p>分数来自1110个评分: <strong>非常好 8.3</strong> <span style="cursor: help;display:inline-block;" class="use_sprites icon_minibubble"></span></p>
+                            <span class="feataddress">民生东路一段28号, 中山区, 台北</span>
+                            <span class="lastbooking">最新的预订：27分钟之前</span>
+                            <span class="featdesc">
+                                北京上地智选假日酒店距离上地地铁站（13号线）有10分钟步行路程，拥有带免费无线网络连接的现代化客房。酒店提供免费停车场、商务中心和自动取款机。 北京上地智选假日酒店距离圆明园有10分钟车程，距离颐和园有15分钟车程，距离市中心的天安门广场有40分钟车程。机场巴士站就位于酒店旁边。 所有空调客房均配有有线电视、电水壶和办公桌。连接浴室提供免费洗浴用品、吹风机和淋浴设施。...
+                                <a href="/hotel/cn/beijing-holiday-inn-express-shangdi.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4" title="更多资料 - 北京上地智选假日酒店">更多信息…</a>
+                            </span>
+                        </div>
+                        <div class="recommendation-item-right">
+                            <p>最低消费</p>
+                            <p class="price">￥9000</p>
+                            <a href="#" class="b-button index-order-btn">立即预定</a>
+                        </div>
+                    </li>
+                    <li class="recommendation-item clearfix">
+                        <a href="/city/cn/shanghai.zh-cn.html?sid=b02dab10595e6485e28e61112667ffe0;dcid=1;city=-1924465;ilp=1">
+                            <img src="http://r-cc.bstatic.com/images/city/square100/120/120034.jpg" data-trigger="preview" data-href="http://r-cc.bstatic.com/images/hotel/max300/112/11294808.jpg" data-title="上海 中国 酒店" alt="上海 中国 酒店" title="位于上海的酒店, 中国" width="80" height="80">
+                        </a>
+                        <div class="recommendation-item-info">
+                            <div><a href="#" class="history-list-title">五脚基旅馆中国城2号店</a> <i class="b-sprite stars ratings_stars_3" title="3星级酒店"></i>
+                            </div>
+
+                            <p>分数来自1110个评分: <strong>非常好 8.3</strong> <span style="cursor: help;display:inline-block;" class="use_sprites icon_minibubble"></span></p>
+                            <span class="feataddress">民生东路一段28号, 中山区, 台北</span>
+                            <span class="lastbooking">最新的预订：27分钟之前</span>
+                            <span class="featdesc">
+                                北京上地智选假日酒店距离上地地铁站（13号线）有10分钟步行路程，拥有带免费无线网络连接的现代化客房。酒店提供免费停车场、商务中心和自动取款机。 北京上地智选假日酒店距离圆明园有10分钟车程，距离颐和园有15分钟车程，距离市中心的天安门广场有40分钟车程。机场巴士站就位于酒店旁边。 所有空调客房均配有有线电视、电水壶和办公桌。连接浴室提供免费洗浴用品、吹风机和淋浴设施。...
+                                <a href="/hotel/cn/beijing-holiday-inn-express-shangdi.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4" title="更多资料 - 北京上地智选假日酒店">更多信息…</a>
+                            </span>
+                        </div>
+                        <div class="recommendation-item-right">
+                            <p>最低消费</p>
+                            <p class="price">￥9000</p>
+                            <a href="#" class="b-button index-order-btn">立即预定</a>
+                        </div>
+                    </li>
+                    <li class="recommendation-item clearfix">
+                        <a href="/city/cn/shanghai.zh-cn.html?sid=b02dab10595e6485e28e61112667ffe0;dcid=1;city=-1924465;ilp=1">
+                            <img src="http://r-cc.bstatic.com/images/city/square100/120/120034.jpg" data-trigger="preview" data-href="http://r-cc.bstatic.com/images/hotel/max300/112/11294808.jpg" data-title="上海 中国 酒店" alt="上海 中国 酒店" title="位于上海的酒店, 中国" width="80" height="80">
+                        </a>
+                        <div class="recommendation-item-info">
+                            <div><a href="#" class="history-list-title">五脚基旅馆中国城2号店</a> <i class="b-sprite stars ratings_stars_3" title="3星级酒店"></i>
+                            </div>
+
+                            <p>分数来自1110个评分: <strong>非常好 8.3</strong> <span style="cursor: help;display:inline-block;" class="use_sprites icon_minibubble"></span></p>
+                            <span class="feataddress">民生东路一段28号, 中山区, 台北</span>
+                            <span class="lastbooking">最新的预订：27分钟之前</span>
+                            <span class="featdesc">
+                                北京上地智选假日酒店距离上地地铁站（13号线）有10分钟步行路程，拥有带免费无线网络连接的现代化客房。酒店提供免费停车场、商务中心和自动取款机。 北京上地智选假日酒店距离圆明园有10分钟车程，距离颐和园有15分钟车程，距离市中心的天安门广场有40分钟车程。机场巴士站就位于酒店旁边。 所有空调客房均配有有线电视、电水壶和办公桌。连接浴室提供免费洗浴用品、吹风机和淋浴设施。...
+                                <a href="/hotel/cn/beijing-holiday-inn-express-shangdi.zh-cn.html?sid=f8478423b08ff1c266c37fc2357a2545;dcid=4" title="更多资料 - 北京上地智选假日酒店">更多信息…</a>
+                            </span>
+                        </div>
+                        <div class="recommendation-item-right">
+                            <p>最低消费</p>
+                            <p class="price">￥9000</p>
+                            <a href="#" class="b-button index-order-btn">立即预定</a>
+                        </div>
+                    </li>
+                </ul>
+                <p class="text-right view-more-wapper"><a href="/searchresults.zh-cn.html?sid=d2404c6c064c94cd44ffb89361f14b6b;dcid=4;city=-2631690" class="view-more" title="花莲 酒店">位于北京的所有634家酒店 »</a>
+                </p>
+            </div>
+            <div class="history">
+                <span class="history-del"></span>
+                <h3>我浏览过的酒店</h3>
+                <ul class="history-list-2">
+                        <li class="history-list-item clearfix">
+                        <span class="history-list-del"></span>
+                        <a href="/city/cn/shanghai.zh-cn.html?sid=b02dab10595e6485e28e61112667ffe0;dcid=1;city=-1924465;ilp=1">
+                            <img src="http://r-cc.bstatic.com/images/city/square100/120/120034.jpg" data-trigger="preview" data-href="http://r-cc.bstatic.com/images/hotel/max300/112/11294808.jpg" data-title="上海 中国 酒店" alt="上海 中国 酒店" title="位于上海的酒店, 中国" width="80" height="80">
+                        </a>
+                        <p><a href="#" class="history-list-title">五脚基旅馆中国城2号店</a><i class="b-sprite stars ratings_stars_3" title="3星级酒店"></i>
+                        </p>
+                        <span class="feataddress">民生东路一段28号, 中山区, 台北</span>
+                        <p>分数来自1110个评分: <strong>非常好 8.3</strong> <span style="cursor: help;display:inline-block;" class="use_sprites icon_minibubble"></span></p>
+                        <span class="lastbooking">最新的预订：27分钟之前</span>
+                        <p>1位客人正在浏览这家酒店。</p>
+                    </li>
+                        <li class="history-list-item clearfix">
+                        <span class="history-list-del"></span>
+                        <a href="/city/cn/shanghai.zh-cn.html?sid=b02dab10595e6485e28e61112667ffe0;dcid=1;city=-1924465;ilp=1">
+                            <img src="http://r-cc.bstatic.com/images/city/square100/120/120034.jpg" data-trigger="preview" data-href="http://r-cc.bstatic.com/images/hotel/max300/112/11294808.jpg" data-title="上海 中国 酒店" alt="上海 中国 酒店" title="位于上海的酒店, 中国" width="80" height="80">
+                        </a>
+                        <p><a href="#" class="history-list-title">五脚基旅馆中国城2号店</a><i class="b-sprite stars ratings_stars_3" title="3星级酒店"></i>
+                        </p>
+                        <span class="feataddress">民生东路一段28号, 中山区, 台北</span>
+                        <p>分数来自1110个评分: <strong>非常好 8.3</strong> <span style="cursor: help;display:inline-block;" class="use_sprites icon_minibubble"></span></p>
+                        <span class="lastbooking">最新的预订：27分钟之前</span>
+                        <p>1位客人正在浏览这家酒店。</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <div class="footer">
+        <div class="g">
+            <ul class="footer-nav">
+                <li><a href="#">管理预订</a>
+                </li>
+                <li><a href="#">客户服务</a>
+                </li>
+                <li><a href="#">成为合作伙伴</a>
+                </li>
+                <li><a href="#">成为会员伙伴</a>
+                </li>
+
+            </ul>
+            <div class="apps">
+                <span class="text">下载我们的应用：</span>
+                <span class="logo">
+                    <a href="http://itunes.apple.com/app/id284971959" target="_blank" class="ios"></a>
+                    <a href="https://market.android.com/details?id=com.hcom.android" target="_blank" class="android"></a>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="footer-other">
+        <div class="g admin-login">
+            <a href="#">后台登录</a>
+        </div>
+        <div class="g copyright">
+            <p>版权 © 1996–2014Booking.com™. 版权所有.</p>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/slides.js"></script>
+    <script type="text/javascript" src="js/ajax.js"></script>
+    <script type="text/javascript" src="js/modal.js"></script>
+    <script type="text/javascript" src="js/panes.js"></script>
+    <script type="text/javascript" src="js/tab.js"></script>
+    <script type="text/javascript" src="js/imagePreview.js"></script>
+    <script type="text/javascript" src="js/select2.js"></script>
+    <script type="text/javascript" src="js/l.js"></script>
+</body>
+
+</html>

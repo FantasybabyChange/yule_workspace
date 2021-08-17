@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.weixin.dao.ICompanyDao">
+
+	<resultMap type="company" id="company-sql-map">
+		<id     property="id"          				column="ID" />
+		<result property="openId"       			column="OPENID" />
+	</resultMap>
+	
+	<update id="updateCompany" parameterType="company">
+		update company 
+		<set>
+			<if test="openId != null and openId !='' ">
+				OPENID = #{openId},
+			</if>
+			UPDATE_TIME = now()
+		</set>
+		where ID = #{id}
+	</update>
+	
+</mapper>

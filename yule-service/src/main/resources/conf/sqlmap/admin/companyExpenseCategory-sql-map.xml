@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.admin.dao.ICompanyExpenseCategoryDao">
+	
+	<resultMap type="companyExpenseCategory" id="companyExpenseCategory-sql-map">
+		<id     property="id"           column="ID" />
+		<result property="parent_id" 	column="parent_id" />
+		<result property="name"         column="NAME" />
+	</resultMap>
+	
+	<insert id="insertCompanyExpenseCategory" parameterType="companyExpenseCategory">
+		insert into company_expense_category(id,parent_id,name)
+			values (
+			#{id},#{parent_id},#{name}
+			)
+	</insert>
+	
+	<update id="updateCompanyExpenseCategory" parameterType="companyExpenseCategory">
+		UPDATE  company_expense_category
+			SET name =#{name}
+		WHERE id = #{id}	
+	</update>
+	
+	<select id="findCompanyExpenseCategory"  parameterType="map" resultMap="companyExpenseCategory-sql-map">
+		select id , name from company_expense_category	 	
+		WHERE parent_id is null
+		<if test="pageStart != null  and pageEnd != null">
+		   LIMIT #{pageStart},#{pageEnd}
+		</if>	
+	</select>
+	
+	<select id="findCompanyExpenseCategoryCount"  resultType="int">
+		select count(*) from company_expense_category	 	
+		WHERE parent_id is null
+	</select>
+
+	<select id="findCompanyExpenseCategoryByParentId"  parameterType="map" resultMap="companyExpenseCategory-sql-map">
+		select id , name from company_expense_category	 	
+		WHERE parent_id = #{id}
+		<if test="pageStart != null  and pageEnd != null">
+		   LIMIT #{pageStart},#{pageEnd}
+		</if>		
+	</select>
+	
+	<select id="findCompanyExpenseCategoryCountByParentId"  parameterType="java.lang.String" resultType="int">
+		select count(*) from company_expense_category	 	
+		WHERE parent_id = #{id}
+	</select>	
+	
+	<delete id="deleteALL">
+		delete from company_expense_category
+	</delete>
+
+	<insert id="batchInsertCompanyExpenseCategory" parameterType="list">
+		insert into company_expense_category(
+		id,parent_id,name
+		)
+		values
+		<foreach collection="list" item="item" index="index" separator=","> 
+		     (#{item.id},#{item.parent_id},#{item.name}) 
+	    </foreach>   
+	</insert>
+	
+</mapper>

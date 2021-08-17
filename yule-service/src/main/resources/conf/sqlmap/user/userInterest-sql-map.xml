@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.user.dao.IUserInterestDao">
+
+	<select id="findUserInterestVOById" parameterType="java.lang.String" resultType="userInterestVO" >
+		select a.company_category_id,a.company_grade_id,b.name company_grade_name,c.name company_category_name from user_interest a left join company_grade b on a.company_grade_id = b.id left join company_category c on a.company_category_id = c.id
+		where a.id = #{id}
+	</select>
+	
+	<update id="updateUserInterest" parameterType="userInterest">
+		update user_interest 
+		<set>
+			<if test="company_category_id != null and company_category_id != '' ">
+				COMPANY_CATEGORY_ID = #{company_category_id},
+			</if>
+			<if test="company_grade_id != null and company_grade_id != '' ">
+				COMPANY_GRADE_ID = #{company_grade_id},
+			</if>
+			UPDATE_TIME = now()
+		</set>
+		where ID = #{id}
+	</update>
+</mapper>

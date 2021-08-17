@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.detail.dao.IProductDao">
+	<resultMap type="productVO" id="productVO-sql-map">
+		<id     property="id"          			column="ID" />
+		<result property="name"        			column="NAME" />
+		<result property="product_category_id"  column="PRODUCT_CATEGORY_ID"/>
+		<result property="min_expense" 			column="MIN_EXPENSE" />
+		<result property="person_num"  			column="PERSON_NUM" />
+		<result property="status"     			column="STATUS" />
+	</resultMap>
+
+	<select id="findProductVOList" parameterType="string" resultMap="productVO-sql-map">
+		SELECT p.ID,p.product_category_id,pc.NAME,p.MIN_EXPENSE,p.PERSON_NUM,p.STATUS,pc.`ORDER` FROM  product_category pc LEFT JOIN  product p ON p.product_category_id = pc.ID 
+		WHERE company_id = #{id} AND p.is_delete = 0  ORDER BY `ORDER` DESC
+	</select>
+
+</mapper>

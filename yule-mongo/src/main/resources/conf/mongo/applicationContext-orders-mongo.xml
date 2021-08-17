@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xsi:schemaLocation="http://www.springframework.org/schema/context 
+          http://www.springframework.org/schema/context/spring-context-3.0.xsd 
+          http://www.springframework.org/schema/data/mongo 
+          http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd 
+          http://www.springframework.org/schema/beans 
+          http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<mongo:mongo id="mongo" host="mongo.yuleing.com" port="27017"  >
+		<mongo:options connections-per-host="8" 
+                   threads-allowed-to-block-for-connection-multiplier="4"
+                   connect-timeout="0"  
+                   max-wait-time="15000"  
+                   auto-connect-retry="true"
+                   socket-keep-alive="true" 
+                   socket-timeout="120000"  
+                   slave-ok="true"
+                   write-number="1"
+                   write-timeout="0"
+                   write-fsync="true"/>
+	</mongo:mongo>
+	
+	<!-- mongo的工厂，通过它来取得mongo实例,dbname为mongodb的数据库名，没有的话会自动创建 -->
+	<mongo:db-factory dbname="yule" mongo-ref="mongo" username="yuleing" password="yuleing" />
+	
+</beans>

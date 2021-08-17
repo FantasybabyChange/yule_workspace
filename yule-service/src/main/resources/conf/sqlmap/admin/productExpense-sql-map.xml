@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.admin.dao.IProductExpenseDao">
+
+	<resultMap type="productExpense" id="productExpense-sql-map">
+		<id     property="id"          column="ID" />
+		<result property="name"        column="NAME" />
+		<result property="product_id"  column="PRODUCT_ID" />
+		<result property="min_expense" column="MIN_EXPENSE" />
+		<result property="is_delete"   column="IS_DELETE" />
+		<result property="create_time" column="CREATE_TIME" />
+		<result property="update_time" column="UPDATE_TIME" />
+	</resultMap>
+	
+	<select id="findProductExpenseList" resultMap="productExpense-sql-map">
+		select ID,NAME,PRODUCT_ID,MIN_EXPENSE from product_expense where IS_DELETE=0 ORDER BY CREATE_TIME DESC 
+	</select>
+	
+	<select id="findProductExpenseCount" resultType="int">
+		select count(*) from product_expense  where IS_DELETE=0
+	</select>
+
+    <select id="findProductExpenseById" parameterType="java.lang.String" resultType="productExpense" >
+		select ID,NAME,PRODUCT_ID,MIN_EXPENSE from product_expense
+		where id = #{id} and IS_DELETE = 0
+	</select>
+
+
+	<select id="findProductExpenseListByProductid" parameterType="java.lang.String" resultMap="productExpense-sql-map">
+		select ID,NAME,PRODUCT_ID,MIN_EXPENSE from product_expense
+		where PRODUCT_ID = #{product_id} and IS_DELETE=0 ORDER BY CREATE_TIME DESC
+	</select>
+	
+	<insert id="insertProductExpense" parameterType="productExpense">
+		insert into product_expense(
+		ID,NAME,PRODUCT_ID,MIN_EXPENSE,IS_DELETE,CREATE_TIME
+		)
+		values(#{id},#{name},#{product_id},#{min_expense},#{is_delete},now()) 
+	</insert>
+	
+	
+	<insert id="batchInsertProductExpense" parameterType="list">
+		insert into product_expense(
+		ID,NAME,PRODUCT_ID,MIN_EXPENSE,IS_DELETE,CREATE_TIME
+		)
+		values 
+		<foreach collection="list" item="item" index="index" separator=","> 
+		     (#{item.id}, #{item.name},#{item.product_id},#{item.min_expense},#{item.is_delete},now()) 
+	    </foreach>  
+	</insert>
+	
+	
+	<update id="updateProductExpense" parameterType="productExpense">
+		update product_expense 
+		<set>
+			<if test="name != null and name != '' ">
+				NAME = #{name},
+			</if>
+			<if test="product_id != null and product_id != '' ">
+				PRODUCT_ID = #{product_id},
+			</if>
+			<if test="min_expense != null and min_expense != '' ">
+				MIN_EXPENSE = #{min_expense},
+			</if>
+			<if test="is_delete != null and is_delete != '' ">
+				IS_DELETE = #{is_delete},
+			</if>
+			UPDATE_TIME = now()
+		</set>
+		where ID = #{id}
+	</update>
+
+
+	<delete id="deleteProductExpenseById" parameterType="java.lang.String">
+		delete from product_expense where ID = #{id}
+	</delete>
+	
+	<delete id="deleteProductExpenseByProductId" parameterType="java.lang.String">
+		delete from product_expense where PRODUCT_ID = #{product_id}
+	</delete>
+
+</mapper>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.company.dao.IUserDao">
+
+	<select id="findUserById" parameterType="java.lang.String" resultType="user" >
+		select ID,USER_LEVEL_ID,IMAGE_PATH,CREATE_TIME from user
+		where ID = #{id} 
+	</select>
+	<select id="findUserVOById" parameterType="java.lang.String" resultType="userVO" >
+		SELECT u.id AS user_id,u.`user_level_id` user_level_id,ul.`score_ratio` FROM `user` u LEFT JOIN user_level ul  ON u.`user_level_id`=ul.id
+		WHERE u.id =#{id}
+	</select>
+	
+	<update id="updateUserLevel" parameterType="user">
+		update `user` 
+		<set>
+			<if test="user_level_id != null and user_level_id != '' ">
+				USER_LEVEL_ID = #{user_level_id},
+			</if>
+			UPDATE_TIME = now()
+		</set>
+		where ID = #{id}
+	</update>
+	
+	
+</mapper>

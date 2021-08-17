@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.admin.dao.IProductPriceDao">
+
+	<resultMap type="productPrice" id="productPrice-sql-map">
+		<id property="id" column="ID" />
+		<result property="product_id" column="PRODUCT_ID" />
+		<result property="time" column="TIME" />
+		<result property="monday" column="MONDAY" />
+		<result property="tuesday" column="TUESDAY" />
+		<result property="wednesday" column="WEDNESDAY" />
+		<result property="thursday" column="THURSDAY" />
+		<result property="friday" column="FRIDAY" />
+		<result property="saturday" column="SATURDAY" />
+		<result property="sunday" column="SUNDAY" />
+		<result property="create_time" column="CREATE_TIME" />
+		<result property="update_time" column="UPDATE_TIME" />
+	</resultMap>
+	
+	<select id="findProductPriceList" parameterType="string" resultMap="productPrice-sql-map">
+		select ID,PRODUCT_ID,TIME,MONDAY,TUESDAY,WEDNESDAY,THURSDAY,FRIDAY,SATURDAY,SUNDAY from product_price
+		<where>
+				PRODUCT_ID = #{productId}
+		</where>
+		ORDER BY TIME DESC
+	</select>
+	
+	<insert id="insertProductPricee" parameterType="productPrice">
+		insert into product_price(
+		ID,PRODUCT_ID,TIME,MONDAY,TUESDAY,WEDNESDAY,THURSDAY,FRIDAY,SATURDAY,SUNDAY,CREATE_TIME
+		)
+		values(#{id},#{product_id},#{time},#{monday},#{tuesday},#{wednesday},#{thursday},#{friday},#{saturday},#{sunday},now())
+	</insert>
+	
+	<delete id="deleteProductPriceById" parameterType="java.lang.String">
+		delete from product_price where ID = #{id}
+	</delete>
+	
+	<update id="updateProductPrice" parameterType="productPrice">
+		update product_price
+		<set>
+		TIME=#{time},
+		MONDAY=#{monday},
+		TUESDAY=#{tuesday},
+		WEDNESDAY=#{wednesday},
+		THURSDAY=#{thursday},
+		FRIDAY=#{friday},
+		SATURDAY=#{saturday},
+		SUNDAY=#{sunday},
+		UPDATE_TIME = now()
+		</set>
+		where ID = #{id}
+	</update>
+	
+	<insert id="batchInsertProductPrice" parameterType="list">
+		insert into product_price(
+		ID,PRODUCT_ID,TIME,MONDAY,TUESDAY,WEDNESDAY,THURSDAY,FRIDAY,SATURDAY,SUNDAY,CREATE_TIME
+		)
+		values
+		<foreach collection="list" item="item" index="index" separator=","> 
+		(#{item.id},#{item.product_id},#{item.time},#{item.monday},#{item.tuesday},#{item.wednesday},#{item.thursday},#{item.friday},#{item.saturday},#{item.sunday},now())
+	    </foreach>  
+	</insert>
+	
+	<update id="batchUpdateProductPrice" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" separator=";" close=""> 
+			update product_price
+			<set>
+				TIME=#{item.time},
+				MONDAY=#{item.monday},
+				TUESDAY=#{item.tuesday},
+				WEDNESDAY=#{item.wednesday},
+				THURSDAY=#{item.thursday},
+				FRIDAY=#{item.friday},
+				SATURDAY=#{item.saturday},
+				SUNDAY=#{item.sunday},
+				UPDATE_TIME = now()
+			</set>
+			where ID =  #{item.id}
+	    </foreach>  
+	</update>
+</mapper>

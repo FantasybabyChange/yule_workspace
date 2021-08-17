@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//zh-CN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div id="header-full">
+        <div role="navigation" id="menu-bar" class="cont-shadow">
+            <div class="g clearfix">
+                <a href="#" style="float: left;">
+                    <img src="images/logo.png" alt="">
+                </a>
+                <ul class="right-nav">
+                    <li class="nav-item">
+                        <a data-trigger="ajax" href="ajax/histroy.html" data-target=".ajax-histroy-content" class="nav-item-a nav-histroy">最近浏览</a>
+                        <div class="ajax-content ajax-histroy">
+                            <div class="ajax-arr"></div>
+                            <div class="ajax-histroy-content"></div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a data-trigger="ajax" href="ajax/histroy.html" data-target=".ajax-fav-content" class="nav-item-a nav-fav">
+                            <img src="images/fav-icon.png">我的收藏</a>
+                        <div class="ajax-content ajax-histroy">
+                            <div class="ajax-arr"></div>
+                            <div class="ajax-fav-content"></div>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a href="ajax/login.html" data-trigger="modal" data-title="登录yuleing.com" class="nav-item-a nav-login">登录</a>
+                        <div class="ajax-content tips-login" style="display: block;">
+                            <div class="ajax-arr"></div>
+                            <div class="tips-login-content">
+                                <span class="tips-login-del"></span>
+                                <p>登录即享最优惠价格</p>
+                                <a class="b-button w165 text-center" href="ajax/login.html" data-trigger="modal" data-title="用户登录"> 登录</a>
+                                <p>还没有账户？<a href="ajax/reg.html" data-title="注册yuleing.com账户" data-trigger="modal">点击这里</a>
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a href="ajax/reg.html" data-trigger="modal" data-title="注册yuleing.com账户" class="nav-item-a nav-login">注册账户</a>
+
+                    </li>
+                    <li class="nav-item"><a href="#" class="nav-item-a  nav-order-list">管理订单</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col clearfix">
+        <div class="pup-login-ui login-page">
+            <ul class="pup-login-ui-tabs" data-trigger="tab">
+                <li><a href="#login">登录</a>
+                </li>
+                <li><a href="#reg">注册</a>
+                </li>
+            </ul>
+            <div class="pane-wrapper pup-login-ui-wrapper">
+                <div class="pane-wrapper-tab-item clearfix">
+                    <div class="alert alert-error" style="display: block;">请输入有效电邮</div>
+                    <div class="pull-left user_access_form">
+                        <div class="pane-wrapper-tab-list" id="userLogin">
+                            <img src="images/avatar.png" class="mr10 pull-left">
+                            <h2 class="pane-wrapper-username">张三</h2>
+                            <a href="javascript:void(0)" class="change-user-login">不是张三本人</a>
+                        </div>
+                        <div class="pane-wrapper-tab-list" id="userInput" style="display:none">
+                            <label>电子邮箱地址</label>
+                            <input type="text" class="input-text">
+                        </div>
+                        <div class="pane-wrapper-tab-list">
+                            <label>密码 <a href="#" class="forget-pass">忘记密码</a>
+                            </label>
+                            <input type="text" class="input-text">
+                        </div>
+                        <a href="#" class="b-button index-order-btn">登录</a>
+                        <div class="user_access_section_trigger_link">
+                            还没有帐户？<a href="javascript:void(0)" data-target="user_access_signup_menu" class="user_access_section_trigger">点击注册</a>
+                        </div>
+                    </div>
+                    <div class="login-form-subsection pull-left">
+                        <p class="form-header-p">管理预订</p>
+                        <div class="pane-wrapper-tab-list">
+                            <label>订单编号</label>
+                            <input type="text" class="input-text w200" placeholder="订单编号">
+                        </div>
+                        <div class="pane-wrapper-tab-list">
+                            <label>密码
+                            </label>
+                            <input type="text" class="input-text w200" placeholder="密码">
+                        </div>
+                        <a href="#" class="b-button pull-right index-order-btn">查询</a>
+                    </div>
+                </div>
+
+                <div class="pane-wrapper-tab-item clearfix">
+                    <div class="alert alert-error" style="display: block;">请输入有效电邮</div>
+                    <div class="pull-left user_access_form">
+                        <div class="pane-wrapper-tab-list">
+                            <label>电子邮箱地址</label>
+                            <input type="text" class="input-text">
+                        </div>
+                        <div class="pane-wrapper-tab-list">
+                            <label>密码</label>
+                            <input type="text" class="input-text">
+                        </div>
+                        <div class="user_access_password_strength input-xlarge  ">
+                            <div class="pass_strength_bar pass_strength_progress" style="width: 162px;"></div>
+                            <div class="pass_strength_bar pass_strength_steps">
+                                <div class="pass_strength_step"></div>
+                                <div class="pass_strength_step"></div>
+                                <div class="pass_strength_step"></div>
+                                <div class="pass_strength_step"></div>
+                                <div class="pass_strength_step"></div>
+                                <div class="pass_strength_step"></div>
+                                <div class="pass_strength_step"></div>
+                                <div class="pass_strength_step"></div>
+                                <div class="pass_strength_step"></div>
+                                <div class="pass_strength_step"></div>
+                            </div>
+                        </div>
+                        <a href="#" class="b-button index-order-btn">创建我的账户</a>
+                        <div class="user_access_section_trigger_link">
+                            已有帐户？<a href="javascript:void(0)" data-target="user_access_login_menu" class="user_access_section_trigger">登录</a>
+                        </div>
+                        <div class="user_access_section_trigger_link">
+                            拥有帐户表示您同意本公司的<a href="#">条件和条款</a>以及<a href="#">隐私声明</a>
+                        </div>
+
+                    </div>
+                    <div class="form-subsection">
+                        <div class="form-usp-block">
+                            <p class="form-header-p">快捷、免费又安全！</p>
+                            <ul class="user_access_menu_usps">
+                                <li>修改预订</li>
+                                <li>个性化设置您的优惠</li>
+                                <li>更快速地预订</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="footer">
+        <div class="g">
+            <ul class="footer-nav">
+                <li><a href="#">管理预订</a>
+                </li>
+                <li><a href="#">客户服务</a>
+                </li>
+                <li><a href="#">成为合作伙伴</a>
+                </li>
+                <li><a href="#">成为会员伙伴</a>
+                </li>
+
+            </ul>
+            <div class="apps">
+                <span class="text">下载我们的应用：</span>
+                <span class="logo">
+                    <a href="http://itunes.apple.com/app/id284971959" target="_blank" class="ios"></a>
+                    <a href="https://market.android.com/details?id=com.hcom.android" target="_blank" class="android"></a>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="footer-other">
+        <div class="g admin-login">
+            <a href="#">后台登录</a>
+        </div>
+        <div class="g copyright">
+            <p>版权 © 1996–2014Booking.com™. 版权所有.</p>
+        </div>
+    </div>
+    <div class="right-sider-bar w1000">
+        <ul>
+            <li class="relative weixinCode-wapper"><a href="javascript:void(0)" class="wx-icon" title="扫描关注微信">微信</a>
+                <div class="weixinCode"><i class="warr">&nbsp;</i>
+                    <img src="http://static.juntu.com/images/dcode.jpg" alt="迈克森二维码">
+                    <p>关注微信</p>
+                </div>
+            </li>
+            <li><a href="javascript:void(0)" class="kf-icon" title="在线客服">在线客服</a>
+            </li>
+            <li><a href="#" class="go-top" title="回到顶部">回到顶部</a>
+            </li>
+        </ul>
+    </div>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/slides.js"></script>
+    <script type="text/javascript" src="js/ajax.js"></script>
+    <script type="text/javascript" src="js/modal.js"></script>
+    <script type="text/javascript" src="js/panes.js"></script>
+    <script type="text/javascript" src="js/tab.js"></script>
+    <script type="text/javascript" src="js/imagePreview.js"></script>
+    <script type="text/javascript" src="js/select2.js"></script>
+    <script type="text/javascript" src="js/l.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        $('.pup-login-ui-tabs').scojs_tab();
+        $('[data-target="user_access_signup_menu"]').click(function(event) {
+            var $tab = $.scojs_tab('.pup-login-ui-tabs');
+            $tab.select(1);
+        });
+        $('[data-target="user_access_login_menu"]').click(function(event) {
+            var $tab = $.scojs_tab('.pup-login-ui-tabs');
+            $tab.select(0);
+        });
+        $('.change-user-login').click(function(event) {
+            $('#userLogin').hide();
+            $('#userInput').show();
+        });
+    });
+    </script>
+</body>
+
+</html>

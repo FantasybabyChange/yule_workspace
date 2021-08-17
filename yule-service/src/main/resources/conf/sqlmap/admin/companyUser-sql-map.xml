@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.admin.dao.ICompanyUserDao">
+	<resultMap type="companyUser" id="companyUser-sql-map">
+		<id     property="id"          column="ID" />
+		<result property="company_id"     column="COMPANY_ID" />
+		<result property="account"    column="ACCOUNT" />
+		<result property="password"  column="PASSWORD" />
+		<result property="is_delete"      column="IS_DELETE" />
+		<result property="create_time"   column="CREATE_TIME" />
+		<result property="update_time" column="UPDATE_TIME" />
+		<result property="status" column="STATUS" />
+		<result property="login_time" column="LOGIN_TIME" />
+	</resultMap>
+	<select id="findCompanyUserPage"  parameterType="map"  resultMap="companyUser-sql-map">
+		select a.ID,a.COMPANY_ID,a.ACCOUNT,a.PASSWORD,a.IS_DELETE,a.CREATE_TIME,a.UPDATE_TIME from company_user a 
+		WHERE  a.COMPANY_ID=#{companyId}
+		and a.ID!=#{companyId}
+		ORDER BY a.CREATE_TIME DESC 
+		<if test="pageStart != null  and pageEnd != null  ">
+		   LIMIT #{pageStart},#{pageEnd}
+		</if>
+	</select>
+	<select id="findCompanyUserCount" resultType="int">
+		select count(a.ID) from company_user a 
+		WHERE  a.COMPANY_ID=#{companyId}
+		and a.ID!=#{companyId}
+	</select>
+	<select id="findCompanyUserMap" parameterType="map" resultType="int">
+	 	SELECT  count(cp.id) FROM (
+	 	SELECT c.id FROM company c
+		LEFT JOIN company_user cu ON c.id=cu.id
+		WHERE cu.account=#{account}
+		UNION ALL
+		SELECT cu.id FROM company_user cu
+		WHERE cu.account=#{account}
+		AND cu.company_id=#{companyId}) cp
+	</select>
+	<select id="findCompanyUserByAccount" parameterType="string" resultType="int">
+		select count(a.ID) from company_user a where a.ID = a.company_id 
+		and a.account = #{account}
+	</select>	
+	<insert id="insertCompanyUser"  parameterType="companyUser">
+		insert into company_user(
+		ID,COMPANY_ID,ACCOUNT,PASSWORD,IS_DELETE,STATUS,CREATE_TIME
+		)
+		values(#{id},#{company_id},#{account},#{password},#{is_delete},#{status},now())
+	</insert>
+	<update id="deleteCompanyUser" parameterType="companyUser">
+		update  company_user 
+		<set>
+			IS_DELETE = #{is_delete},
+		</set>
+		where ID = #{id}
+	</update>
+	<select id="findCompanyUserById" parameterType="java.lang.String" resultType="companyUser" >
+		select a.ID,a.COMPANY_ID,a.ACCOUNT,a.PASSWORD,a.IS_DELETE,a.CREATE_TIME,a.UPDATE_TIME from company_user a
+		where a.ID = #{id} 
+	</select>
+	<update id="updateCompanyUser" parameterType="companyUser">
+		update company_user
+		<set>
+			<if test="account != null and account != '' ">
+				ACCOUNT = #{account},
+			</if>
+			<if test="password != null and password != '' ">
+				PASSWORD = #{password},
+			</if>
+			<if test="login_time != null and login_time != '' ">
+				login_time = #{login_time},
+			</if>
+			<if test="is_delete != null  ">
+				IS_DELETE = #{is_delete},
+			</if>
+			<if test="status != null ">
+				STATUS = #{status},
+			</if>
+			UPDATE_TIME=now()
+		</set>
+		where ID = #{id}
+	</update>
+</mapper>

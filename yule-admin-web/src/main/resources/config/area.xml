@@ -1,0 +1,612 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<area name="中国">
+  <province id="110000" name="北京">
+    <city id="110100" name="北京" pinyin="beijing">
+      <county id="110101" name="东城区"/>
+      <county id="110102" name="西城区"/>
+      <county id="110105" name="朝阳区"/>
+      <county id="110106" name="丰台区"/>
+      <county id="110107" name="石景山区"/>
+      <county id="110108" name="海淀区"/>
+      <county id="110109" name="门头沟区"/>
+      <county id="110111" name="房山区"/>
+      <county id="110112" name="通州区"/>
+      <county id="110113" name="顺义区"/>
+      <county id="110114" name="昌平区"/>
+      <county id="110115" name="大兴区"/>
+      <county id="110116" name="怀柔区"/>
+      <county id="110117" name="平谷区"/>
+    </city>
+  </province>
+  <province id="120000" name="天津">
+    <city id="120100" name="天津" pinyin="tianjin">
+      <county id="120101" name="和平区"/>
+      <county id="120102" name="河东区"/>
+      <county id="120103" name="河西区"/>
+      <county id="120104" name="南开区"/>
+      <county id="120105" name="河北区"/>
+      <county id="120106" name="红桥区"/>
+      <county id="120110" name="东丽区"/>
+      <county id="120111" name="西青区"/>
+      <county id="120112" name="津南区"/>
+      <county id="120113" name="北辰区"/>
+      <county id="120114" name="武清区"/>
+      <county id="120115" name="宝坻区"/>
+      <county id="120116" name="滨海新区"/>
+    </city>
+  </province>
+  <province id="130000" name="河北">
+    <city id="130100" name="石家庄" pinyin="shijiazhuang">
+      <county id="130102" name="长安区"/>
+      <county id="130103" name="桥东区"/>
+      <county id="130104" name="桥西区"/>
+      <county id="130105" name="新华区"/>
+      <county id="130107" name="井陉矿区"/>
+      <county id="130108" name="裕华区"/>
+      <county id="130121" name="井陉县"/>
+      <county id="130123" name="正定县"/>
+      <county id="130124" name="栾城县"/>
+      <county id="130125" name="行唐县"/>
+      <county id="130126" name="灵寿县"/>
+      <county id="130127" name="高邑县"/>
+      <county id="130128" name="深泽县"/>
+      <county id="130129" name="赞皇县"/>
+      <county id="130130" name="无极县"/>
+      <county id="130131" name="平山县"/>
+      <county id="130132" name="元氏县"/>
+      <county id="130133" name="赵县"/>
+      <county id="130181" name="辛集市"/>
+      <county id="130182" name="藁城市"/>
+      <county id="130183" name="晋州市"/>
+      <county id="130184" name="新乐市"/>
+      <county id="130185" name="鹿泉市"/>
+    </city>
+  </province>
+  <province id="140000" name="山西">
+    <city id="140100" name="太原" pinyin="taiyuan">
+      <county id="140105" name="小店区"/>
+      <county id="140106" name="迎泽区"/>
+      <county id="140107" name="杏花岭区"/>
+      <county id="140108" name="尖草坪区"/>
+      <county id="140109" name="万柏林区"/>
+      <county id="140110" name="晋源区"/>
+      <county id="140121" name="清徐县"/>
+      <county id="140122" name="阳曲县"/>
+      <county id="140123" name="娄烦县"/>
+      <county id="140181" name="古交市"/>
+    </city>
+  </province>
+  <province id="150000" name="内蒙古">
+    <city id="150100" name="呼和浩特" pinyin="huhehaote">
+      <county id="150102" name="新城区"/>
+      <county id="150103" name="回民区"/>
+      <county id="150104" name="玉泉区"/>
+      <county id="150105" name="赛罕区"/>
+      <county id="150121" name="土默特左旗"/>
+      <county id="150122" name="托克托县"/>
+      <county id="150123" name="和林格尔县"/>
+      <county id="150124" name="清水河县"/>
+      <county id="150125" name="武川县"/>
+    </city>
+  </province>
+  <province id="210000" name="辽宁">
+    <city id="210100" name="沈阳" pinyin="shenyang">
+      <county id="210102" name="和平区"/>
+      <county id="210103" name="沈河区"/>
+      <county id="210104" name="大东区"/>
+      <county id="210105" name="皇姑区"/>
+      <county id="210106" name="铁西区"/>
+      <county id="210111" name="苏家屯区"/>
+      <county id="210112" name="东陵区"/>
+      <county id="210113" name="沈北新区"/>
+      <county id="210114" name="于洪区"/>
+      <county id="210122" name="辽中县"/>
+      <county id="210123" name="康平县"/>
+      <county id="210124" name="法库县"/>
+      <county id="210181" name="新民市"/>
+    </city>
+  </province>
+  <province id="220000" name="吉林">
+    <city id="220100" name="长春" pinyin="zhangchun">
+      <county id="220102" name="南关区"/>
+      <county id="220103" name="宽城区"/>
+      <county id="220104" name="朝阳区"/>
+      <county id="220105" name="二道区"/>
+      <county id="220106" name="绿园区"/>
+      <county id="220112" name="双阳区"/>
+      <county id="220122" name="农安县"/>
+      <county id="220181" name="九台市"/>
+      <county id="220182" name="榆树市"/>
+      <county id="220183" name="德惠市"/>
+    </city>
+  </province>
+  <province id="230000" name="黑龙江">
+    <city id="230100" name="哈尔滨" pinyin="haerbin">
+      <county id="230102" name="道里区"/>
+      <county id="230103" name="南岗区"/>
+      <county id="230104" name="道外区"/>
+      <county id="230108" name="平房区"/>
+      <county id="230109" name="松北区"/>
+      <county id="230110" name="香坊区"/>
+      <county id="230111" name="呼兰区"/>
+      <county id="230112" name="阿城区"/>
+      <county id="230123" name="依兰县"/>
+      <county id="230124" name="方正县"/>
+      <county id="230125" name="宾县"/>
+      <county id="230126" name="巴彦县"/>
+      <county id="230127" name="木兰县"/>
+      <county id="230128" name="通河县"/>
+      <county id="230129" name="延寿县"/>
+      <county id="230182" name="双城市"/>
+      <county id="230183" name="尚志市"/>
+      <county id="230184" name="五常市"/>
+    </city>
+  </province>
+  <province id="310000" name="上海">
+    <city id="310100" name="上海" pinyin="shanghai">
+      <county id="310101" name="黄浦区"/>
+      <county id="310104" name="徐汇区"/>
+      <county id="310105" name="长宁区"/>
+      <county id="310106" name="静安区"/>
+      <county id="310107" name="普陀区"/>
+      <county id="310108" name="闸北区"/>
+      <county id="310109" name="虹口区"/>
+      <county id="310110" name="杨浦区"/>
+      <county id="310112" name="闵行区"/>
+      <county id="310113" name="宝山区"/>
+      <county id="310114" name="嘉定区"/>
+      <county id="310115" name="浦东新区"/>
+      <county id="310116" name="金山区"/>
+      <county id="310117" name="松江区"/>
+      <county id="310118" name="青浦区"/>
+      <county id="310120" name="奉贤区"/>
+    </city>
+  </province>
+  <province id="320000" name="江苏">
+    <city id="320100" name="南京" pinyin="nanjing">
+      <county id="320102" name="玄武区"/>
+      <county id="320104" name="秦淮区"/>
+      <county id="320105" name="建邺区"/>
+      <county id="320106" name="鼓楼区"/>
+      <county id="320111" name="浦口区"/>
+      <county id="320113" name="栖霞区"/>
+      <county id="320114" name="雨花台区"/>
+      <county id="320115" name="江宁区"/>
+      <county id="320116" name="六合区"/>
+      <county id="320117" name="溧水区"/>
+      <county id="320118" name="高淳区"/>
+    </city>
+  </province>
+  <province id="330000" name="浙江">
+    <city id="330100" name="杭州" pinyin="hangzhou">
+      <county id="330102" name="上城区"/>
+      <county id="330103" name="下城区"/>
+      <county id="330104" name="江干区"/>
+      <county id="330105" name="拱墅区"/>
+      <county id="330106" name="西湖区"/>
+      <county id="330108" name="滨江区"/>
+      <county id="330109" name="萧山区"/>
+      <county id="330110" name="余杭区"/>
+      <county id="330122" name="桐庐县"/>
+      <county id="330127" name="淳安县"/>
+      <county id="330182" name="建德市"/>
+      <county id="330183" name="富阳市"/>
+      <county id="330185" name="临安市"/>
+    </city>
+  </province>
+  <province id="340000" name="安徽">
+    <city id="340100" name="合肥" pinyin="hefei">
+      <county id="340102" name="瑶海区"/>
+      <county id="340103" name="庐阳区"/>
+      <county id="340104" name="蜀山区"/>
+      <county id="340111" name="包河区"/>
+      <county id="340121" name="长丰县"/>
+      <county id="340122" name="肥东县"/>
+      <county id="340123" name="肥西县"/>
+      <county id="340124" name="庐江县"/>
+      <county id="340181" name="巢湖市"/>
+    </city>
+  </province>
+  <province id="350000" name="福建">
+    <city id="350100" name="福州" pinyin="fuzhou">
+      <county id="350102" name="鼓楼区"/>
+      <county id="350103" name="台江区"/>
+      <county id="350104" name="仓山区"/>
+      <county id="350105" name="马尾区"/>
+      <county id="350111" name="晋安区"/>
+      <county id="350121" name="闽侯县"/>
+      <county id="350122" name="连江县"/>
+      <county id="350123" name="罗源县"/>
+      <county id="350124" name="闽清县"/>
+      <county id="350125" name="永泰县"/>
+      <county id="350128" name="平潭县"/>
+      <county id="350181" name="福清市"/>
+      <county id="350182" name="长乐市"/>
+    </city>
+  </province>
+  <province id="360000" name="江西">
+    <city id="360100" name="南昌" pinyin="nanchang">
+      <county id="360102" name="东湖区"/>
+      <county id="360103" name="西湖区"/>
+      <county id="360104" name="青云谱区"/>
+      <county id="360105" name="湾里区"/>
+      <county id="360111" name="青山湖区"/>
+      <county id="360121" name="南昌县"/>
+      <county id="360122" name="新建县"/>
+      <county id="360123" name="安义县"/>
+      <county id="360124" name="进贤县"/>
+    </city>
+  </province>
+  <province id="370000" name="山东">
+    <city id="370100" name="济南" pinyin="jinan">
+      <county id="370102" name="历下区"/>
+      <county id="370103" name="市中区"/>
+      <county id="370104" name="槐荫区"/>
+      <county id="370105" name="天桥区"/>
+      <county id="370112" name="历城区"/>
+      <county id="370113" name="长清区"/>
+      <county id="370124" name="平阴县"/>
+      <county id="370125" name="济阳县"/>
+      <county id="370126" name="商河县"/>
+      <county id="370181" name="章丘市"/>
+    </city>
+  </province>
+  <province id="410000" name="河南">
+    <city id="410100" name="郑州" pinyin="zhengzhou">
+      <county id="410102" name="中原区"/>
+      <county id="410103" name="二七区"/>
+      <county id="410104" name="管城回族区"/>
+      <county id="410105" name="金水区"/>
+      <county id="410106" name="上街区"/>
+      <county id="410108" name="惠济区"/>
+      <county id="410122" name="中牟县"/>
+      <county id="410181" name="巩义市"/>
+      <county id="410182" name="荥阳市"/>
+      <county id="410183" name="新密市"/>
+      <county id="410184" name="新郑市"/>
+      <county id="410185" name="登封市"/>
+    </city>
+  </province>
+  <province id="420000" name="湖北">
+    <city id="420100" name="武汉" pinyin="wuhan">
+      <county id="420102" name="江岸区"/>
+      <county id="420103" name="江汉区"/>
+      <county id="420104" name="�口区"/>
+      <county id="420105" name="汉阳区"/>
+      <county id="420106" name="武昌区"/>
+      <county id="420107" name="青山区"/>
+      <county id="420111" name="洪山区"/>
+      <county id="420112" name="东西湖区"/>
+      <county id="420113" name="汉南区"/>
+      <county id="420114" name="蔡甸区"/>
+      <county id="420115" name="江夏区"/>
+      <county id="420116" name="黄陂区"/>
+      <county id="420117" name="新洲区"/>
+    </city>
+  </province>
+  <province id="430000" name="湖南">
+    <city id="430100" name="长沙" pinyin="zhangsha">
+      <county id="430102" name="芙蓉区"/>
+      <county id="430103" name="天心区"/>
+      <county id="430104" name="岳麓区"/>
+      <county id="430105" name="开福区"/>
+      <county id="430111" name="雨花区"/>
+      <county id="430112" name="望城区"/>
+      <county id="430121" name="长沙县"/>
+      <county id="430124" name="宁乡县"/>
+      <county id="430181" name="浏阳市"/>
+    </city>
+  </province>
+  <province id="440000" name="广东">
+    <city id="440100" name="广州" pinyin="guangzhou">
+      <county id="440103" name="荔湾区"/>
+      <county id="440104" name="越秀区"/>
+      <county id="440105" name="海珠区"/>
+      <county id="440106" name="天河区"/>
+      <county id="440111" name="白云区"/>
+      <county id="440112" name="黄埔区"/>
+      <county id="440113" name="番禺区"/>
+      <county id="440114" name="花都区"/>
+      <county id="440115" name="南沙区"/>
+      <county id="440116" name="萝岗区"/>
+      <county id="440183" name="增城市"/>
+      <county id="440184" name="从化市"/>
+    </city>
+  </province>
+  <province id="450000" name="广西">
+    <city id="450100" name="南宁" pinyin="nanning">
+      <county id="450102" name="兴宁区"/>
+      <county id="450103" name="青秀区"/>
+      <county id="450105" name="江南区"/>
+      <county id="450107" name="西乡塘区"/>
+      <county id="450108" name="良庆区"/>
+      <county id="450109" name="邕宁区"/>
+      <county id="450122" name="武鸣县"/>
+      <county id="450123" name="隆安县"/>
+      <county id="450124" name="马山县"/>
+      <county id="450125" name="上林县"/>
+      <county id="450126" name="宾阳县"/>
+      <county id="450127" name="横县"/>
+    </city>
+  </province>
+  <province id="460000" name="海南">
+    <city id="460100" name="海口" pinyin="haikou">
+      <county id="460105" name="秀英区"/>
+      <county id="460106" name="龙华区"/>
+      <county id="460107" name="琼山区"/>
+      <county id="460108" name="美兰区"/>
+    </city>
+  </province>
+  <province id="500000" name="重庆">
+    <city id="500100" name="重庆" pinyin="zhongqing">
+      <county id="500101" name="万州区"/>
+      <county id="500102" name="涪陵区"/>
+      <county id="500103" name="渝中区"/>
+      <county id="500104" name="大渡口区"/>
+      <county id="500105" name="江北区"/>
+      <county id="500106" name="沙坪坝区"/>
+      <county id="500107" name="九龙坡区"/>
+      <county id="500108" name="南岸区"/>
+      <county id="500109" name="北碚区"/>
+      <county id="500110" name="綦江区"/>
+      <county id="500111" name="大足区"/>
+      <county id="500112" name="渝北区"/>
+      <county id="500113" name="巴南区"/>
+      <county id="500114" name="黔江区"/>
+      <county id="500115" name="长寿区"/>
+      <county id="500116" name="江津区"/>
+      <county id="500117" name="合川区"/>
+      <county id="500118" name="永川区"/>
+      <county id="500119" name="南川区"/>
+    </city>
+  </province>
+  <province id="510000" name="四川">
+    <city id="510100" name="成都" pinyin="chengdou">
+      <county id="510104" name="锦江区"/>
+      <county id="510105" name="青羊区"/>
+      <county id="510106" name="金牛区"/>
+      <county id="510107" name="武侯区"/>
+      <county id="510108" name="成华区"/>
+      <county id="510112" name="龙泉驿区"/>
+      <county id="510113" name="青白江区"/>
+      <county id="510114" name="新都区"/>
+      <county id="510115" name="温江区"/>
+      <county id="510121" name="金堂县"/>
+      <county id="510122" name="双流县"/>
+      <county id="510124" name="郫县"/>
+      <county id="510129" name="大邑县"/>
+      <county id="510131" name="蒲江县"/>
+      <county id="510132" name="新津县"/>
+      <county id="510181" name="都江堰市"/>
+      <county id="510182" name="彭州市"/>
+      <county id="510183" name="邛崃市"/>
+      <county id="510184" name="崇州市"/>
+    </city>
+  </province>
+  <province id="520000" name="贵州">
+    <city id="520100" name="贵阳" pinyin="guiyang">
+      <county id="520102" name="南明区"/>
+      <county id="520103" name="云岩区"/>
+      <county id="520111" name="花溪区"/>
+      <county id="520112" name="乌当区"/>
+      <county id="520113" name="白云区"/>
+      <county id="520115" name="观山湖区"/>
+      <county id="520121" name="开阳县"/>
+      <county id="520122" name="息烽县"/>
+      <county id="520123" name="修文县"/>
+      <county id="520181" name="清镇市"/>
+    </city>
+  </province>
+  <province id="530000" name="云南">
+    <city id="530100" name="昆明" pinyin="kunming">
+      <county id="530102" name="五华区"/>
+      <county id="530103" name="盘龙区"/>
+      <county id="530111" name="官渡区"/>
+      <county id="530112" name="西山区"/>
+      <county id="530113" name="东川区"/>
+      <county id="530114" name="呈贡区"/>
+      <county id="530122" name="晋宁县"/>
+      <county id="530124" name="富民县"/>
+      <county id="530125" name="宜良县"/>
+      <county id="530126" name="石林彝族自治县"/>
+      <county id="530127" name="嵩明县"/>
+      <county id="530128" name="禄劝彝族苗族自治县"/>
+      <county id="530129" name="寻甸回族彝族自治县"/>
+      <county id="530181" name="安宁市"/>
+    </city>
+  </province>
+  <province id="540000" name="西藏">
+    <city id="540100" name="拉萨" pinyin="lasa">
+      <county id="540102" name="城关区"/>
+      <county id="540121" name="林周县"/>
+      <county id="540122" name="当雄县"/>
+      <county id="540123" name="尼木县"/>
+      <county id="540124" name="曲水县"/>
+      <county id="540125" name="堆龙德庆县"/>
+      <county id="540126" name="达孜县"/>
+      <county id="540127" name="墨竹工卡县"/>
+    </city>
+  </province>
+  <province id="610000" name="陕西">
+    <city id="610100" name="西安" pinyin="xian">
+      <county id="610102" name="新城区"/>
+      <county id="610103" name="碑林区"/>
+      <county id="610104" name="莲湖区"/>
+      <county id="610111" name="灞桥区"/>
+      <county id="610112" name="未央区"/>
+      <county id="610113" name="雁塔区"/>
+      <county id="610114" name="阎良区"/>
+      <county id="610115" name="临潼区"/>
+      <county id="610116" name="长安区"/>
+      <county id="610117" name="高新区"/>
+      <county id="610118" name="曲江新区"/>
+      <county id="610122" name="蓝田县"/>
+      <county id="610124" name="周至县"/>
+      <county id="610125" name="户县"/>
+      <county id="610126" name="高陵县"/>
+	  <business id="610100101" name="东部" />
+	  <business id="610100102" name="钟鼓楼" />
+	  <business id="610100103" name="东部" />
+	  <business id="610100104" name="城北" />
+	  <business id="610100105" name="高新技术开发区" />
+	  <business id="610100106" name="小寨" />
+	  <business id="610100107" name="曲江会展区" />
+	  <business id="610100108" name="康复路服饰批发广场" />
+	  <business id="610100109" name="钟鼓楼/市中心区域" />
+	  <business id="610100110" name="西安交通大学城" />
+	  <business id="610100111" name="大唐芙蓉园景区" />
+	  <business id="610100112" name="雁塔路" />
+	  <business id="610100113" name="市区" />
+    </city>
+  </province>
+  <province id="620000" name="甘肃">
+    <city id="620100" name="兰州" pinyin="lanzhou">
+      <county id="620102" name="城关区"/>
+      <county id="620103" name="七里河区"/>
+      <county id="620104" name="西固区"/>
+      <county id="620105" name="安宁区"/>
+      <county id="620111" name="红古区"/>
+      <county id="620121" name="永登县"/>
+      <county id="620122" name="皋兰县"/>
+      <county id="620123" name="榆中县"/>
+    </city>
+  </province>
+  <province id="630000" name="青海">
+    <city id="630100" name="西宁" pinyin="xining">
+      <county id="630102" name="城东区"/>
+      <county id="630103" name="城中区"/>
+      <county id="630104" name="城西区"/>
+      <county id="630105" name="城北区"/>
+      <county id="630121" name="大通回族土族自治县"/>
+      <county id="630122" name="湟中县"/>
+      <county id="630123" name="湟源县"/>
+    </city>
+  </province>
+  <province id="640000" name="宁夏">
+    <city id="640100" name="银川" pinyin="yinchuan">
+      <county id="640104" name="兴庆区"/>
+      <county id="640105" name="西夏区"/>
+      <county id="640106" name="金凤区"/>
+      <county id="640121" name="永宁县"/>
+      <county id="640122" name="贺兰县"/>
+      <county id="640181" name="灵武市"/>
+    </city>
+  </province>
+  <province id="650000" name="新疆">
+    <city id="650100" name="乌鲁木齐" pinyin="wulumuqi">
+      <county id="650102" name="天山区"/>
+      <county id="650103" name="沙依巴克区"/>
+      <county id="650104" name="新市区"/>
+      <county id="650105" name="水磨沟区"/>
+      <county id="650106" name="头屯河区"/>
+      <county id="650107" name="达坂城区"/>
+      <county id="650109" name="米东区"/>
+      <county id="650121" name="乌鲁木齐县"/>
+    </city>
+  </province>
+</area>
+
+<!-- <?xml version="1.0" encoding="UTF-8"?>
+<area name="中国">
+	<province id="110000" name="北京">
+		<city id="100100" name="北京">
+			<county id="100101" name="东城区" />
+			<county id="100102" name="西城区" />
+			<county id="100103" name="海淀区" />
+			<county id="100104" name="朝阳区" />
+			<county id="100105" name="丰台区" />
+			<county id="100106" name="石景山区" />
+			<county id="100107" name="通州区" />
+			<county id="100108" name="顺义区" />
+			<county id="100109" name="房山区" />
+			<county id="100110" name="大兴区" />
+			<county id="100111" name="昌平区" />
+			<county id="100112" name="怀柔区" />
+			<county id="100113" name="平谷区" />
+			<county id="100114" name="门头沟区" />
+			<business id="100100101" name="密云风景区" />
+			<business id="100100102" name="上地工业园区" />
+			<business id="100100103" name="房山风景区" />
+			<business id="100100104" name="北京周边度假区" />
+			<business id="100100105" name="中关村、人民大学" />
+			<business id="100100106" name="永定门、南站" />
+			<business id="100100107" name="天安门、王府井" />
+			<business id="100100108" name="鸟巢、奥体公园" />
+			<business id="100100109" name="延庆休闲度假区" />
+			<business id="100100110" name="亚运村、奥运村商圈" />
+			<business id="100100111" name="鼓楼、后海" />
+			<business id="100100112" name="怀柔风景区" />
+			<business id="100100113" name="北京站、建国门" />
+			<business id="100100114" name="西客站、世纪坛" />
+			<business id="100100115" name="国贸CBD、大望路" />
+			<business id="100100116" name="小汤山温泉度假区" />
+			<business id="100100117" name="金融街【西单】" />
+			<business id="100100118" name="东直门、簋街" />
+			<business id="100100119" name="前门、大栅栏" />
+			<business id="100100120" name="东二环工人体育场" />
+			<business id="100100121" name="总部基地、世界公园" />
+			<business id="100100122" name="首都机场、新国展" />
+			<business id="100100123" name="望京" />
+			<business id="100100124" name="北京展览馆、动物园" />
+			<business id="100100125" name="燕莎、农展馆" />
+			<business id="100100126" name="马甸、安贞、科技馆" />
+			<business id="100100127" name="雍和宫、地坛" />
+			<business id="100100128" name="崇文门、虹桥市场" />
+			<business id="100100129" name="双井、劲松" />
+			<business id="100100130" name="五棵松体育馆" />
+			<business id="100100131" name="果园环岛、通州区" />
+			<business id="100100132" name="大兴农业生态观光区" />
+			<business id="100100133" name="国展中心" />
+			<business id="100100134" name="西单商业区" />
+			<business id="100100135" name="石景山游乐园、古城" />
+			<business id="100100136" name="劲松、潘家园" />
+			<business id="100100137" name="酒仙桥、798园区" />
+			<business id="100100138" name="朝阳门、秀水市场" />
+			<business id="100100139" name="亦庄经济开发区" />
+			<business id="100100140" name="刘家窑、赵公口客运站" />
+			<business id="100100141" name="广安门、大观园" />
+			<business id="100100142" name="传媒大学、管庄" />
+			<business id="100100143" name="欢乐谷、工业大学" />
+			<business id="100100144" name="方庄、成寿寺" />
+			<business id="100100145" name="新街口、积水潭" />
+			<business id="100100146" name="航天桥、首师大" />
+			<business id="100100147" name="朝阳北路、大悦城" />
+			<business id="100100148" name="顺义温泉度假区" />
+			<business id="100100149" name="公主坟、万寿路" />
+			<business id="100100150" name="平谷城区、金海胡风景区" />
+			<business id="100100151" name="朝阳公园、团结湖" />
+			<business id="100100152" name="香山、八大处风景区" />
+			<business id="100100153" name="丰体中心、园博园" />
+			<business id="100100154" name="玻璃厂、和平门" />
+			<business id="100100155" name="解放碑、朝天门" />
+			<business id="100100156" name="北京路、海珠广场" />
+		</city>
+	</province>
+	<province id="610000" name="陕西">
+		<city id="610100" name="西安">
+			<county id="610101" name="新城区" />
+			<county id="610102" name="碑林区" />
+			<county id="610103" name="莲湖区" />
+			<county id="610104" name="灞桥区" />
+			<county id="610105" name="未央区" />
+			<county id="610106" name="雁塔区" />
+			<county id="610107" name="阎良区" />
+			<county id="610108" name="临潼区" />
+			<county id="610109" name="长安区" />
+			<business id="610100101" name="东部" />
+			<business id="610100102" name="钟鼓楼" />
+			<business id="610100103" name="东部" />
+			<business id="610100104" name="城北" />
+			<business id="610100105" name="高新技术开发区" />
+			<business id="610100106" name="小寨" />
+			<business id="610100107" name="曲江会展区" />
+			<business id="610100108" name="康复路服饰批发广场" />
+			<business id="610100109" name="钟鼓楼/市中心区域" />
+			<business id="610100110" name="西安交通大学城" />
+			<business id="610100111" name="大唐芙蓉园景区" />
+			<business id="610100112" name="雁塔路" />
+			<business id="610100113" name="市区" />
+		</city>
+	</province>
+</area> -->

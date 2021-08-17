@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.user.dao.IUserLevelDao">
+
+	<select id="findUserLevelByUserId" parameterType="java.lang.String" resultType="userLevel" >
+		select b.id,b.name,b.score_ratio  from user a left join user_level b on a.user_level_id = b.id 
+		where a.id = #{userId} and a.is_delete=0
+	</select>
+	
+</mapper>

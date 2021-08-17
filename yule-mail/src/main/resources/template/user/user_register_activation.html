@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>预乐网</title>
+    <style type="text/css">
+    * {
+        margin: 0 auto;
+    }
+    .content {
+        width: 980px;
+        margin: 0 auto;
+    }
+    .head {
+        height: 49px;
+        background-color: #5b1750;
+        padding: 10px;
+    }
+    .left {
+        float: left;
+    }
+    .right {
+        float: right;
+    }
+    .main {
+        width: 918px;
+        border: 1px solid #5b1750;
+        padding: 30px;
+    }
+    .main h1 {
+        font-size: 16px;
+        text-align: center;
+        color: #5b1750;
+    }
+     .main p{font-size: 14px; line-height: 30px; color: #5b1750;}
+     .tips{font-size: 12px; color:#fff; margin-top: 30px;}
+     .b-button{
+		display: inline-block;
+		vertical-align: middle;
+		padding: 5px 10px;
+		margin: 0;
+		background-color: #93298c;
+		border: 2px solid #fff;
+		border-radius: 3px;
+		line-height: 1.5;
+		font-weight: bold;
+		text-decoration: none;
+		color: #fff;
+		cursor: pointer;
+		-webkit-box-shadow: 0 0 3px #aaa;
+		-moz-box-shadow: 0 0 3px #aaa;
+		box-shadow: 0 0 3px #aaa;}
+		.b-button:hover, .b-button:focus {
+		background-color: #7b0f74;
+		color: #fff;
+		-webkit-box-shadow: 0 0 3px #444;
+		-moz-box-shadow: 0 0 3px #444;
+		box-shadow: 0 0 3px #444;
+		text-decoration: none;
+	}
+	.mt10{margin-top: 10px;}
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <div class="head">
+            <img class="left" src="http://images.yuleing.com/logo/yuleing.png">
+            <p class="right tips"></p>
+        </div>
+        <div class="main">
+            <div class="notice-content">
+				尊敬的 先生/女士（用户#{mail}）： 您好！感谢您注册预乐网！ 请点击“激活”按钮立即激活并使用预乐网，享受各项优质服务。<br/> 
+				<a href="http://login.yuleing.com/registerMailAuthActivation.do?captcha=#{captcha}" class="b-button index-order-btn mt10">激活</a> <br/>
+				如果以上按钮点击无效，请把下面网页地址复制到浏览器地址栏中打开： <br>
+				http://login.yuleing.com/registerMailAuthActivation.do?captcha=#{captcha} (链接有效期为24小时)  <br/>
+				此邮件由系统自动发送，请勿直接回复。 <br/>
+				 感谢您选择预乐，祝您娱乐愉快！ <br/>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <p align="right"> 预乐网客户服务部
+                    <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;#{currentDate}</p>
+
+                
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

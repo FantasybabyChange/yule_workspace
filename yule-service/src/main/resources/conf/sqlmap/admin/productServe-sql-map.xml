@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.admin.dao.IProductServeDao">
+	<resultMap type="productServe" id="productServe-sql-map">
+		<id     property="id"          column="ID" />
+		<result property="name"        column="NAME" />
+		<result property="order"        column="ORDER" />
+		<result property="is_delete"   column="IS_DELETE" />
+		<result property="create_time" column="CREATE_TIME" />
+		<result property="update_time" column="UPDATE_TIME" />
+	</resultMap>
+
+	<sql id="productServe_first">
+		ID,NAME,`ORDER`,IS_DELETE,CREATE_TIME,UPDATE_TIME
+	</sql>
+	
+	<sql id="productServe_insert">
+		ID,NAME,`ORDER`,IS_DELETE,CREATE_TIME
+	</sql>
+	
+	<select id="findProductServeList" resultMap="productServe-sql-map">
+		select a.ID,a.NAME,a.`ORDER` from product_serve a 
+		<where>
+			IS_DELETE = 0
+		</where>
+		ORDER BY `ORDER` ASC 
+	</select>
+
+	<insert id="insertProductServe" parameterType="productServe">
+		insert into product_serve(
+		<include refid="productServe_insert" />
+		)
+		values(#{id},#{name},#{order},#{is_delete},now())
+	</insert>
+	           
+	<insert id="batchInsertProductServe" parameterType="list">
+		insert into product_serve(
+		<include refid="productServe_insert" />
+		)
+		values
+		<foreach collection="list" item="item" index="index" separator=","> 
+		     (#{item.id},#{item.name},#{item.order},#{item.is_delete},now())
+		</foreach>
+	
+	</insert>
+	
+	<update id="batchUpdateProductServe" parameterType="list">
+	
+		<foreach collection="list" item="item" index="index" open="" separator=";" close=""> 
+			update product_serve
+			<set>
+				NAME = #{item.name},
+				`ORDER` = #{item.order},
+				UPDATE_TIME = now()
+			</set>
+			where ID =  #{item.id}
+	    </foreach>  
+	
+	</update>
+	
+	<update id="updateProductServe" parameterType="productServe">
+		update product_serve
+		<set>
+			<if test="name != null and name!=''">
+				NAME = #{name},
+			</if>
+			<if test="order != null and order !=''">
+				`ORDER` = #{order},
+			</if>
+			UPDATE_TIME = now()
+		</set>
+		where ID = #{id}
+	</update>
+
+	<!-- 删除 -->
+	<update id="deleteProductServeById" parameterType="java.lang.String">
+		update product_serve
+		set IS_DELETE = 1 ,UPDATE_TIME = now() where ID = #{id}
+	</update>
+
+</mapper>

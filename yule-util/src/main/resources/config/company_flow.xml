@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<flows>
+	<flow code="0" name="基本信息" url="/company/findCompany.do" />
+	<flow code="1" name="地理信息" url="/companyAddress/findCompanyAddress.do" />
+	<flow code="2" name="服务设施" url="/companyServe" />
+	<flow code="3" name="企业图册" url="/companyGallery/findCompanyGallery.do" />
+	<flow code="4" name="企业联系方式" url="" />
+	<flow code="5" name="企业优惠" url="/companyFavorable/findCompanyFavorable.do" />
+	<flow code="6" name="产品信息" url="/product/findProduct.do" />
+	<!-- <flow code="6" name="产品图册" url="/productGallery/findProductGallery.do" /> -->
+	
+</flows>

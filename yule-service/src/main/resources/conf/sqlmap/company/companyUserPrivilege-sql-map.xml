@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.company.dao.ICompanyUserPrivilegeDao">
+
+	<sql id="companyUserPrivilege_first">
+		ID,COMPANY_PRIVILEGE_ID,COMPANY_USER_ID
+	</sql>
+
+	<insert id="batchInsertCompanyUserPrivilege" parameterType="list">
+		insert into company_user_privilege(
+			<include refid="companyUserPrivilege_first"/>
+		)
+		values 
+		<foreach collection="list" item="item" index="index" separator=","> 
+		     (#{item.id},#{item.company_privilege_id},#{item.company_user_id}) 
+	    </foreach>  
+	</insert>
+	
+	<update id="updateCompanyUserPrivilege" parameterType="map">
+		delete from company_user_privilege where COMPANY_USER_ID = #{companyUserId};
+		<if test="companyUserPrivileges != null">
+		insert into company_user_privilege(
+			<include refid="companyUserPrivilege_first"/>
+		)
+		values 
+		<foreach collection="companyUserPrivileges" item="item" index="index" separator=","> 
+		     (#{item.id},#{item.company_privilege_id},#{companyUserId}) 
+	    </foreach>;
+	    </if>
+	</update>
+</mapper>

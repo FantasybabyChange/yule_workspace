@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.admin.dao.IAreaBusinessDao">
+	<resultMap type="areaBusiness" id="areaBusiness-sql-map">
+		<id     property="id"           column="ID" />
+		<result property="area_city_id" column="AREA_CITY_ID" />
+		<result property="name"         column="NAME" />
+	</resultMap>
+	<sql id="areaBusiness_first">
+		ID,AREA_CITY_ID,NAME
+	</sql>
+	
+	<select id="findAreaBusinessList" resultMap="areaBusiness-sql-map" parameterType="string">
+		select <include refid="areaBusiness_first" /> from area_business 
+		<where>
+			AREA_CITY_ID = #{cityId}
+		</where>
+		order by ID asc
+	</select>
+
+	<select id="findAreaBusinessCount" resultType="int">
+		select count(*) from area_business
+	</select>
+
+	<insert id="insertAreaBusiness" parameterType="areaBusiness">
+		insert into area_business(
+		<include refid="areaBusiness_first" />
+		)
+		values(#{id},#{area_city_id},#{name})
+	</insert>
+	
+	<insert id="batchInsertAreaBusiness" parameterType="list">  
+	    insert into area_business(
+		<include refid="areaBusiness_first" />
+		)
+		values
+	    <foreach collection="list" item="item" index="index" separator=",">  
+	        (#{item.id},#{item.area_city_id},#{item.name})
+	    </foreach>  
+    </insert> 
+
+	<update id="updateAreaBusiness" parameterType="areaBusiness">
+		update area_business
+		<set>
+			<if test="area_city_id != null and  area_city_id !=''">
+				AREA_CITY_ID= #{area_city_id},
+			</if>
+			<if test="name != null and name !=''">
+				NAME = #{name},
+			</if>
+		</set>
+		where ID = #{id}
+	</update>
+	
+	<delete id="deleteAreaBusinessAll">
+		truncate table area_business 
+	</delete>
+
+	<delete id="deleteAreaBusinessById" parameterType="java.lang.String">
+		delete from area_business where ID = #{id}
+	</delete>
+
+</mapper>

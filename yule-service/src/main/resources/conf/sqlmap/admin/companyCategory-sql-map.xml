@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.admin.dao.ICompanyCategoryDao">
+	<resultMap type="companyCategory" id="companyCategory-sql-map">
+		<id     property="id"          column="ID" />
+		<result property="name"        column="NAME" />
+		<result property="order"        column="ORDER" />
+		<result property="is_delete"   column="IS_DELETE" />
+		<result property="create_time" column="CREATE_TIME" />
+		<result property="update_time" column="UPDATE_TIME" />
+	</resultMap>
+	
+	<resultMap type="companyCategoryVO" id="companyCategoryVO-sql-map">
+		<id     property="id"          column="ID" />
+		<result property="name"        column="NAME" />
+	</resultMap>
+	
+	<resultMap type="companyCategoryCountVO" id="companyCategoryCountVO-sql-map">
+		<id     property="id"          column="ID" />
+		<result property="name"        column="NAME" />
+		<result property="company_count"        column="COMPANY_COUNT" />
+	</resultMap>
+	
+	<insert id="insertCompanyCategory" parameterType="companyCategory">
+		insert into company_category(
+		ID,NAME,`ORDER`,IS_DELETE,CREATE_TIME
+		)
+		values(#{id},#{name},#{order},#{is_delete},now())
+	</insert>
+	
+	
+	<insert id="batchInsertCompanyCategory" parameterType="list">
+		insert into company_category(
+			ID,NAME,`ORDER`,IS_DELETE,CREATE_TIME
+		)
+		values
+		<foreach collection="list" item="item" index="index" separator=","> 
+		    (#{item.id},#{item.name},#{item.order},#{item.is_delete},now())
+	    </foreach>  
+		
+	</insert>
+
+	<update id="updateCompanyCategory" parameterType="companyCategory">
+		update company_category
+		<set>
+			<if test="name != null and name != '' ">
+				NAME = #{name},
+			</if>
+			<if test="order != null and order != '' ">
+				`ORDER` = #{order},
+			</if>
+			<if test="is_delete != null and is_delete != '' ">
+				IS_DELETE = #{is_delete},
+			</if>
+			UPDATE_TIME = now()
+		</set>
+		where ID = #{id}
+	</update>
+	
+	<update id="batchUpdateCompanyCategory" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" separator=";" close=""> 
+			update company_category
+			<set>
+				NAME = #{item.name},
+				`ORDER` = #{item.order},
+				UPDATE_TIME = now()
+			</set>
+			where ID =  #{item.id}
+	    </foreach>  
+	</update>
+
+	<select id="findCompanyCategoryVOList" resultMap="companyCategoryVO-sql-map">
+		select ID,NAME from company_category  WHERE IS_DELETE=0 ORDER BY `ORDER` ASC
+	</select>
+	
+
+	<select id="findCompanyCategoryList" parameterType="map" resultMap="companyCategory-sql-map">
+		select ID,NAME,`ORDER`,IS_DELETE from company_category  WHERE IS_DELETE=0 ORDER BY `ORDER` ASC
+		<if test="pageStart!=null and pageEnd !=null">
+			LIMIT #{pageStart},#{pageEnd}
+		</if>
+	</select>
+
+	<delete id="deleteCompanyCategoryById" parameterType="java.lang.String">
+		update company_category set is_delete = 1 where ID = #{id}
+	</delete>
+	
+	<delete id="deleteCompanyCategoryAll">
+		delete from company_category 
+	</delete>
+	
+	<select id="findCompanyCategoryCountVOListByAreaProvinceId" parameterType="string" resultMap="companyCategoryCountVO-sql-map">
+		SELECT a.ID,a.NAME,
+		(SELECT COUNT(b.ID) FROM company d LEFT JOIN company_address b ON d.id = b.id LEFT JOIN area_county c ON b.area_county_id = c.id 
+		LEFT JOIN area_city e ON c.area_city_id = e.id
+		WHERE e.area_province_id = #{areaProvinceId} AND d.company_category_id = a.id) company_count
+		FROM company_category a 
+		ORDER BY `ORDER` ASC
+	</select>
+	
+	<select id="findCompanyCategoryCountVOListByAreaCityId" parameterType="string" resultMap="companyCategoryCountVO-sql-map">
+		SELECT a.ID,a.NAME,
+		(SELECT COUNT(b.ID) FROM company d LEFT JOIN company_address b ON d.id = b.id LEFT JOIN area_county c ON b.area_county_id = c.id 
+		WHERE c.area_city_id = #{areaCityId} AND d.company_category_id = a.id) company_count
+		FROM company_category a 
+		ORDER BY `ORDER` ASC
+	</select>
+	
+	<select id="findCompanyCategoryCountVOListByAreaCountyId" parameterType="string" resultMap="companyCategoryCountVO-sql-map">
+		SELECT a.ID,a.NAME,
+		(SELECT COUNT(b.ID) FROM company d LEFT JOIN company_address b ON d.id = b.id 
+		WHERE b.area_county_id = #{areaCountyId} AND d.company_category_id = a.id) company_count
+		
+		FROM company_category a 
+		ORDER BY `ORDER` ASC
+	</select>
+	
+	<select id="findCompanyCategoryCountVOListByAreaBusinessId" parameterType="string" resultMap="companyCategoryCountVO-sql-map">
+		SELECT a.ID,a.NAME,
+		(SELECT COUNT(b.ID) FROM company d LEFT JOIN company_address b ON d.id = b.id 
+		WHERE b.area_business_id = #{areaBusinessId} AND d.company_category_id = a.id) company_count
+		FROM company_category a 
+		ORDER BY `ORDER` ASC
+	</select>
+	
+</mapper>

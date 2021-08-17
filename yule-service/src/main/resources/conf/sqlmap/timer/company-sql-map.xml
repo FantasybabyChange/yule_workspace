@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.timer.dao.ICompanyDao">
+
+	<resultMap type="companyLuceneVO" id="companyLuceneVO-sql-map">
+		<id     property="id"                    column="ID" />
+		<result property="name"                  column="NAME" />
+		<result property="pinyin"                column="PINYIN" />
+		<result property="hours"                 column="HOURS" />
+		<result property="rebast"                column="REBAST" />
+		<result property="company_grade_name"    column="COMPANY_GRADE_NAME" />
+		<result property="company_grade_id"      column="COMPANY_GRADE_ID" />
+		<result property="company_category_name" column="COMPANY_CATEGORY_NAME" />
+		<result property="company_category_id"   column="COMPANY_CATEGORY_ID" />
+		<result property="create_time"           column="CREATE_TIME" />
+		<result property="address_detail"        column="ADDRESS_DETAIL" />
+		<result property="area_business_id"      column="AREA_BUSINESS_ID" />
+		<result property="area_business_name"    column="AREA_BUSINESS_NAME" />
+		<result property="area_county_id"        column="AREA_COUNTY_ID" />
+		<result property="area_county_name"      column="AREA_COUNTY_NAME" />
+		<result property="area_city_name"        column="AREA_CITY_NAME" />
+		<result property="area_city_id"          column="AREA_CITY_ID" />
+		<result property="area_province_id"      column="AREA_PROVINCE_ID" />
+		<result property="area_province_name"    column="AREA_PROVINCE_NAME" />
+		<result property="lng"                   column="LNG" />
+		<result property="lat"                   column="LAT" />
+		<result property="product_count"         column="PRODUCT_COUNT" />
+	</resultMap>
+	
+	<resultMap type="companyTaskVO" id="companyTaskVO-sql-map">
+		<id     property="id"                    		column="ID" />
+		<result property="name"                  		column="NAME" />
+		<result property="company_serve_count"          column="COMPANY_SERVE_COUNT" />
+		<result property="company_favorable_count"      column="COMPANY_FAVORABLE_COUNT" />
+		<result property="company_phone_count"          column="COMPANY_PHONE_COUNT" />
+		<result property="product_count"         	 	column="PRODUCT_COUNT" />
+		<result property="company_expense_count"        column="COMPANY_EXPENSE_COUNT" />
+	</resultMap>
+	
+	<resultMap type="companyVO" id="companyVO-sql-map">
+		<id     property="id"                   	 	column="ID" />
+		<result property="company_name"                 column="COMPANY_NAME" />
+		<result property="commision"                  	column="COMMISION" />
+	</resultMap>	
+	
+	<resultMap type="companySearchCriteriaLuceneVO" id="companySearchCriteriaLuceneVO-sql-map">
+		<id     property="id"                   	 	column="ID" />
+		<result property="name"                 column="NAME" />
+		<result property="province_name"                 column="PROVINCE_NAME" />
+		<result property="city_name"                 column="CITY_NAME" />
+	</resultMap>	
+		
+	<select id="findCompanyTaskVOList" resultMap="companyTaskVO-sql-map" >
+		SELECT * FROM v_findCompanyTaskVOList
+	</select>
+
+	<select id="findCompanyVOList" resultMap="companyVO-sql-map" >
+	 	SELECT c.id id,c.name company_name ,ROUND(c.commision/100,2) commision
+	 	FROM company c
+	 	<where>
+	 		<if test="salesmanId != '' and salesmanId != null">
+	 			c.salesman_id = #{salesmanId}
+	 		</if>
+	 	</where>
+	</select>
+	
+	<select id="findCompanyLuceneVOList" resultMap="companyLuceneVO-sql-map">
+		select * from v_findCompanyLuceneVOList 
+	</select>
+	
+	<select id="findCompanySearchCriteriaLuceneVOList" resultMap="companySearchCriteriaLuceneVO-sql-map">
+		SELECT c.id,ap.name AS province_name,ci.name AS city_name,c.name AS NAME FROM company c
+			LEFT JOIN company_address ca ON c.id=ca.id
+			LEFT JOIN area_county ac ON ca.area_county_id=ac.id	
+			LEFT JOIN area_city ci ON ac.area_city_id=ci.id
+			LEFT JOIN area_province ap ON ap.id=ci.area_province_id
+			WHERE ca.area_county_id IS NOT NULL
+	</select>
+	
+	
+
+</mapper>

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.admin.dao.IAdminPrivilegeDao">
+	<resultMap type="adminPrivilege" id="adminPrivilege-sql-map">
+		<id     property="id"          column="ID" />
+		<result property="name"        column="NAME" />
+		<result property="parent_id"   column="PARENT_ID" />
+		<result property="url"         column="URL" />
+		<result property="is_show"     column="IS_SHOW" />
+		<result property="code"        column="CODE" />
+		<result property="order"       column="ORDER" />
+		<result property="create_time" column="CREATE_TIME" />
+		<result property="update_time" column="UPDATE_TIME" />
+	</resultMap>
+	
+	<resultMap type="adminPrivilegeVO" id="adminPrivilegeVO-sql-map">
+		<id     property="id"        column="ID" />
+		<result property="name"      column="NAME" />
+		<result property="parent_id" column="PARENT_ID" />
+		<result property="is_check"  column="IS_CHECK" />
+	</resultMap>
+		
+	<select id="findAdminUserPrivilegeListByAdminRoleId" parameterType="map" resultMap="adminPrivilege-sql-map">
+		select a.ID,a.NAME,a.PARENT_ID,a.URL,a.CODE from admin_privilege a
+		<where>
+			 a.ID in (
+			 select b.ADMIN_PRIVILEGE_ID from admin_role_privilege b 
+			 <where>
+			  	b.ADMIN_ROLE_ID = #{admin_role_id}
+			 </where>
+			  )
+			<if test="parent_id != null and parent_id != '' ">
+				AND a.PARENT_ID = #{parent_id}
+			</if>
+			<if test="parent_id == null or parent_id == '' ">
+				AND a.PARENT_ID IS NULL
+			</if>
+			and a.IS_SHOW = 0
+		</where>
+		ORDER BY a.`ORDER` ASC 
+		<if test="pageStart != null  and pageEnd != null ">
+		   LIMIT #{pageStart},#{pageEnd}
+		</if>
+	</select>
+	
+	<select id="findAdminPrivilegeVOList" parameterType="map" resultMap="adminPrivilegeVO-sql-map">
+		select ID,NAME,PARENT_ID,IS_CHECK from (
+		select a.ID,a.NAME,a.PARENT_ID,a.`ORDER`,0 IS_CHECK from admin_privilege a 
+		where a.ID in ( 
+		select b.ADMIN_PRIVILEGE_ID from admin_role_privilege b 
+		where b.ADMIN_ROLE_ID = #{admin_role_id} )
+		union all 
+		select a.ID,a.NAME,a.PARENT_ID,a.`ORDER`,1 IS_CHECK from 
+		admin_privilege a where a.ID not in ( 
+		select b.ADMIN_PRIVILEGE_ID from admin_role_privilege b where b.ADMIN_ROLE_ID = #{admin_role_id} 
+		)) privileges  ORDER BY `ORDER` ASC
+	</select>
+	
+	<select id="findAdminPrivilegeList" parameterType="map" resultMap="adminPrivilege-sql-map">
+		select ID,NAME,PARENT_ID,URL,IS_SHOW,CODE,`ORDER` from admin_privilege
+		<where>
+			<if test="parent_id != null and parent_id != '' ">
+				PARENT_ID = #{parent_id}
+			</if>
+			<if test="parent_id == null or parent_id == '' ">
+				PARENT_ID IS NULL
+			</if>
+		</where>
+		ORDER BY `ORDER` ASC 
+		<if test="pageStart != null and pageEnd != null ">
+		   LIMIT #{pageStart},#{pageEnd}
+		</if>
+	</select>
+	
+	<select id="findAdminPrivilegeCount" parameterType="map" resultType="int">
+		select count(*) from admin_privilege
+		<where>
+			<if test="parent_id != null and parent_id != '' ">
+				PARENT_ID = #{parent_id}
+			</if>
+			<if test="parent_id == null or parent_id == '' ">
+				PARENT_ID IS NULL
+			</if>
+		</where>
+	</select>
+
+	<select id="findAdminPrivilegeById" parameterType="java.lang.String" resultType="adminPrivilege" >
+		select ID,NAME,PARENT_ID,URL,IS_SHOW,CODE,`ORDER` from admin_privilege 
+		where ID = #{id}
+	</select>
+	
+	<insert id="insertAdminPrivilege" parameterType="adminPrivilege">
+		insert into admin_privilege(
+			ID,NAME,PARENT_ID,URL,IS_SHOW,CODE,`ORDER`,CREATE_TIME
+		)
+		values(#{id},#{name},#{parent_id},#{url},#{is_show},#{code},#{order},now());
+		insert into admin_role_privilege(
+			ID,ADMIN_PRIVILEGE_ID,ADMIN_ROLE_ID
+		)
+		values(#{id},#{id},(select ID from admin_role where is_admin=0));
+	</insert>
+	
+	<insert id="batchInsertAdminPrivilege" parameterType="list">  
+	    insert into admin_privilege(
+			ID,NAME,PARENT_ID,URL,IS_SHOW,CODE,`ORDER`,CREATE_TIME
+		)
+		values
+	    <foreach collection="list" item="item" index="index" separator=",">  
+	        (#{item.id},#{item.name},#{item.parent_id},#{item.url},#{item.is_show},#{item.code},#{item.order},now())
+	    </foreach>  
+    </insert> 
+
+	<update id="updateAdminPrivilege" parameterType="adminPrivilege">
+		update admin_privilege
+		<set>
+			<if test="name != null and name != '' ">
+				NAME = #{name},
+			</if>
+			<if test="url != null and url != '' ">
+				URL = #{url},
+			</if>
+			<if test="is_show != null and is_show != '' ">
+				IS_SHOW = #{is_show},
+			</if>
+			    CODE = #{code},
+			<if test="order != null and order != '' ">
+				`ORDER` = #{order},
+			</if>
+			UPDATE_TIME = now()
+		</set>
+		where ID = #{id}
+	</update>
+	
+	<delete id="batchDeleteAdminPrivilegeById" parameterType="map">
+		delete from admin_privilege where ID IN
+		<foreach collection="ids" item="item" index="index" open="(" separator="," close=")"> 
+		    #{item}
+	    </foreach>  
+	</delete>
+
+	<delete id="deleteAdminPrivilegeById" parameterType="java.lang.String">
+		delete from admin_privilege where ID = #{id} or parent_id = #{id};
+		delete from admin_role_privilege where admin_privilege_id = #{id};
+	</delete>
+	
+	<delete id="deleteAdminPrivilegeAll" >
+		delete from admin_privilege 
+	</delete>
+
+	<!-- 根据角色id获取 他所有的权限 -->
+	<select id="findAdminPrivilegeListByAdminRoleId" parameterType="java.lang.String" resultMap="adminPrivilege-sql-map">
+		SELECT ap.ID,ap.NAME,ap.PARENT_ID,ap.URL FROM admin_privilege ap
+		LEFT JOIN admin_role_privilege arp ON arp.ADMIN_PRIVILEGE_ID=ap.ID
+		WHERE arp.ADMIN_ROLE_ID =#{id}  ORDER BY ap.CODE DESC
+	</select>
+
+	<select id="findAdminPrivilegeParentListByAdminRoleId" parameterType="java.lang.String" resultMap="adminPrivilege-sql-map">
+		SELECT ap.ID,ap.NAME,ap.PARENT_ID,ap.CODE,ap.URL FROM admin_privilege ap
+		LEFT JOIN admin_role_privilege arp ON arp.ADMIN_PRIVILEGE_ID=ap.ID
+		<where>
+			arp.ADMIN_ROLE_ID =#{admin_role_id}
+			<if test="parent_id != null and parent_id != '' ">
+				AND PARENT_ID = #{parent_id}
+			</if>
+			<if test="parent_id == null or parent_id == '' ">
+				AND PARENT_ID IS NULL
+			</if>
+			AND IS_SHOW = 0 
+		</where>
+		ORDER BY `ORDER` ASC
+	</select>
+	
+	<select id="findAdminPrivilegeCodeListByAdminRoleId" parameterType="java.lang.String" resultMap="adminPrivilege-sql-map">
+		SELECT ap.ID,ap.NAME,ap.PARENT_ID,ap.CODE,ap.URL FROM admin_privilege ap
+		LEFT JOIN admin_role_privilege arp ON arp.ADMIN_PRIVILEGE_ID=ap.ID
+		<where>
+			arp.ADMIN_ROLE_ID =#{id}
+			AND ap.CODE is not null 
+			AND ap.CODE != ''
+		</where>
+	</select>
+	
+</mapper>

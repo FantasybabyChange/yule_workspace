@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.company.dao.ICompanyPrivilegeDao">
+
+	<resultMap type="companyPrivilege" id="companyPrivilege-sql-map">
+		<id     property="id"          column="ID" />
+		<result property="parent_id"        column="PARENT_ID" />
+		<result property="company_category_id"        column="COMPANY_CATEGORY_ID" />
+		<result property="name"        column="NAME" />
+		<result property="is_show"        column="IS_SHOW" />
+		<result property="url"         column="URL" />
+		<result property="order"       column="ORDER" />
+		<result property="create_time" column="CREATE_TIME" />
+		<result property="update_time" column="UPDATE_TIME" />
+	</resultMap>
+	<resultMap type="companyUserPrivilegeVO" id="companyUserPrivilegeVO-sql-map">
+		<id     property="id"          column="ID" />
+		<result property="parent_id"        column="PARENT_ID" />
+		<result property="name"        column="NAME" />
+		<result property="privilege_id" column="PRIVILEGE_ID" />
+		<result property="is_show"        column="IS_SHOW" />
+		<result property="is_check" column="IS_CHECK" />
+		<result property="user_id" column="USER_ID" />
+	</resultMap>
+	
+	<select id="findCompanyPrivilegeList" parameterType="map" resultMap="companyPrivilege-sql-map">
+		SELECT ID,PARENT_ID,NAME,URL FROM v_findCompanyPrivilegeListByUserId
+		<where>
+			company_user_id = #{company_user_id} 
+			<if test="is_show != null">
+				and is_show = #{is_show}
+			</if>
+		</where>
+	</select>
+	<select id="findCompanyPrivilegeVOList" parameterType="map" resultMap="companyUserPrivilegeVO-sql-map">
+		SELECT id PRIVILEGE_ID,NAME,is_check,parent_id,is_show FROM(
+			SELECT ca.id,ca.parent_id,ca.name,0 is_check,ca.create_time,ca.order,ca.is_show FROM(SELECT cp.id,cp.name,cp.create_time,cp.parent_id,cp.order,cp.is_show FROM company_privilege cp WHERE cp.company_category_id IS NULL OR cp.company_category_id 
+			IN(SELECT c.company_category_id FROM company c WHERE c.id=#{company_id}))ca WHERE ca.id IN(
+			SELECT company_privilege_id FROM company_user_privilege cp WHERE cp.company_user_id=#{user_id})
+		UNION ALL
+		SELECT ca.id,ca.parent_id,ca.name ,1 is_check,ca.create_time ,ca.order,ca.is_show FROM(SELECT cp.id,cp.name,cp.create_time,cp.parent_id,cp.order,cp.is_show FROM company_privilege cp WHERE cp.company_category_id IS NULL OR cp.company_category_id 
+			IN(SELECT c.company_category_id FROM company c WHERE c.id=#{company_id}))ca WHERE ca.id NOT IN(
+			SELECT company_privilege_id FROM company_user_privilege cp WHERE cp.company_user_id=#{user_id}
+			)) privilege    ORDER BY `ORDER` DESC
+	</select>
+</mapper>

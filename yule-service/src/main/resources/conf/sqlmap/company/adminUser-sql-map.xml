@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.company.dao.IAdminUserDao">
+	<resultMap type="adminUser" id="adminUser-sql-map">
+		<id     property="id"          column="ID" />
+		<result property="admin_role_id"     column="ADMIN_ROLE_ID" />
+		<result property="account"     column="ACCOUNT" />
+		<result property="password"    column="PASSWORD" />
+		<result property="login_time"  column="LOGIN_TIME" />
+		<result property="status"      column="STATUS" />
+		<result property="is_delete"   column="IS_DELETE" />
+		<result property="create_time" column="CREATE_TIME" />
+		<result property="update_time" column="UPDATE_TIME" />
+	</resultMap>
+	<select id="findAdminUserListByRoleIds"  parameterType="list"  resultMap="adminUser-sql-map">
+		SELECT ID FROM admin_user
+			WHERE admin_role_id IN
+			( 
+			<foreach collection="list" item="item" index="index" separator=","> 
+			#{item}
+	    </foreach>
+	    )
+	</select>
+</mapper>
+

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.mobile.dao.ICompanyDao">
+	<resultMap type="company" id="company-sql-map">
+		<id     property="id"                  		column="ID" />
+		<result property="code"                		column="CODE" />
+		<result property="pay_type"                	column="PAY_TYPE" />
+		<result property="commision"                column="COMMISION" />
+		<result property="name"                		column="NAME" />
+		<result property="pinyin"              		column="PINYIN" />
+		<result property="hours"               		column="HOURS" />
+		<result property="details"       	   		column="DETAILS" />
+		<result property="periphery"           		column="PERIPHERY" />
+		<result property="rebast"              		column="REBAST" />
+		<result property="company_grade_id"    		column="COMPANY_GRADE_ID" />
+		<result property="company_category_id" 		column="COMPANY_CATEGORY_ID" />
+		<result property="is_delete"           		column="IS_DELETE" />
+		<result property="create_time"         		column="CREATE_TIME" />
+		<result property="update_time"         		column="UPDATE_TIME" />
+		<result property="warm_prompt"         		column="WARM_PROMPT"/>
+		<result property="min_expense"         		column="MIN_EXPENSE"/>
+		<result property="is_auth"    				column="IS_AUTH" />
+	</resultMap>
+	<select id="findCompanyById"   parameterType="java.lang.String" resultType="company">
+	SELECT a.ID,a.rebast FROM company a 
+		WHERE a.id=#{id}
+	</select>
+	<select id="findCompanys"   parameterType="map" resultMap="company-sql-map">
+	SELECT a.ID,a.rebast,a.name FROM company a
+	ORDER BY a.`CREATE_TIME` ASC 
+	<if test="pageStart != null  and pageEnd != null ">
+		   LIMIT #{pageStart},#{pageEnd}
+		</if>
+	</select>
+	<select id="findCompanyVOById"  parameterType="string"  resultType="companyVO">
+	SELECT c.id AS id,cd.lng,cd.lat,c.hours,cc.name AS company_category_name,cc.id AS company_category_id,cg.name AS company_grade_name,cg.id AS company_grade_id,c.pay_type,c.name AS company_name,c.details,c.warm_prompt,ac.id AS country_id,ac.name AS country_name,ab.name AS business_name,ci.name AS city_name,ci.id AS city_id,ap.name AS province_name,ap.id AS province_id ,cd.address_detail
+		FROM `company` c
+		LEFT JOIN `company_address` cd ON c.id=cd.id
+		LEFT JOIN `area_county` ac  ON cd.area_county_id=ac.id
+		LEFT JOIN `area_business` ab ON cd.area_business_id=ab.id
+		LEFT JOIN `area_city` ci ON  ac.area_city_id=ci.id
+		LEFT JOIN `area_province` ap ON  ci.area_province_id=ap.id
+		LEFT JOIN `company_grade` cg ON cg.id=c.company_grade_id
+		LEFT JOIN `company_category` cc ON cc.id=c.company_category_id
+		WHERE  c.id=#{id}
+	</select>
+</mapper>

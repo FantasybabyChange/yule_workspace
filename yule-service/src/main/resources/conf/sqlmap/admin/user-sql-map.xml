@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.admin.dao.IUserDao">
+
+	<select id="findUserById" parameterType="java.lang.String" resultType="user" >
+		select ID,USER_LEVEL_ID,IMAGE_PATH,CREATE_TIME from user
+		where ID = #{id} 
+	</select>
+	
+	<update id="updateUser" parameterType="user">
+		update user 
+		<set>
+			UPDATE_TIME = now()
+		</set>
+		where ID = #{id}
+	</update>
+	
+	<update id="deleteUserById" parameterType="user">
+		update user set IS_DELETE = #{is_delete}  where ID =#{id}
+	</update>
+	
+	<select id="findUserVOById" resultType="userVO" parameterType="java.lang.String">
+	 	SELECT
+			u.ID   ID,
+			ul.NAME USER_LEVEL_NAME,
+			u.IMAGE_PATH IMAGE_PATH 
+		FROM  
+		    `user` u 
+			left Join user_level ul ON u.USER_LEVEL_ID = ul.ID
+		where u.ID = #{id}  ORDER BY u.CREATE_TIME  DESC 
+	</select>
+	
+</mapper>

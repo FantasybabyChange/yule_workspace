@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="http://static.yuleing.com/www/css/yule.mailautocomplete.css">
+<div class="pup-login-ui" style="width:370px">
+    <div class="pane-wrapper pup-login-ui-wrapper btn">
+        <div class="pane-wrapper-tab-item clearfix active">
+            <div class="alert alert-error" style="display: none;" id="login_message"></div>
+            <form action="http://login.yuleing.com/login.do" method="post" target="login">
+            	<div class="pane-wrapper-tab-item clearfix active" >
+		            <div class="user_access_form" style="width:auto">
+		                <div class="pane-wrapper-tab-list">
+		                    <label>电子邮箱或手机号</label>
+		                    <input type="text" class="input-text w100p" name="account" placeholder="请输入邮箱或手机号" required autofocus autocomplete="off">
+		                </div>
+		                <div class="pane-wrapper-tab-list">
+		                    <label> 密码 <a href="http://login.yuleing.com/findForgetPassword.do" class="forget-pass" target="_blank">忘记密码</a></label>
+		                    <input type="password" class="input-text w100p" name="password" placeholder="请输入密码" required autofocus>
+		                </div>
+		                <div class="pane-wrapper-tab-list" id="login_captcha" style="display:none"></div>
+		                <a href="javascript:;" class="b-button index-order-btn w100p text-center">登录</a>
+		                <div class="user_access_section_trigger_link">
+		                    还没有帐户？<a href="/ajax/register.html"  data-title="注册账户" data-trigger="modal">点击注册</a>
+		                </div>
+		            </div>
+		        </div>
+            </form>
+            <iframe src="about:blank" name="login" id="login" width="1" height="1" style="height:0px;width:1px;overflow:hidden;visibility:hidden;position:absolute;" frameborder="0" border="0"></iframe>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="http://static.yuleing.com/www/js/yule.jquery.mailautocomplete.js"></script>
+<script type="text/javascript" src="http://static.yuleing.com/www/header/js/yule.jquery.user.js"/></script>
+<script type="text/javascript">
+document.domain = 'yuleing.com';
+</script>
+<style type="text/css">
+.modal {
+       margin-left: -200px;
+    margin-top: -200px;
+}
+</style>

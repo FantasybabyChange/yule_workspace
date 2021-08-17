@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.admin.dao.IUserLevelDao">
+
+	<resultMap type="userLevel" id="userLevel-sql-map">
+		<id     property="id"          column="ID" />
+		<result property="name"        column="NAME" />
+		<result property="expense"     column="EXPENSE" />
+		<result property="score_ratio" column="SCORE_RATIO" />
+		<result property="create_time" column="CREATE_TIME" />
+		<result property="update_time" column="UPDATE_TIME" />
+	</resultMap>
+   
+	<select id="findUserLevelList" resultMap="userLevel-sql-map" parameterType="map">
+		select ID,NAME,EXPENSE ,SCORE_RATIO  from user_level ORDER BY EXPENSE  ASC
+		
+	    <if test="pageStart != null  and pageEnd != null">
+		   LIMIT #{pageStart},#{pageEnd}
+		</if>
+	</select>
+	
+	<insert id="insertUserLevel" parameterType="userLevel">
+		insert into user_level(
+		ID,NAME,EXPENSE,SCORE_RATIO,CREATE_TIME
+		)
+		values(
+			#{id},#{name},#{expense},#{score_ratio},now()
+		)
+	</insert>
+	
+	<insert id="batchInsertUserLevel" parameterType="list">
+		insert into user_level(
+		ID,NAME,EXPENSE,SCORE_RATIO,CREATE_TIME
+		)
+		values
+		<foreach collection="list" item="item" index="index" separator=","> 
+		     (#{item.id},#{item.name},#{item.expense},#{item.score_ratio},now()) 
+	    </foreach>   
+	</insert>
+		
+	<update id="updateUserLevel" parameterType="userLevel">
+		update user_level 
+		<set>
+			<if test="name != null and name != '' ">
+				NAME = #{name},
+			</if>
+			<if test="expense != null and expense !='' ">
+				EXPENSE =#{expense},
+			</if>
+			<if test="score_ratio != null ">
+				SCORE_RATIO =#{score_ratio},
+			</if>
+			UPDATE_TIME = now()
+		</set>
+		where ID = #{id}
+	</update>
+	
+	<delete id="deleteUserLevelById" parameterType="java.lang.String">
+		delete from user_level where ID = #{id}
+	</delete>
+	
+	<delete id="deleteUserLevelAll">
+		delete from user_level
+	</delete>
+	
+	<update id="batchUpdateUserLevel" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" separator=";" close=""> 
+			update user_level
+			<set>
+				NAME = #{item.name},
+				EXPENSE = #{item.expense},
+				SCORE_RATIO = #{item.score_ratio},
+				UPDATE_TIME = now()
+			</set>
+			where ID =  #{item.id}
+	    </foreach>  
+	</update>
+</mapper>

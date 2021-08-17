@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.admin.dao.IAdminRolePrivilegeDao">
+	
+	<resultMap type="adminRolePrivilege" id="adminRolePrivilege-sql-map">
+		<id     property="id"          			  column="ID" />
+		<id     property="admin_role_id"          column="ADMIN_ROLE_ID" />
+		<result property="admin_privilege_id"     column="ADMIN_PRIVILEGE_ID" />
+	</resultMap>
+	
+	<sql id="adminRolePrivilege_first">
+		ID,ADMIN_PRIVILEGE_ID,ADMIN_ROLE_ID
+	</sql>
+	
+	<select id="findAdminRoleIdListByAdminPrivilegeId" parameterType="string" resultMap="adminRolePrivilege-sql-map">
+		select admin_role_id from admin_role_privilege 
+		where admin_privilege_id = #{adminPrivilegeId}
+	</select>
+
+	<update id="updateAdminRolePrivilege" parameterType="map">
+		delete from admin_role_privilege where admin_role_id = #{adminRoleId};
+		insert into admin_role_privilege(
+			<include refid="adminRolePrivilege_first" />
+		)
+		values 
+		<foreach collection="adminRolePrivileges" item="item" index="index" separator=","> 
+		     (#{item.id}, #{item.admin_privilege_id},#{adminRoleId}) 
+	    </foreach>;
+	</update>
+	
+	<insert id="batchInsertAdminRolePrivilege" parameterType="list">
+		insert into admin_role_privilege(
+			<include refid="adminRolePrivilege_first" />
+		)
+		values 
+		<foreach collection="list" item="item" index="index" separator=","> 
+		     (#{item.id}, #{item.admin_privilege_id},#{item.admin_role_id}) 
+	    </foreach>  
+	</insert>
+	
+	<delete id="deleteAdminRolePrivilegeAll">
+		delete from admin_role_privilege
+	</delete>
+	
+</mapper>

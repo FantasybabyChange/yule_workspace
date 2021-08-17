@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//zh-CN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/select2.css">
+</head>
+
+<body>
+    <div id="header-full">
+        <div role="navigation" id="menu-bar" class="cont-shadow">
+            <div class="g clearfix">
+                <ul class="right-nav">
+                    <li class="nav-item">
+                        <a data-trigger="ajax" href="ajax/histroy.html" data-target=".ajax-histroy-content" class="nav-item-a nav-histroy">最近浏览</a>
+                        <div class="ajax-content ajax-histroy">
+                            <div class="ajax-arr"></div>
+                            <div class="ajax-histroy-content"></div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a data-trigger="ajax" href="ajax/histroy.html" data-target=".ajax-fav-content" class="nav-item-a nav-fav">
+                            <img src="images/fav-icon.png">我的收藏</a>
+                        <div class="ajax-content ajax-histroy">
+                            <div class="ajax-arr"></div>
+                            <div class="ajax-fav-content"></div>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a href="ajax/login.html" data-trigger="modal" data-title="用户登录" class="nav-item-a nav-login">登录或注册账户</a>
+                    </li>
+                    <li class="nav-item"><a href="#" class="nav-item-a  nav-order-list">管理订单</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col clearfix mt-10">
+        <div class="user-center-left">
+            <ul>
+                <li><a href="#" class="user-icon-1">个人中心</a>
+                </li>
+                <li><a href="#" class="user-icon-2 cur">我的订单</a>
+                </li>
+                <li><a href="#" class="user-icon-3">我的收藏</a>
+                </li>
+                <li><a href="#" class="user-icon-4">浏览历史</a>
+                </li>
+                <li><a href="#" class="user-icon-5">设置</a>
+                </li>
+            </ul>
+        </div>
+        <div class="user-center-right">
+            <h2 class="user-center-title">我的订单</h2>
+            <div class="user-filter clearfix">
+
+                <li>
+                    <div class="user-filter-title">时间</div>
+                    <select class="user-choice-select" data-trigger="select" placeholder="点击此处选择主题">
+                        <option selected>所有预订</option>
+                        <option>一天前</option>
+                        <option>三天前</option>
+                        <option>最近一个月</option>
+                    </select>
+                </li>
+
+                <li>
+                    <div class="user-filter-title">类型</div>
+                    <select class="user-choice-select" data-trigger="select" placeholder="点击此处选择主题">
+                        <option selected>酒店</option>
+                        <option>KTV</option>
+                        <option>酒吧</option>
+                    </select>
+                </li>
+            </div>
+                <div class="caption">订单列表</div>
+            <table class="order-list-table">
+            
+                <thead>
+                    <tr>
+                        <th>产品信息</th>
+                        <th>预订时间</th>
+                        <th>消费时间</th>
+                        <th class="w100">状态</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="#">五脚基旅馆中国城2号店</a></td>
+                        <td>2014-10-2</td> 
+                         <td>2014-10-1 19:00</td>
+                        <td><span class="red">未消费</span>
+                        <span class="green">已消费</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+    <div class="footer">
+        <div class="g">
+            <ul class="footer-nav">
+                <li><a href="#">管理预订</a>
+                </li>
+                <li><a href="#">客户服务</a>
+                </li>
+                <li><a href="#">成为合作伙伴</a>
+                </li>
+                <li><a href="#">成为会员伙伴</a>
+                </li>
+
+            </ul>
+            <div class="apps">
+                <span class="text">下载我们的应用：</span>
+                <span class="logo">
+                    <a href="http://itunes.apple.com/app/id284971959" target="_blank" class="ios"></a>
+                    <a href="https://market.android.com/details?id=com.hcom.android" target="_blank" class="android"></a>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="footer-other">
+        <div class="g admin-login">
+            <a href="#">后台登录</a>
+        </div>
+        <div class="g copyright">
+            <p>版权 © 1996–2014Booking.com™. 版权所有.</p>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/slides.js"></script>
+    <script type="text/javascript" src="js/ajax.js"></script>
+    <script type="text/javascript" src="js/modal.js"></script>
+    <script type="text/javascript" src="js/panes.js"></script>
+    <script type="text/javascript" src="js/tab.js"></script>
+    <script type="text/javascript" src="js/imagePreview.js"></script>
+    <script type="text/javascript" src="js/select2.js"></script>
+    <script type="text/javascript" src="js/collapse.js"></script>
+    <script src="js/slides.min.jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="js/l.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        $('.detailAblum').slides({
+            effect: 'slide, fade',
+            crossfade: true,
+            slideSpeed: 350,
+            fadeSpeed: 500,
+            generateNextPrev: true,
+            generatePagination: false
+        });
+    });
+    </script>
+</body>
+
+</html>

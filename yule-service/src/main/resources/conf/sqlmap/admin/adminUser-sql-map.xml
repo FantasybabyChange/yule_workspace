@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.admin.dao.IAdminUserDao">
+	<resultMap type="adminUser" id="adminUser-sql-map">
+		<id     property="id"          column="ID" />
+		<result property="admin_role_id"     column="ADMIN_ROLE_ID" />
+		<result property="account"     column="ACCOUNT" />
+		<result property="password"    column="PASSWORD" />
+		<result property="login_time"  column="LOGIN_TIME" />
+		<result property="status"      column="STATUS" />
+		<result property="is_delete"   column="IS_DELETE" />
+		<result property="create_time" column="CREATE_TIME" />
+		<result property="update_time" column="UPDATE_TIME" />
+	</resultMap>
+	
+	<resultMap type="adminUserVO" id="adminUserVO-sql-map">
+		<id     property="id"          column="ID" />
+		<result property="admin_role_id"     column="ADMIN_ROLE_ID" />
+		<result property="is_admin"     column="IS_ADMIN" />
+		<result property="account"     column="ACCOUNT" />
+		<result property="password"    column="PASSWORD" />
+		<result property="login_time"  column="LOGIN_TIME" />
+		<result property="status"      column="STATUS" />
+	</resultMap>
+
+	<select id="findAdminUserList"  parameterType="map"  resultMap="adminUser-sql-map">
+		select u.ID,u.ADMIN_ROLE_ID,u.ACCOUNT,u.PASSWORD,u.LOGIN_TIME,u.STATUS from (
+		select a.ID,a.ADMIN_ROLE_ID,a.ACCOUNT,a.PASSWORD,a.LOGIN_TIME,a.STATUS,a.CREATE_TIME from admin_user a 
+		WHERE a.ADMIN_ROLE_ID is null
+		AND a.IS_DELETE=0 
+		union all
+		select a.ID,a.ADMIN_ROLE_ID,a.ACCOUNT,a.PASSWORD,a.LOGIN_TIME,a.STATUS,a.CREATE_TIME from admin_user a 
+		WHERE a.ADMIN_ROLE_ID !=  (select b.ID from admin_role b WHERE b.IS_ADMIN=0)
+		AND a.IS_DELETE=0 
+		) u ORDER BY u.CREATE_TIME DESC
+	    LIMIT #{pageStart},#{pageEnd}
+	</select>
+
+	<select id="findAdminUserCount" resultType="int">
+		select count(u.ID) from (
+		select a.ID,a.ADMIN_ROLE_ID,a.ACCOUNT,a.PASSWORD,a.LOGIN_TIME,a.STATUS,a.CREATE_TIME from admin_user a 
+		WHERE a.ADMIN_ROLE_ID is null
+		AND a.IS_DELETE=0 
+		union all
+		select a.ID,a.ADMIN_ROLE_ID,a.ACCOUNT,a.PASSWORD,a.LOGIN_TIME,a.STATUS,a.CREATE_TIME from admin_user a 
+		WHERE a.ADMIN_ROLE_ID !=  (select b.ID from admin_role b WHERE b.IS_ADMIN=0)
+		AND a.IS_DELETE=0 
+		) u
+	</select>	
+	
+	<select id="findAdminUserById" parameterType="java.lang.String" resultType="adminUser" >
+		select a.ID,a.ADMIN_ROLE_ID,a.ACCOUNT,a.PASSWORD,a.LOGIN_TIME,a.STATUS from admin_user a
+		where a.ID = #{id} and a.IS_DELETE = 0
+	</select>
+	
+	<select id="findAdminUserCountByAccount" parameterType="java.lang.String" resultType="int" >
+		select count(a.ID) from admin_user a
+		where a.ACCOUNT = #{account} and a.IS_DELETE = 0
+	</select>
+	
+	<select id="findAdminUserByAccount" parameterType="java.lang.String" resultType="adminUser" >
+		select a.ID,a.ACCOUNT,a.PASSWORD,a.STATUS from admin_user a
+		where a.ACCOUNT = #{account} and a.IS_DELETE = 0
+	</select>
+
+	<select id="findAdminUserVOById" parameterType="java.lang.String" resultType="adminUserVO" >
+		select a.ID,a.ADMIN_ROLE_ID,b.IS_ADMIN,a.ACCOUNT,a.PASSWORD,a.LOGIN_TIME,a.STATUS from admin_user a
+		left join admin_role b on a.ADMIN_ROLE_ID = b.ID
+		where a.ID = #{id} and a.IS_DELETE = 0
+	</select>
+
+	<select id="findAdminUserVOByAccount" parameterType="String" resultType="adminUserVO">
+		select a.ID,a.ADMIN_ROLE_ID,b.IS_ADMIN,a.ACCOUNT,a.PASSWORD,a.STATUS from admin_user a
+		left join admin_role b on a.ADMIN_ROLE_ID = b.ID
+		where a.ACCOUNT = #{account} and a.IS_DELETE = 0
+	</select>
+
+	<insert id="insertAdminUser"  parameterType="adminUser">
+		insert into admin_user(
+		ID,ADMIN_ROLE_ID,ACCOUNT,PASSWORD,LOGIN_TIME,STATUS,IS_DELETE,CREATE_TIME
+		)
+		values(#{id},#{admin_role_id},#{account},#{password},#{login_time},#{status},#{is_delete},now())
+	</insert>
+
+	<update id="updateAdminUser" parameterType="adminUser">
+		update admin_user
+		<set>
+			<if test="admin_role_id != null and admin_role_id != '' ">
+				ADMIN_ROLE_ID = #{admin_role_id},
+			</if>
+			<if test="account != null and account != '' ">
+				ACCOUNT = #{account},
+			</if>
+			<if test="password != null and password != '' ">
+				PASSWORD = #{password},
+			</if>
+			<if test="login_time != null and login_time != '' ">
+			    LOGIN_TIME = #{login_time},
+			</if>
+			<if test="status != null and status != '' ">
+				STATUS = #{status},
+			</if>
+			<if test="is_delete != null and is_delete != '' ">
+				IS_DELETE = #{is_delete},
+			</if>
+			UPDATE_TIME=now() , LOGIN_TIME=now()
+		</set>
+		where ID = #{id}
+	</update>
+
+	<delete id="deleteAdminUserById" parameterType="java.lang.String">
+		update admin_user set is_delete = 1 where ID = #{id}
+	</delete>
+	
+	<delete id="deleteAdminUserAll" >
+		delete from admin_user 
+	</delete>
+
+    <!-- 根据角色id 获取 用户信息 -->
+	<select id="findAdminUserByAdminRoleId" parameterType="java.lang.String" resultMap="adminUser-sql-map">
+		SELECT a.ID,a.ACCOUNT,a.STATUS FROM admin_user a WHERE ar.ADMIN_ROLE_ID=#{id} and IS_DELETE = 0
+	</select>
+	
+</mapper>

@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<user>
+	<level id="100001" name="乐家"  expense="0" score_ratio="0"/>
+	<level id="100002" name="预乐家"  expense="10000" score_ratio="10" />
+	<level id="100003" name="大预乐家"  expense="50000" score_ratio="30"/>
+	<level id="100004" name="超级预乐家"  expense="100000" score_ratio="50"/>
+</user>

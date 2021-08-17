@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.admin.dao.IAreaProvinceDao">
+
+	<resultMap type="areaProvince" id="areaProvince-sql-map">
+		<id     property="id"   column="ID" />
+		<result property="name" column="NAME" />
+	</resultMap>
+	
+	<sql id="areaProvince_first">
+		ID,NAME
+	</sql>
+
+	<select id="findAreaProvinceList" resultMap="areaProvince-sql-map">
+		select ID,NAME from area_province order by ID asc
+	</select>
+
+	<select id="findAreaProvinceCount" resultType="int">
+		select count(*) from area_province
+	</select>
+
+	<insert id="insertAreaProvince" parameterType="areaProvince">
+		insert into area_province(
+		<include refid="areaProvince_first" />
+		)
+		values(#{id}, #{name})
+	</insert>
+	
+	<insert id="batchInsertAreaProvince" parameterType="list">  
+	    insert into area_province(
+		<include refid="areaProvince_first" />
+		)
+		values
+	    <foreach collection="list" item="item" index="index" separator=",">  
+	        (#{item.id},#{item.name})
+	    </foreach>  
+    </insert> 
+    
+    <delete id="deleteAreaProvinceAll">
+		truncate table area_province 
+	</delete>
+
+	<update id="updateAreaProvince" parameterType="areaProvince">
+		update area_province
+		<set>
+			<if test="name != null and name!=''">
+				NAME = #{name}
+			</if>
+		</set>
+		where ID = #{id}
+	</update>
+
+	<delete id="deleteAreaProvinceById" parameterType="java.lang.String">
+		delete from area_province where ID = #{id}
+	</delete>
+
+</mapper>

@@ -1,0 +1,114 @@
+<link rel="stylesheet" href="http://static.yuleing.com/www/css/yule.mailautocomplete.css">
+<div class="pup-login-ui" style="width:370px">
+    <div class="pane-wrapper pup-login-ui-wrapper btn">
+        <div class="pane-wrapper-tab-item clearfix active">
+        	<div class="alert alert-error" style="display: none;" id="register_message"></div>
+        	<!-- 
+        	<div class="form-subsection" style="float:none; margin-left:0px;margin-bottom:20px">
+                <div class="form-usp-block">
+                    <p class="form-header-p">快捷、免费又安全！</p>
+                    <ul class="user_access_menu_usps">
+                        <li>修改预订</li>
+                        <li>个性化设置您的优惠</li>
+                        <li>更快速地预订</li>
+                    </ul>
+                </div>
+            </div>
+             -->
+            <form action="http://login.yuleing.com/register.do" method="post" target="register" validform="">
+            	<div class=" user_access_form" style="width:auto">
+	                <div class="pane-wrapper-tab-list">
+	                    <label>电子邮箱或手机号</label>
+	                    <input type="text" class="input-text w100p" name="account" placeholder="请输入邮箱或手机号" required autofocus autocomplete="off">
+	                </div>
+	                <div class="pane-wrapper-tab-list">
+	                    <label>密码</label>
+	                    <input type="password" class="input-text w100p" name="password" placeholder="请输入密码" required autofocus>
+	                </div>
+	                <div class="user_access_password_strength input-xlarge ">
+                        <div class="pass_strength_bar pass_strength_progress" ></div>
+                        <div class="pass_strength_bar pass_strength_steps">
+                            <div class="pass_strength_step"></div>
+                            <div class="pass_strength_step"></div>
+                            <div class="pass_strength_step"></div>
+                            <div class="pass_strength_step"></div>
+                            <div class="pass_strength_step"></div>
+                            <div class="pass_strength_step"></div>
+                            <div class="pass_strength_step"></div>
+                            <div class="pass_strength_step"></div>
+                            <div class="pass_strength_step"></div>
+                            <div class="pass_strength_step"></div>
+                        </div>
+                    </div>
+                    <div class="pane-wrapper-tab-list">
+                    	<label>验证码</label>
+	                    <input type="text" class="input-text" style="width:130px" name="captcha" placeholder="请输入验证码" required autofocus>
+	                    <img alt="验证码" title="验证码" style="cursor: pointer;" src="http://login.yuleing.com/captcha.jpg" data-src="http://login.yuleing.com/captcha.jpg" />
+	                </div>
+	                <a href="javascript:;" class="b-button index-order-btn w100p text-center">创建我的账户</a>
+	                <div class="user_access_section_trigger_link">
+	                    	已有帐户？<a href="ajax/login.html" data-title="登录yuleing.com" data-trigger="modal">点击登录</a>
+	                </div>
+	                <div class="user_access_section_trigger_link">
+	                   	 拥有帐户表示您同意本公司的<a href="#">条件和条款</a>以及<a href="#">隐私声明</a>
+	                </div>
+	            </div>
+            </form>
+            <iframe src="about:blank" name="register" id="register" width="1" height="1" style="height:0px;width:1px;overflow:hidden;visibility:hidden;position:absolute;" frameborder="0" border="0"></iframe>
+        </div>
+        
+        <div class="pane-wrapper-tab-item clearfix" id="phone_div">
+            <div class="alert alert-error" style="display: none;" id="register_phone_auth_message"></div>
+            <form action="http://login.yuleing.com/registerPhoneAuthActivation.do" method="post" target="register_phone_auth">
+	            <div class="pull-left user_access_form">
+	            	<p class="user_access_form-title">手机认证</p>
+	                <div class="pane-wrapper-tab-list">
+						 验证码已发送至<span id="account"></span>,请在24小时内完成验证。
+	                   	 <input type="text" class="input-text" name="captcha" >
+	                </div>
+	                <a href="javascript:;" class="b-button index-order-btn">完成注册</a>
+	            </div>
+            </form>
+            <div class="form-subsection">
+                <div class="form-usp-block">
+                    <p class="form-header-p">没有收到验证码？您可以</p>
+                    <a href="javascript:;" data-captcha="" ><span id="phoneCount"></span>重新获取验证码</a>
+                </div>
+            </div>
+            <iframe src="about:blank" name="register_phone_auth" id="register_phone_auth" width="1" height="1" style="height:0px;width:1px;overflow:hidden;visibility:hidden;position:absolute;" frameborder="0" border="0"></iframe>
+            <form action="http://login.yuleing.com/phoneCaptcha.do" method="post" target="phone_captcha"></form>
+            <iframe src="about:blank" name="phone_captcha" id="phone_captcha" width="1" height="1" style="height:0px;width:1px;overflow:hidden;visibility:hidden;position:absolute;" frameborder="0" border="0"></iframe>
+        </div>
+        
+        <div class="pane-wrapper-tab-item clearfix" id="mail_div">
+	           <div class="pull-left user_access_form">
+	           	<p class="user_access_form-title">邮箱认证</p>
+	               <div class="pane-wrapper-tab-list">
+					验证邮件已发送至<span id="account"></span>,请查收并按邮件指示完成注册。
+	               </div>
+	               <a href="javascript:;" class="b-button index-order-btn" >请前往邮箱按照邮件提示完成注册</a>
+	           </div>
+            <div class="form-subsection">
+                <div class="form-usp-block">
+                    <p class="form-header-p">没有收到验证码？您可以</p>
+                    <a href="javascript:;" data-captcha="" ><span id="mailCount"></span>重新获取验证码</a>
+                </div>
+            </div>
+            <form action="http://login.yuleing.com/mailCaptcha.do" method="post" target="mail_captcha"></form>
+            <iframe src="about:blank" name="mail_captcha" id="mail_captcha" width="1" height="1" style="height:0px;width:1px;overflow:hidden;visibility:hidden;position:absolute;" frameborder="0" border="0"></iframe>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="http://static.yuleing.com/www/js/yule.jquery.mailautocomplete.js" ></script>
+<script type="text/javascript" src="http://static.yuleing.com/www/header/js/yule.jquery.captcha.js"></script>
+<script type="text/javascript" src="http://static.yuleing.com/www/header/js/yule.jquery.user.js"></script>
+<script type="text/javascript" src="http://static.yuleing.com/www/js/yule.jquery.passStrength.js"></script>
+<script type="text/javascript">
+document.domain = 'yuleing.com';
+</script>
+<style type="text/css">
+.modal {
+       margin-left: -200px;
+    margin-top: -300px;
+}
+</style>

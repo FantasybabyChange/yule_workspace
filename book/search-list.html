@@ -1,0 +1,511 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//zh-CN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/select2.css">
+</head>
+
+<body>
+    <div id="header-full">
+        <div role="navigation" id="menu-bar" class="cont-shadow">
+            <div class="g clearfix">
+                <ul class="right-nav">
+                    <li class="nav-item">
+                        <a data-trigger="ajax" href="ajax/histroy.html" data-target=".ajax-histroy-content" class="nav-item-a nav-histroy">最近浏览</a>
+                        <div class="ajax-content ajax-histroy">
+                            <div class="ajax-arr"></div>
+                            <div class="ajax-histroy-content"></div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a data-trigger="ajax" href="ajax/histroy.html" data-target=".ajax-fav-content" class="nav-item-a nav-fav">
+                            <img src="images/fav-icon.png">我的收藏</a>
+                        <div class="ajax-content ajax-histroy">
+                            <div class="ajax-arr"></div>
+                            <div class="ajax-fav-content"></div>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a href="ajax/login.html" data-trigger="modal" data-title="用户登录" class="nav-item-a nav-login">登录或注册账户</a>
+                    </li>
+                    <li class="nav-item"><a href="#" class="nav-item-a  nav-order-list">管理订单</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="breadcrumb clearfix">
+        <div class="g clearfix">
+            <div class="breadcrumb-item">
+                <p><a href="#">首页</a>
+                    <span>→</span>
+                </p>
+            </div>
+            <div class="breadcrumb-item">
+                <p><a href="#">北京</a> 
+                    <span>→</span>
+                </p>
+                <p class="breadcrumb-tips">6,744个住宿</p>
+            </div>
+            <div class="breadcrumb-item">
+                <p><a href="#">北京</a> 
+                </p>
+                <p class="breadcrumb-tips">6,744个住宿</p>
+            </div>
+            <div class="recent-order-status">（在过去的5分钟内） 82位来自中国的客人进行了预订</div>
+        </div>
+    </div>
+    <div class="col clearfix">
+        <div class="col-s-left">
+            <div class="search-wapper mb15">
+                <form>
+                    <div class="search-wapper-top">
+                        <h3 class="c-form-title mb15">
+                            <span class="c-form-title__text f24">搜索</span>
+                        </h3>
+                        <h4>
+                            <label for="destination">目的地/酒店名称：</label>
+                        </h4>
+                        <div class="input-wrapper">
+                            <input class="input-style w195" autocomplete="off" type="text" placeholder="例如：西安" id="destination" name="ss" value="西安">
+                        </div>
+                        <div class="from-btn clearfix">
+                            <button class="b-button f24  pull-right br6" type="submit">
+                                <span class="b-button__text">搜索</span>
+                            </button>
+                        </div>
+                    </div>
+                    <!--  <div class="search-wapper-bottom">
+                        <h3 class="c-form-title mb15">
+                            <span class="c-form-title__text f24">您的搜索</span>
+                        </h3>
+                        <h4>
+                            <label for="destination">地区：西安</label>
+                        </h4>
+                        <div class="text-right clearfix">
+                            <a href="#" class="b-button  index-order-btn">更改搜索</a>
+                        </div>
+                        </h3>
+                    </div> -->
+                </form>
+            </div>
+            <div class="filters">
+                <h3 class="filter_by">通过以下分类搜索：</h3>
+                <div class="filterbox-list">
+                    <div class="filterbox">
+                        <div class="filterbox-title active" data-trigger="collapse"><i class="arrow_icon use_sprites"></i>星级</div>
+                        <div class="collapsible">
+                            <a class="filterelement active" href="#">
+                                <div class="filter_item css-checkbox">
+                                    <span class="filter_label">0元 - 419元</span>
+                                </div>
+                            </a>
+                            <a class="filterelement" href="#">
+                                <div class="filter_item css-checkbox">
+                                    <span class="filter_label">420元 - 829元</span>
+                                </div>
+                            </a>
+                            <a class="filterelement" href="#">
+                                <div class="filter_item css-checkbox">
+                                    <span class="filter_label">830元 - 1,299元</span>
+                                </div>
+                            </a>
+                            <a class="filterelement" href="#">
+                                <div class="filter_item css-checkbox">
+                                    <span class="filter_label">1,300元 - 1,699元</span>
+                                </div>
+                            </a>
+                            <a class="filterelement" href="#">
+                                <div class="filter_item css-checkbox">
+                                    <span class="filter_label">1,700元起</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="filterbox">
+                        <div class="filterbox-title" data-trigger="collapse"><i class="arrow_icon use_sprites"></i>住处类型</div>
+                        <div class="collapsible" style="display: none;">
+                            <a class="filterelement " href="#">
+                                <div class="filter_item css-checkbox">
+                                    <span class="filter_label">酒店</span>
+                                </div>
+                            </a>
+                            <a class="filterelement" href="#">
+                                <div class="filter_item css-checkbox">
+                                    <span class="filter_label">旅舍</span>
+                                </div>
+                            </a>
+                            <a class="filterelement" href="#">
+                                <div class="filter_item css-checkbox">
+                                    <span class="filter_label">公寓</span>
+                                </div>
+                            </a>
+                            <a class="filterelement" href="#">
+                                <div class="filter_item css-checkbox">
+                                    <span class="filter_label">旅馆</span>
+                                </div>
+                            </a>
+                            <a class="filterelement" href="#">
+                                <div class="filter_item css-checkbox">
+                                    <span class="filter_label">住宿加早餐旅馆</span>
+                                </div>
+                            </a>
+                            <a class="filterelement" href="#">
+                                <div class="filter_item css-checkbox">
+                                    <span class="filter_label">别墅/度假屋</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="filterbox">
+                        <div class="filterbox-title " data-trigger="collapse"><i class="arrow_icon use_sprites"></i>评分</div>
+                        <div class="collapsible" style="display: none;">
+                            <a class="filterelement " href="#">
+                                <div class="filter_item css-checkbox">
+                                    <span class="filter_label">好极了：9分以上</span>
+                                </div>
+                            </a>
+                            <a class="filterelement" href="#">
+                                <div class="filter_item css-checkbox">
+                                    <span class="filter_label">非常好：8分以上</span>
+                                </div>
+                            </a>
+                            <a class="filterelement" href="#">
+                                <div class="filter_item css-checkbox">
+                                    <span class="filter_label">好：7分以上</span>
+                                </div>
+                            </a>
+                            <a class="filterelement" href="#">
+                                <div class="filter_item css-checkbox">
+                                    <span class="filter_label">令人愉悦：6分以上</span>
+                                </div>
+                            </a>
+                            <a class="filterelement" href="#">
+                                <div class="filter_item css-checkbox">
+                                    <span class="filter_label">尚无评分</span>
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="history">
+                <span class="history-del"></span>
+                <h3>我浏览过的酒店</h3>
+                <ul class="history-list-2">
+                    <li class="history-list-item history-list-item-list clearfix">
+                        <span class="history-list-del"></span>
+                        <a href="/city/cn/shanghai.zh-cn.html?sid=b02dab10595e6485e28e61112667ffe0;dcid=1;city=-1924465;ilp=1">
+                            <img src="http://r-cc.bstatic.com/images/city/square100/120/120034.jpg" data-trigger="preview" data-href="http://r-cc.bstatic.com/images/hotel/max300/112/11294808.jpg" data-title="上海 中国 酒店" alt="上海 中国 酒店" title="位于上海的酒店, 中国" width="30" height="30">
+                        </a>
+                        <p><a href="#" class="history-list-title">五脚基旅馆中国城</a> <i class="b-sprite stars ratings_stars_2_sm" title="5星级"></i>
+                        </p>
+                        <span class="lastbooking">最新的预订：27分钟之前</span>
+                         <p>1位客人正在浏览这家酒店。</p>
+                    </li>
+                    <li class="history-list-item history-list-item-list clearfix">
+                        <span class="history-list-del"></span>
+                        <a href="/city/cn/shanghai.zh-cn.html?sid=b02dab10595e6485e28e61112667ffe0;dcid=1;city=-1924465;ilp=1">
+                            <img src="http://r-cc.bstatic.com/images/city/square100/120/120034.jpg" data-trigger="preview" data-href="http://r-cc.bstatic.com/images/hotel/max300/112/11294808.jpg" data-title="上海 中国 酒店" alt="上海 中国 酒店" title="位于上海的酒店, 中国" width="30" height="30">
+                        </a>
+                        <p><a href="#" class="history-list-title">五脚基旅馆中国城</a> <i class="b-sprite stars ratings_stars_2_sm" title="5星级"></i>
+                        </p>
+                        <span class="lastbooking">最新的预订：27分钟之前</span>
+                         <p>1位客人正在浏览这家酒店。</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-s-right">
+            <div class="sr_header">
+                <h1>成都共有310个住处有空房。</h1>
+                <p class="property_types_filters_links">
+                    <a href="#">
+                        <span class="filter_count">377</span>
+                        酒店
+                    </a>
+                    <a href="#">
+                        <span class="filter_count">41</span>
+                        旅舍
+                    </a>
+                    <a href="#">
+                        <span class="filter_count">41</span>
+                        宾馆
+                    </a>
+                    <a href="#">
+                        <span class="filter_count">57</span>
+                        公寓
+                    </a>
+                    <a href="#">
+                        <span class="filter_count">7</span>
+                        旅馆
+                    </a>
+                    <a href="#">
+                        <span class="filter_count">1</span>
+                        民宿
+                    </a>
+                </p>
+                <h2>
+                    <span>
+                        显示结果
+                        <span class="sr_showed_amount_first">1</span>-
+                        <span class="sr_showed_amount_last">15</span>（按距离排序）
+                    </span>
+                </h2>
+            </div>
+            <div class="sort_by">
+                <ul class="sort_option_list bar clearfix">
+                    <li class="sort_category selected">受推荐的</li>
+                    <li class="sort_category"><a href="#">星级<i class="b-sprite down_dark"></i></a>
+                    </li>
+                    <li class="sort_category"><a href="#">距离<i class="b-sprite down_dark"></i></a>
+                    </li>
+                    <li class="sort_category"><a href="#">评分<i class="b-sprite down_dark"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <div id="hotellist_inner">
+
+                <div class="sr_item clearfix">
+                    <div class="sr_item_photo pull-left">
+                        <img class="hotel_image" src="http://q-cc.bstatic.com/images/hotel/square150/732/7329329.jpg" width="150" height="150" alt="花样年·隆堡成都酒店 (豪华套房酒店)">
+                    </div>
+                    <div class="sr_item_content">
+                            <div class="recommendation-item-right">
+                                <p class="f20 index-scorewordspan mb0">非常好 8.3</p>
+                                <p>分数来自1216个评分</p>
+                                <a href="#" class="b-button index-order-btn mt10">现在就预定</a>
+                            </div>
+                        <p><a href="#" class="history-list-title">五脚基旅馆中国城2号店</a> <i class="b-sprite stars ratings_stars_5" title="5星级"></i></p>
+                        <span class="feataddress">民生东路一段28号, 中山区, 台北</span>
+                       <p class="sr_no_desc_users">2位客人正在浏览这家酒店。</p>
+                        <span class="lastbooking">最新的预订：27分钟之前</span>
+                       <p><a href="#"><strong>另外2种客房类型</strong></a> <i class="b-sprite inline-block arrow_grey_sm"></i></p>
+                    </div>
+
+                </div>
+               <div class="sr_item clearfix">
+                    <div class="sr_item_photo pull-left">
+                        <img class="hotel_image" src="http://q-cc.bstatic.com/images/hotel/square150/732/7329329.jpg" width="150" height="150" alt="花样年·隆堡成都酒店 (豪华套房酒店)">
+                    </div>
+                    <div class="sr_item_content">
+                            <div class="recommendation-item-right">
+                                <p class="f20 index-scorewordspan mb0">非常好 8.3</p>
+                                <p>分数来自1216个评分</p>
+                                <a href="#" class="b-button index-order-btn mt10">现在就预定</a>
+                            </div>
+                        <p><a href="#" class="history-list-title">五脚基旅馆中国城2号店</a> <i class="b-sprite stars ratings_stars_5" title="5星级"></i></p>
+                        <span class="feataddress">民生东路一段28号, 中山区, 台北</span>
+                       <p class="sr_no_desc_users">2位客人正在浏览这家酒店。</p>
+                        <span class="lastbooking">最新的预订：27分钟之前</span>
+                       <p><a href="#"><strong>另外2种客房类型</strong><i class="b-sprite inline-block arrow_grey_sm"></i></a></p>
+                    </div>
+
+                </div>
+               <div class="sr_item clearfix">
+                    <div class="sr_item_photo pull-left">
+                        <img class="hotel_image" src="http://q-cc.bstatic.com/images/hotel/square150/732/7329329.jpg" width="150" height="150" alt="花样年·隆堡成都酒店 (豪华套房酒店)">
+                    </div>
+                    <div class="sr_item_content">
+                            <div class="recommendation-item-right">
+                                <p class="f20 index-scorewordspan mb0">非常好 8.3</p>
+                                <p>分数来自1216个评分</p>
+                                <a href="#" class="b-button index-order-btn mt10">现在就预定</a>
+                            </div>
+                        <p><a href="#" class="history-list-title">五脚基旅馆中国城2号店</a> <i class="b-sprite stars ratings_stars_5" title="5星级"></i></p>
+                        <span class="feataddress">民生东路一段28号, 中山区, 台北</span>
+                       <p class="sr_no_desc_users">2位客人正在浏览这家酒店。</p>
+                        <span class="lastbooking">最新的预订：27分钟之前</span>
+                       <p><a href="#"><strong>另外2种客房类型</strong><i class="b-sprite inline-block arrow_grey_sm"></i></a></p>
+                    </div>
+
+                </div>
+               <div class="sr_item clearfix">
+                    <div class="sr_item_photo pull-left">
+                        <img class="hotel_image" src="http://q-cc.bstatic.com/images/hotel/square150/732/7329329.jpg" width="150" height="150" alt="花样年·隆堡成都酒店 (豪华套房酒店)">
+                    </div>
+                    <div class="sr_item_content">
+                            <div class="recommendation-item-right">
+                                <p class="f20 index-scorewordspan mb0">非常好 8.3</p>
+                                <p>分数来自1216个评分</p>
+                                <a href="#" class="b-button index-order-btn mt10">现在就预定</a>
+                            </div>
+                        <p><a href="#" class="history-list-title">五脚基旅馆中国城2号店</a> <i class="b-sprite stars ratings_stars_5" title="5星级"></i></p>
+                        <span class="feataddress">民生东路一段28号, 中山区, 台北</span>
+                       <p class="sr_no_desc_users">2位客人正在浏览这家酒店。</p>
+                        <span class="lastbooking">最新的预订：27分钟之前</span>
+                       <p><a href="#"><strong>另外2种客房类型</strong><i class="b-sprite inline-block arrow_grey_sm"></i></a></p>
+                    </div>
+
+                </div>
+               <div class="sr_item clearfix">
+                    <div class="sr_item_photo pull-left">
+                        <img class="hotel_image" src="http://q-cc.bstatic.com/images/hotel/square150/732/7329329.jpg" width="150" height="150" alt="花样年·隆堡成都酒店 (豪华套房酒店)">
+                    </div>
+                    <div class="sr_item_content">
+                            <div class="recommendation-item-right">
+                                <p class="f20 index-scorewordspan mb0">非常好 8.3</p>
+                                <p>分数来自1216个评分</p>
+                                <a href="#" class="b-button index-order-btn mt10">现在就预定</a>
+                            </div>
+                        <p><a href="#" class="history-list-title">五脚基旅馆中国城2号店</a> <i class="b-sprite stars ratings_stars_5" title="5星级"></i></p>
+                        <span class="feataddress">民生东路一段28号, 中山区, 台北</span>
+                       <p class="sr_no_desc_users">2位客人正在浏览这家酒店。</p>
+                        <span class="lastbooking">最新的预订：27分钟之前</span>
+                       <p><a href="#"><strong>另外2种客房类型</strong><i class="b-sprite inline-block arrow_grey_sm"></i></a></p>
+                    </div>
+
+                </div>
+               <div class="sr_item clearfix">
+                    <div class="sr_item_photo pull-left">
+                        <img class="hotel_image" src="http://q-cc.bstatic.com/images/hotel/square150/732/7329329.jpg" width="150" height="150" alt="花样年·隆堡成都酒店 (豪华套房酒店)">
+                    </div>
+                    <div class="sr_item_content">
+                            <div class="recommendation-item-right">
+                                <p class="f20 index-scorewordspan mb0">非常好 8.3</p>
+                                <p>分数来自1216个评分</p>
+                                <a href="#" class="b-button index-order-btn mt10">现在就预定</a>
+                            </div>
+                        <p><a href="#" class="history-list-title">五脚基旅馆中国城2号店</a> <i class="b-sprite stars ratings_stars_5" title="5星级"></i></p>
+                        <span class="feataddress">民生东路一段28号, 中山区, 台北</span>
+                       <p class="sr_no_desc_users">2位客人正在浏览这家酒店。</p>
+                        <span class="lastbooking">最新的预订：27分钟之前</span>
+                       <p><a href="#"><strong>另外2种客房类型</strong><i class="b-sprite inline-block arrow_grey_sm"></i></a></p>
+                    </div>
+
+                </div>
+               <div class="sr_item clearfix">
+                    <div class="sr_item_photo pull-left">
+                        <img class="hotel_image" src="http://q-cc.bstatic.com/images/hotel/square150/732/7329329.jpg" width="150" height="150" alt="花样年·隆堡成都酒店 (豪华套房酒店)">
+                    </div>
+                    <div class="sr_item_content">
+                            <div class="recommendation-item-right">
+                                <p class="f20 index-scorewordspan mb0">非常好 8.3</p>
+                                <p>分数来自1216个评分</p>
+                                <a href="#" class="b-button index-order-btn mt10">现在就预定</a>
+                            </div>
+                        <p><a href="#" class="history-list-title">五脚基旅馆中国城2号店</a> <i class="b-sprite stars ratings_stars_5" title="5星级"></i></p>
+                        <span class="feataddress">民生东路一段28号, 中山区, 台北</span>
+                       <p class="sr_no_desc_users">2位客人正在浏览这家酒店。</p>
+                        <span class="lastbooking">最新的预订：27分钟之前</span>
+                       <p><a href="#"><strong>另外2种客房类型</strong><i class="b-sprite inline-block arrow_grey_sm"></i></a></p>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="results-meta" id="results_prev_next">
+                <h4>
+                    在成都搜索出310家住宿.
+                    <span class="sr_showed_amount">显示 1 –
+                        <span class="sr_showed_amount_last">15</span>
+                    </span>
+                </h4>
+                <div class="try_another_search_3">
+                    <span>
+                        未找到理想的酒店？
+                        <a href="#">返回搜索页面。</a>
+                    </span>
+                </div>
+            </div>
+            <div class="results-paging">
+                <span class="paging-start">前一页</span>
+                <ul class="x-list">
+                    <li class="sr_pagination_item current"><a class="sr_pagination_link" href="#">1</a>
+                    </li>
+                    <li class="sr_pagination_item"><a class="sr_pagination_link" href="#">2</a>
+                    </li>
+                    <li class="sr_pagination_item"><a class="sr_pagination_link" href="#">3</a>
+                    </li>
+                    <li class="sr_pagination_item"><a class="sr_pagination_link" href="#">4</a>
+                    </li>
+                    <li class="sr_pagination_item"><a class="sr_pagination_link" href="#">5</a>
+                    </li>
+                    <li class="sr_pagination_item"><a class="sr_pagination_link" href="#">6</a>
+                    </li>
+                    <li class="sr_pagination_item"><a class="sr_pagination_link" href="#">7</a>
+                    </li>
+                    <li class="sr_pagination_item sr_pagination_break">
+                        <span class="sr_pagination_break_inner">…</span>
+                    </li>
+                    <li class="sr_pagination_item"><a class="sr_pagination_link" href="#">20</a>
+                    </li>
+                    <li class="sr_pagination_item"><a class="sr_pagination_link" href="#">21</a>
+                    </li>
+                </ul>
+                <a class="paging-next ga_sr_gotopage_2_21" href="#">下一页</a>
+            </div>
+            <div class="clearfix nha_filters_with_photos">
+                <h3 class="nha_filters_with_photos_title">
+                    成都的其他住宿
+                </h3>
+                <div class="nha_promote_type_search">
+                    <a href="#" class="nha_filter_photo">
+                        <img src="http://r-cc.bstatic.com/images/hotel/max300/289/28964959.jpg">
+                        <h3 class="nha_filter_photo_title">40间公寓</h3>
+                    </a>
+                </div>
+                <div class="nha_promote_type_search">
+                    <a href="#" class="nha_filter_photo">
+                        <img src="http://r-cc.bstatic.com/images/hotel/max300/289/28964959.jpg">
+                        <h3 class="nha_filter_photo_title">40间公寓</h3>
+                    </a>
+                </div>
+                <div class="nha_promote_type_search">
+                    <a href="#" class="nha_filter_photo">
+                        <img src="http://r-cc.bstatic.com/images/hotel/max300/289/28964959.jpg">
+                        <h3 class="nha_filter_photo_title">40间公寓</h3>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="footer">
+        <div class="g">
+            <ul class="footer-nav">
+                <li><a href="#">管理预订</a>
+                </li>
+                <li><a href="#">客户服务</a>
+                </li>
+                <li><a href="#">成为合作伙伴</a>
+                </li>
+                <li><a href="#">成为会员伙伴</a>
+                </li>
+
+            </ul>
+            <div class="apps">
+                <span class="text">下载我们的应用：</span>
+                <span class="logo">
+                    <a href="http://itunes.apple.com/app/id284971959" target="_blank" class="ios"></a>
+                    <a href="https://market.android.com/details?id=com.hcom.android" target="_blank" class="android"></a>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="footer-other">
+        <div class="g admin-login">
+            <a href="#">后台登录</a>
+        </div>
+        <div class="g copyright">
+            <p>版权 © 1996–2014Booking.com™. 版权所有.</p>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/slides.js"></script>
+    <script type="text/javascript" src="js/ajax.js"></script>
+    <script type="text/javascript" src="js/modal.js"></script>
+    <script type="text/javascript" src="js/panes.js"></script>
+    <script type="text/javascript" src="js/tab.js"></script>
+    <script type="text/javascript" src="js/imagePreview.js"></script>
+    <script type="text/javascript" src="js/select2.js"></script>
+    <script type="text/javascript" src="js/collapse.js"></script>
+    <script type="text/javascript" src="js/l.js"></script>
+</body>
+
+</html>

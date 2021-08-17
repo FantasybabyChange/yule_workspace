@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.lucene.dao.IProductDao">
+
+	<select id="findCityCompany" resultType="productLuceneVO">
+		select a.ID,b.NAME,a.MIN_EXPENSE,a.PERSON_NUM,a.IS_SEAT,
+		(select COUNT(d.ID) from product d where d.COMPANY_ID=a.COMPANY_ID and d.IS_DELETE = 0 and d.STATUS = 0) PRODUCT_COUNT
+		from product a , product_category b 
+		<where>
+			a.PRODUCT_CATEGORY_ID = b.ID
+			<if test="companyId != null and companyId != '' ">
+				AND a.COMPANY_ID = #{companyId}
+			</if>
+			AND a.IS_SHOW = 0
+			and a.IS_DELETE = 0
+			AND a.STATUS = 0
+		</where>
+	</select>
+	
+	<select id="findProductCount" resultType="int">
+		select count(a.ID) from product a  
+		<where>
+			<if test="companyId != null and companyId != '' ">
+				AND a.COMPANY_ID = #{companyId}
+			</if>
+			and a.IS_DELETE = 0
+			AND a.STATUS = 0
+		</where>
+	</select>
+	
+	
+
+</mapper>

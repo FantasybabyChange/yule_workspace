@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.admin.dao.ICompanyDao">
+	<resultMap type="company" id="company-sql-map">
+		<id     property="id"                  		column="ID" />
+		<result property="code"                		column="CODE" />
+		<result property="pay_type"                	column="PAY_TYPE" />
+		<result property="commision"                column="COMMISION" />
+		<result property="name"                		column="NAME" />
+		<result property="pinyin"              		column="PINYIN" />
+		<result property="hours"               		column="HOURS" />
+		<result property="details"       	   		column="DETAILS" />
+		<result property="periphery"           		column="PERIPHERY" />
+		<result property="rebast"              		column="REBAST" />
+		<result property="company_grade_id"    		column="COMPANY_GRADE_ID" />
+		<result property="company_category_id" 		column="COMPANY_CATEGORY_ID" />
+		<result property="is_delete"           		column="IS_DELETE" />
+		<result property="create_time"         		column="CREATE_TIME" />
+		<result property="update_time"         		column="UPDATE_TIME" />
+		<result property="warm_prompt"         		column="WARM_PROMPT"/>
+		<result property="min_expense"         		column="MIN_EXPENSE"/>
+		<result property="is_auth"    				column="IS_AUTH" />
+	</resultMap>
+	
+	<resultMap type="companyVO" id="companyVO-sql-map">
+		<id     property="id"          				column="ID" />
+		<result property="title"                	column="TITLE" />
+		<result property="pay_type"                	column="PAY_TYPE" />
+		<result property="commision"                column="COMMISION" />
+		<result property="name"         			column="NAME" />
+		<result property="pinyin"       			column="PINYIN" />
+		<result property="hours"        			column="HOURS" />
+		<result property="rebast"       			column="REBAST" />
+		<result property="details"       	   		column="DETAILS" />
+		<result property="periphery"           		column="PERIPHERY" />
+		<result property="warm_prompt"         		column="WARM_PROMPT"/>
+		<result property="company_category_name" 	column="COMPANY_CATEGORY_NAME" />
+		<result property="company_grade_name"    	column="COMPANY_GRADE_NAME" />
+		<result property="company_category_id" 		column="COMPANY_CATEGORY_ID" />
+		<result property="company_grade_id"    		column="COMPANY_GRADE_ID" />
+		<result property="business_license"         column="BUSINESS_LICENSE"/>
+		<result property="legal_person_name"   		column="LEGAL_PERSON_NAME"/>
+		<result property="is_auth"    				column="IS_AUTH" />
+	</resultMap>
+	
+	<resultMap type="companyManagerVO" id="companyManagerVO-sql-map">
+		<id     property="id"           	column="ID" />
+		<result property="company_category_name"    column="COMPANY_CATEGORY_NAME" />
+		<result property="company_grade_name"    		column="COMPANY_GRADE_NAME" />
+		<result property="company_category_id"    column="COMPANY_CATEGORY_ID" />
+		<result property="company_grade_id"    		column="COMPANY_GRADE_ID" />
+		<result property="code"         	column="CODE" />
+		<result property="account"         	column="ACCOUNT" />
+		<result property="name"         	column="NAME" />
+		<result property="password"       	column="PASSWORD" />
+		<result property="login_time"       column="LOGIN_TIME" />
+		<result property="status"           column="STATUS" />
+		<result property="is_delete" 		column="IS_DELETE" />
+		<result property="create_time"    	column="CREATE_TIME" />
+		<result property="update_time"    	column="UPDATE_TIME" />
+		<result property="is_auth"    		column="IS_AUTH" />
+	</resultMap>
+	
+	<select id="findCompanyVOById" resultType="companyVO" parameterType="string">
+         SELECT * FROM 	v_findCompanyVOById
+         <where>
+         	ID = #{id}
+         </where>
+	</select>
+	<select id="findCompanyList"    resultMap="company-sql-map">
+	SELECT a.ID,a.NAME,a.PINYIN FROM company a 
+		WHERE a.IS_DELETE=#{is_delete}
+		ORDER BY a.NAME
+	</select>
+	<select id="findCompanyByName" parameterType="String" resultType="int">
+		select count(ID) from company
+		where NAME = #{name} 
+	</select>
+	
+	<insert id="insertCompany" parameterType="company">
+		insert into company(ID,NAME,COMPANY_CATEGORY_ID,PINYIN,IS_DELETE,is_auth,PAY_TYPE,COMMISION,REBAST,COMPANY_GRADE_ID,COOPERATORY_TYPE,SALESMAN_ID,CREATE_TIME) 
+		values(#{id},#{name},#{company_category_id},#{pinyin},#{is_delete},#{is_auth},#{pay_type},#{commision},#{rebast},#{company_grade_id},#{cooperatory_type},#{salesman_id},now());
+		insert into company_address(ID,IS_DELETE,is_auth,CREATE_TIME) values(#{id},#{is_delete},#{is_auth},now());
+		insert into company_enterprise(ID,IS_DELETE,CREATE_TIME)values( #{id},#{is_delete},now() );
+	</insert>
+
+
+	<update id="updateCompanyCategory" parameterType="company">
+		update company
+		<set>
+			<if test="company_category_id != null and company_category_id != '' ">
+			COMPANY_CATEGORY_ID = #{company_category_id},
+			</if>
+		UPDATE_TIME = now()
+		</set>
+		where ID = #{id};
+		update product set is_delete = 1 where company_id = #{id} ;
+	</update>		
+	
+	<update id="updateCompanyOrder" parameterType="company">
+		update company
+		<set>
+			<if test="order != null ">
+			`order` = #{order},
+			</if>
+		UPDATE_TIME = now()
+		</set>
+		where ID = #{id};
+	</update>		
+	
+	<update id="updateCompanyInfo" parameterType="company">
+		update company
+	<set>
+			<if test="company_category_id != null and company_category_id != '' ">
+			COMPANY_CATEGORY_ID = #{company_category_id},
+			</if>
+			<if test="title != null and title != '' ">
+				TITLE = #{title},
+			</if>
+			<if test="company_grade_id != null and company_grade_id != '' ">
+				COMPANY_GRADE_ID = #{company_grade_id},
+			</if>
+			<if test="name != null and name != '' ">
+				NAME = #{name},
+			</if>
+			<if test="pay_type != null and pay_type != '' ">
+				pay_type = #{pay_type},
+			</if>
+			<if test="pinyin != null and pinyin != '' ">
+				PINYIN = #{pinyin},
+			</if>
+			<if test="commision != null">
+				COMMISION = #{commision},
+			</if>
+			<if test="cooperatory_type != null">
+				COOPERATORY_TYPE = #{cooperatory_type},
+			</if>
+			<if test="rebast != null and rebast != '' ">
+				REBAST = #{rebast},
+			</if>
+		SALESMAN_ID = #{salesman_id},
+		UPDATE_TIME = now()
+		</set>
+		where ID = #{id}
+	</update>		
+	
+	<update id="updateCompany" parameterType="company">
+		update company
+		<set>
+			<if test="hours != null and hours != '' ">
+				HOURS = #{hours},
+			</if>
+			<if test="details != null and details != '' ">
+				DETAILS = #{details},
+			</if>
+			<if test="periphery != null and periphery != '' ">
+				PERIPHERY = #{periphery},
+			</if>
+			<if test="warm_prompt != null and warm_prompt != '' ">
+				WARM_PROMPT = #{warm_prompt},
+			</if>			
+			<if test="is_delete != null">
+				IS_DELETE = #{is_delete},
+			</if>
+			UPDATE_TIME = now()
+		</set>
+		where ID = #{id}
+	</update>
+	<select id="findCompanyById" parameterType="java.lang.String" resultType="company" >
+		select ID,NAME,PINYIN,HOURS,DETAILS,PERIPHERY,REBAST,COMPANY_GRADE_ID,COMPANY_CATEGORY_ID,GRADE_LEVEL   from company 
+		where ID = #{id} 
+	</select>
+	
+	<select id="findCompanyListByCategoryId" parameterType="map" resultMap="company-sql-map">
+		select id FROM company 
+		<if test="categoryId != null and categoryId != '' ">
+		WHERE COMPANY_CATEGORY_ID=#{categoryId}
+		</if> 
+	</select>
+	<select id="findCompanyListByPrivilegeId" parameterType="java.lang.String" resultMap="company-sql-map">
+		SELECT cp.id FROM company cp WHERE cp.company_category_id IN (SELECT c.company_category_id FROM company_privilege c WHERE c.id=#{id})
+	</select>
+	
+	
+	<delete id="deleteCompanyById" parameterType="java.lang.String">
+		update company set is_delete = 1 where ID = #{id}
+	</delete>
+	
+	<!-- 以下从companylogin_sql_map中复制 -->
+    
+    <select id="findCompanyManagerVOList" parameterType="map" resultMap="companyManagerVO-sql-map" >
+	SELECT * FROM  v_companyMangerVo	
+		<where>
+			 1=1
+		    <if test="account != null and account != ''">
+			AND ACCOUNT like "%"#{account}"%"
+			</if>
+			<if test="name != null and name !='' ">
+			AND NAME like  "%"#{name}"%"
+			</if>
+			<if test="company_grade_id != null and company_grade_id !='' ">
+			AND company_grade_id =  #{company_grade_id}
+			</if>
+			<if test="company_category_id != null and company_category_id !='' ">
+			AND company_category_id =  #{company_category_id}
+			</if>
+			<if test="(start_time != null and start_time != '') and (end_time=='' or end_time==null)">
+			AND create_time between #{start_time} and now()
+			</if>
+			<if test="(end_time != null and end_time != '') and (start_time=='' or start_time==null)">
+			AND	create_time between 0 and #{end_time}
+			</if>
+			<if test="(start_time != null and start_time != '') and (end_time!='' and end_time!=null)">
+			AND	create_time between #{start_time} and #{end_time}
+			</if>
+			
+			<if test="status != null ">
+			AND	STATUS = #{status}
+			</if>							
+			<if test="is_delete != null ">
+			AND	IS_DELETE = #{is_delete}
+			</if>
+		</where>	
+		order by `order` ASC
+		LIMIT #{pageStart},#{pageEnd}
+	</select>
+	
+	<select id="findCompanyManagerVOCount" resultType="int" >
+		SELECT COUNT(*) from v_companyMangerVo	
+		<where>
+			 1=1
+		    <if test="accout != null and account != ''">
+			AND ACCOUNT like "%"#{account}"%"
+			</if>
+			<if test="name != null and name !='' ">
+			AND	NAME like  "%"#{name}"%"
+			</if>
+			<if test="(start_time != null and start_time != '') and (end_time=='' or end_time==null)">
+			AND	create_time between #{start_time} and now()
+			</if>
+			<if test="(end_time != null and end_time != '') and (start_time=='' or start_time==null)">
+			AND	create_time between 0 and #{end_time}
+			</if>
+			<if test="(start_time != null and start_time != '') and (end_time!='' and end_time!=null)">
+			AND	create_time between #{start_time} and #{end_time}
+			</if>
+			<if test="status != null ">
+			AND	STATUS = #{status}
+			</if>							
+			<if test="is_delete != null ">
+			AND	IS_DELETE = #{is_delete}
+			</if>
+	   </where>
+	</select>
+	
+	<select id="procInsertCompanyVo" parameterType="map" resultType="int" statementType="CALLABLE">
+		{CALL  proc_insert_companyVo(
+		#{id, mode=IN, jdbcType=VARCHAR},
+		#{company_category_id, mode=IN, jdbcType=VARCHAR},
+		#{name, mode=IN, jdbcType=VARCHAR} , 
+		#{pinyin, mode=IN, jdbcType=VARCHAR} ,
+		#{account, mode=IN, jdbcType=VARCHAR} ,
+		#{password, mode=IN, jdbcType=VARCHAR}
+		 ) } 
+	</select>
+	
+</mapper>

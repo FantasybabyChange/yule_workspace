@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yule.company.dao.ICompanyExpenseCategoryDao">
+	
+	<resultMap type="companyExpenseCategory" id="companyExpenseCategory-sql-map">
+		<id     property="id"           column="ID" />
+		<result property="parent_id" 	column="parent_id" />
+		<result property="name"         column="NAME" />
+	</resultMap>
+	
+	<select id="findCompanyExpenseCategoryByParentId"  parameterType="java.lang.String" resultMap="companyExpenseCategory-sql-map">
+		select id , name from company_expense_category	 	
+		WHERE parent_id = #{id}
+	</select>
+	
+	<select id="findCompanyExpenseCategory"   resultMap="companyExpenseCategory-sql-map">
+		select id , name from company_expense_category	 	
+		WHERE parent_id is null
+	</select>
+	
+</mapper>

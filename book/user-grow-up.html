@@ -1,0 +1,237 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//zh-CN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/select2.css">
+</head>
+
+<body>
+    <div id="header-full">
+        <div role="navigation" id="menu-bar" class="cont-shadow">
+            <div class="g clearfix">
+                <ul class="right-nav">
+                    <li class="nav-item">
+                        <a data-trigger="ajax" href="ajax/histroy.html" data-target=".ajax-histroy-content" class="nav-item-a nav-histroy">最近浏览</a>
+                        <div class="ajax-content ajax-histroy">
+                            <div class="ajax-arr"></div>
+                            <div class="ajax-histroy-content"></div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a data-trigger="ajax" href="ajax/histroy.html" data-target=".ajax-fav-content" class="nav-item-a nav-fav">
+                            <img src="images/fav-icon.png">我的收藏</a>
+                        <div class="ajax-content ajax-histroy">
+                            <div class="ajax-arr"></div>
+                            <div class="ajax-fav-content"></div>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a href="ajax/login.html" data-trigger="modal" data-title="用户登录" class="nav-item-a nav-login">登录或注册账户</a>
+                    </li>
+                    <li class="nav-item"><a href="#" class="nav-item-a  nav-order-list">管理订单</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col clearfix mt-10">
+        <div class="user-center-left">
+            <ul>
+                <li><a href="#" class="user-icon-1">个人中心</a>
+                </li>
+                <li><a href="#" class="user-icon-6 cur">我的成长</a>
+                </li>
+                <li><a href="#" class="user-icon-2">我的订单</a>
+                </li>
+                <li><a href="#" class="user-icon-3">我的收藏</a>
+                </li>
+                <li><a href="#" class="user-icon-4">浏览历史</a>
+                </li>
+                <li><a href="#" class="user-icon-5">设置</a>
+                </li>
+            </ul>
+        </div>
+        <div class="user-center-right">
+            <h2 class="user-center-title">我的成长信息</h2>
+            <div class="user-p-list clearfix">
+                <div class="member_level">
+                    <!-- 
+                        1.当前等级,给em添加类名 current
+                        2.之前的等级,给em添加类名 done
+
+                        偏移值的计算:
+                        总长度为800
+                        1.0~2000 分割为15个等份,每一个区间偏移20px，依次类推;积分为1500时，偏移值=(20*14)/800=35%;
+                        2.2000~8000与 8000~20000 分割为10个等份,每一个区间偏移25px，依次类推;
+                        积分为8000时，偏移值为550px;
+                        积分为20000时，偏移值为800px;
+                     -->
+                    <ul class="level_img_list clearfix">
+                        <li class="lv01">
+                            <em class="current"></em>
+                            <span>注册</span>
+                        </li>
+                        <li class="lv02">
+                            <em></em>
+                            <span>金牌</span>
+                        </li>
+                        <li class="lv03">
+                            <em></em>
+                            <span>白金</span>
+                        </li>
+                        <li class="lv04">
+                            <em></em>
+                            <span>钻石</span>
+                        </li>
+                    </ul>
+                    <div class="grow_bar">
+                        <div class="bar bar01">
+                            0</div>
+                        <div class="bar bar02">
+                            2000</div>
+                        <div class="bar bar03">
+                            8000</div>
+                        <div class="bar bar04">
+                            20000</div>
+                    </div>
+                    <div class="lv_info_box first_lv_info">
+                        <div class="lv_info" style="left: 0%;">
+                            <div class="arrow"></div>近一年内累积的基本积分0</div>
+                    </div>
+
+                </div>
+                <div class="integral">
+                    <div class="sub_mode_title">
+                        <h3 class="h3_title">
+                            一年内累积的基本积分</h3>
+                        <span class="points_tip">
+                            0</span>
+                        <span class="line">
+                        </span>
+                    </div>
+                    <!-- round_right,round_left 分别控制前后50%占比
+                             round_right height为100%时，实际占比是50%
+                             round_right height为100% && round_left height为20%，实际占比是60%，以此类推
+                             如果这个方法不便于操作，可以再讨论
+                         -->
+                    <div class="integral_info">
+                        <div class="round_right" style="height: 0%;"></div>
+                        <div class="info_con">
+                            <p>您已超越了</p>
+                            <p class="percent_num">
+                                <span class="num">0</span>%
+                                <span class="user">的用户</span>
+                            </p>
+                            <p class="tip_txt">还差
+                                <strong>2000</strong>即可升级到金牌贵宾!</p>
+                            <div class="percent">
+                                <div style="width:0"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="privilege">
+                    <div class="sub_mode_title">
+                        <h3 class="h3_title">
+                            当前享有的特权</h3>
+                        <span class="line"></span>
+                    </div>
+                    <ul class="current_privilege clearfix">
+                        <!-- p_service01,p_feedback01,p_favorable01 三个类别对应显示的图标，分别按照会员特权介绍模块排序 -->
+                        <!-- 切换效果，只需给当前元素(privilege_item)添加 current 类名 -->
+                        <li>
+                            <div class="t"><a href="MyPrivilege.aspx" class="more">更多 &gt;</a>
+                                <h4 class="h4_title">服务类</h4>
+                            </div>
+                            <div class="tab_con">
+                                <div class="privilege_item current">
+                                    <a href="MyPrivilege.aspx" target="_blank">
+                                        <em class="p_service01">
+                                            <img src="images/01.jpg ">
+                                        </em>
+                                        <span class="tab_txt">关怀短信</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="t"><a href="MyPrivilege.aspx" class="more">更多 &gt;</a>
+                                <h4 class="h4_title">回馈类</h4>
+                            </div>
+                            <div class="tab_con">
+                                <div class="privilege_item current">
+                                    <a href="MyPrivilege.aspx" target="_blank">
+                                        <em class="p_feedback01">
+                                            <img src="images/11.jpg">
+                                        </em>
+                                        <span class="tab_txt">积分累加更快</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="footer">
+        <div class="g">
+            <ul class="footer-nav">
+                <li><a href="#">管理预订</a>
+                </li>
+                <li><a href="#">客户服务</a>
+                </li>
+                <li><a href="#">成为合作伙伴</a>
+                </li>
+                <li><a href="#">成为会员伙伴</a>
+                </li>
+
+            </ul>
+            <div class="apps">
+                <span class="text">下载我们的应用：</span>
+                <span class="logo">
+                    <a href="http://itunes.apple.com/app/id284971959" target="_blank" class="ios"></a>
+                    <a href="https://market.android.com/details?id=com.hcom.android" target="_blank" class="android"></a>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="footer-other">
+        <div class="g admin-login">
+            <a href="#">后台登录</a>
+        </div>
+        <div class="g copyright">
+            <p>版权 © 1996–2014Booking.com™. 版权所有.</p>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/slides.js"></script>
+    <script type="text/javascript" src="js/ajax.js"></script>
+    <script type="text/javascript" src="js/modal.js"></script>
+    <script type="text/javascript" src="js/panes.js"></script>
+    <script type="text/javascript" src="js/tab.js"></script>
+    <script type="text/javascript" src="js/imagePreview.js"></script>
+    <script type="text/javascript" src="js/select2.js"></script>
+    <script type="text/javascript" src="js/collapse.js"></script>
+    <script src="js/slides.min.jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="js/l.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        $('.detailAblum').slides({
+            effect: 'slide, fade',
+            crossfade: true,
+            slideSpeed: 350,
+            fadeSpeed: 500,
+            generateNextPrev: true,
+            generatePagination: false
+        });
+    });
+    </script>
+</body>
+
+</html>
